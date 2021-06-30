@@ -10,7 +10,7 @@ const CardList = (props) => {
 
 
 	const updateTransactions = (value) => {
-		props.onChange()
+		props.onChange()is
 	}
 
 	useEffect(() => {
