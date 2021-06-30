@@ -1,0 +1,11 @@
+.bg-white {
+	padding: 0;
+	border: none;
+	background: none;
+}
+
+.bg-white:onclick {
+	padding: 0;
+	border: none;
+	background: none;
+}
