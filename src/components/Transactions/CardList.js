@@ -5,7 +5,7 @@ const CardList = (props) => {
 	// const [accountid, setAccountid] = useState(1);
 	const [transactions, setTransactions] = useState([]);
 	const d = new Date();
-	d.setDate(d.getDate() - 30);
+	d.setDate(d.getDate() - 60);
 	const from_date = d.toLocaleString();
 
 
