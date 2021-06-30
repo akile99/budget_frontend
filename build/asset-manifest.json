@@ -1,17 +1,8 @@
 {
-  "main.css": "/budget_frontend/static/css/main.3c4aed50.chunk.css",
-  "main.js": "/budget_frontend/static/js/main.22e9b0d6.chunk.js",
-  "main.js.map": "/budget_frontend/static/js/main.22e9b0d6.chunk.js.map",
-  "runtime~main.js": "/budget_frontend/static/js/runtime~main.8d9defb4.js",
-  "runtime~main.js.map": "/budget_frontend/static/js/runtime~main.8d9defb4.js.map",
-  "static/css/2.3a4758f2.chunk.css": "/budget_frontend/static/css/2.3a4758f2.chunk.css",
-  "static/js/2.36dada37.chunk.js": "/budget_frontend/static/js/2.36dada37.chunk.js",
-  "static/js/2.36dada37.chunk.js.map": "/budget_frontend/static/js/2.36dada37.chunk.js.map",
-  "static/js/3.787719fa.chunk.js": "/budget_frontend/static/js/3.787719fa.chunk.js",
-  "static/js/3.787719fa.chunk.js.map": "/budget_frontend/static/js/3.787719fa.chunk.js.map",
-  "index.html": "/budget_frontend/index.html",
-  "precache-manifest.068c9e37f273b25a10ca1e3404d8a941.js": "/budget_frontend/precache-manifest.068c9e37f273b25a10ca1e3404d8a941.js",
-  "service-worker.js": "/budget_frontend/service-worker.js",
-  "static/css/2.3a4758f2.chunk.css.map": "/budget_frontend/static/css/2.3a4758f2.chunk.css.map",
-  "static/css/main.3c4aed50.chunk.css.map": "/budget_frontend/static/css/main.3c4aed50.chunk.css.map"
+  "main.css": "static/css/main.2cafd564.css",
+  "main.css.map": "static/css/main.2cafd564.css.map",
+  "main.js": "static/js/main.d6a72411.js",
+  "main.js.map": "static/js/main.d6a72411.js.map",
+  "static/js/0.8535ebd2.chunk.js": "static/js/0.8535ebd2.chunk.js",
+  "static/js/0.8535ebd2.chunk.js.map": "static/js/0.8535ebd2.chunk.js.map"
 }
