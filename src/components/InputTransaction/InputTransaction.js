@@ -4,7 +4,8 @@ import Search from '../Search/Search.js'
 import './inputTransactions.css'
 
 const InputTransaction = (props) => {
-	const [date, setDate] = useState('')
+	const today = new Date().toISOString().slice(0, 10)
+	const [date, setDate] = useState(today)
 	const [vendor, setVendor] = useState('')
 	const [amount, setAmount] =	useState('')
 	const [status, setStatus] = useState('Pending')
@@ -69,12 +70,11 @@ const InputTransaction = (props) => {
 		})
 			.then(response => response.json())
 			.catch(console.log)
-		setDate('')
+		// setDate(today)
 		setVendor('')
-		setDate('')
 		setAmount('')
 		setStatus('Pending')
-		setCategory('')
+		// setCategory(35)
 		props.onChange()
 	}
 

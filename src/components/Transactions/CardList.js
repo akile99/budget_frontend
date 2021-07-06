@@ -4,9 +4,9 @@ import Card from './Card.js'
 const CardList = (props) => {
 	// const [accountid, setAccountid] = useState(1);
 	const [transactions, setTransactions] = useState([]);
-	const d = new Date();
-	d.setDate(d.getDate() - 60);
-	const from_date = d.toLocaleString();
+	// const d = new Date();
+	// d.setDate(d.getDate() - 60);
+	//const from_date = d.toLocaleString();
 
 
 	const updateTransactions = (value) => {
@@ -19,13 +19,13 @@ const CardList = (props) => {
 			headers: {'Content-Type': 'application/json'},
 			body: JSON.stringify({
 			  "account_id": props.account_id,
-			  "from_date": from_date,
-			  "to_date": new Date().toLocaleString()
+			  "from_date": props.from_date,
+			  "to_date": props.to_date
 			})
 		})
 		.then(response => response.json())
       	.then(data => {setTransactions(data)});
-	},[props.submit, props.account_id, props.host])
+	},[props.submit, props.account_id, props.host, props.from_date, props.to_date])
 
 	return (
 		<div>

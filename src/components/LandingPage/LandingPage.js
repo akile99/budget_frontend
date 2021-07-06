@@ -17,8 +17,10 @@ const LandingPage = (props) => {
 	const [createAccount, setCreateAccount] = useState(false)
 	const [sideBarOpen, setSideBarOpen] = useState(false)
 	const [billsPage, setBillsPage] = useState(true)
-	const [from_date, setFrom_Date] = useState('')
-	const [to_date, setTo_Date] = useState('')
+	const d = new Date()
+	d.setDate(d.getDate() - 60)
+	const [from_date, setFrom_Date] = useState(d.toISOString().split('T')[0])
+	const [to_date, setTo_Date] = useState(new Date().toISOString().split('T')[0])
 
 
 	const handleInputChange = () => {
@@ -110,7 +112,7 @@ const LandingPage = (props) => {
 							</Scroll>
 						:
 						<Scroll>
-							<CardList key={account_id} account_id={account_id} host={props.host} submit={submit} onChange={handleInputChange} />
+							<CardList key={account_id} account_id={account_id} host={props.host} submit={submit} onChange={handleInputChange} from_date={from_date} to_date={to_date}/>
 						</Scroll>
 					}
 
