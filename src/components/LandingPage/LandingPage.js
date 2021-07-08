@@ -66,6 +66,26 @@ const LandingPage = (props) => {
 					</div>
 				: <div></div>
 			}
+			<div>
+				<h3>From: </h3>
+				<input 
+					className= 'f4 pa2 w-25 center' 
+					type='date' 
+					id='from_date'
+					name='from_dateate'
+					value={from_date}
+					onChange={onFrom_DateChange}
+				/>
+				<h3>To: </h3>
+				<input 
+					className= 'f4 pa2 w-25 center' 
+					type='date' 
+					id='to_date'
+					name='to_date'
+					value={to_date}
+					onChange={onTo_DateChange}
+				/>
+			</div>
 			<button onClick={handelSideBarOpenClose}>Side Bar</button>
 			<div className="flex flex-row no-wrap center">
 				{ sideBarOpen
@@ -89,22 +109,6 @@ const LandingPage = (props) => {
 						:
 							<button onClick={handleInsertChange}> Insert </button>
 						}
-					<input 
-						className= 'f4 pa2 w-25 center' 
-						type='date' 
-						id='from_date'
-						name='from_dateate'
-						value={from_date}
-						onChange={onFrom_DateChange}
-					/>
-					<input 
-						className= 'f4 pa2 w-25 center' 
-						type='date' 
-						id='to_date'
-						name='to_date'
-						value={to_date}
-						onChange={onTo_DateChange}
-					/>
 					</div>
 					{ billsPage
 						? <Scroll> 
