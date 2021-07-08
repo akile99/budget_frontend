@@ -16,6 +16,7 @@ const LandingPage = (props) => {
 	const [account_id, setAccountid] = useState();
 	const [createAccount, setCreateAccount] = useState(false)
 	const [sideBarOpen, setSideBarOpen] = useState(false)
+	const [searchDate, setSearchDate] = useState(false)
 	const [billsPage, setBillsPage] = useState(true)
 	const d = new Date()
 	d.setDate(d.getDate() - 60)
@@ -29,6 +30,10 @@ const LandingPage = (props) => {
 
 	const handleInsertChange = () => {
 		setInsert(!insert);
+	}
+
+	const handleSearchDate = () => {
+		setSearchDate(!searchDate);
 	}
 
 	const handelLoadAccount = (account_id) => {
@@ -67,24 +72,29 @@ const LandingPage = (props) => {
 				: <div></div>
 			}
 			<div>
-				<h3>From: </h3>
-				<input 
-					className= 'f4 pa2 w-25 center' 
-					type='date' 
-					id='from_date'
-					name='from_dateate'
-					value={from_date}
-					onChange={onFrom_DateChange}
-				/>
-				<h3>To: </h3>
-				<input 
-					className= 'f4 pa2 w-25 center' 
-					type='date' 
-					id='to_date'
-					name='to_date'
-					value={to_date}
-					onChange={onTo_DateChange}
-				/>
+			{ searchDate 
+				? <h3>From: </h3>
+					<input 
+						className= 'f4 pa2 w-25 center' 
+						type='date' 
+						id='from_date'
+						name='from_dateate'
+						value={from_date}
+						onChange={onFrom_DateChange}
+					/>
+					<h3>To: </h3>
+					<input 
+						className= 'f4 pa2 w-25 center' 
+						type='date' 
+						id='to_date'
+						name='to_date'
+						value={to_date}
+						onChange={onTo_DateChange}
+					/>
+					<button onClick={handleSearchDate}>Search Dates</button>
+				: <button onClick={handleSearchDate}>Search Dates</button>
+			}
+
 			</div>
 			<button onClick={handelSideBarOpenClose}>Side Bar</button>
 			<div className="flex flex-row no-wrap center">
