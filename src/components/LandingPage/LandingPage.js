@@ -73,7 +73,9 @@ const LandingPage = (props) => {
 			}
 			<div>
 			{ searchDate 
-				? <h3>From: </h3>
+
+				? <div>
+				<h3>From: </h3>
 					<input 
 						className= 'f4 pa2 w-25 center' 
 						type='date' 
@@ -92,6 +94,7 @@ const LandingPage = (props) => {
 						onChange={onTo_DateChange}
 					/>
 					<button onClick={handleSearchDate}>Search Dates</button>
+					</div>
 				: <button onClick={handleSearchDate}>Search Dates</button>
 			}
 
