@@ -4,7 +4,7 @@ import SignIn from './components/SignIn/SignIn.js';
 import LandingPage from './components/LandingPage/LandingPage.js';
 import Register from './components/Register/Register.js';
 import Navigation from './components/Navigation/Navigation.js';
-import InvalidUser from './components/InvalidUser/InvalidUser.js';
+import InvalidUser from './components/InvalidUser/InvalidUser.js'
 // import Greeting from './components/Greeting/Greeting.js';
 // import Scroll from './components/Scroll/Scroll.js';
 
