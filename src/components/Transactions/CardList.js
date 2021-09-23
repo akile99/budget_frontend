@@ -60,4 +60,4 @@ const CardList = (props) => {
 		);
 }
 
-export default CardList;
+export default CardList
