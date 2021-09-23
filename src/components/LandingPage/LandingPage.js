@@ -75,7 +75,7 @@ const LandingPage = (props) => {
 			{ searchDate 
 
 				? <div>
-				<h3>From: </h3>
+					<h3>From: </h3>
 					<input 
 						className= 'f4 pa2 w-25 center' 
 						type='date' 

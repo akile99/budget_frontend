@@ -18,7 +18,7 @@ const Greeting = (props) => {
 					})
 				})
 					.then(response => response.json())
-			      	.then(data => setSum(data[0].sum));
+			      	.then(data => setSum((Math.round(data[0].sum * 100) / 100).toFixed(2)));
 					
 			    fetch(`${props.host}sumPending`, {
 					method: 'post',
@@ -28,7 +28,7 @@ const Greeting = (props) => {
 					})
 				})
 					.then(response => response.json())
-			      	.then(data => {setPendingSum(data[0].sum)});
+			      	.then(data => {setPendingSum((Math.round(data[0].sum * 100) / 100).toFixed(2))});
 
 			} catch (error) {
 				console.error(error)
