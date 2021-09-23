@@ -43,14 +43,6 @@ const Greeting = (props) => {
 		}
 
 
-		// if (pendingSum === null) {
-		// 	setPendingSum(0) 
-		// }
-
-		// if (sum === null) {
-		// 	setSum("Loading") 
-		// }
-
 	},[props.account_id, props.submit, pendingSum, sum, props.host])	
 
 	return (

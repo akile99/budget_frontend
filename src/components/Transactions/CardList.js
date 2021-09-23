@@ -46,7 +46,7 @@ const CardList = (props) => {
 					accountid={transactions[i].accountid}
 					date = {transactions[i].date}
 					vendor={transactions[i].vendor}
-					amount={transactions[i].amount}
+					amount={(Math.round(transactions[i].amount * 100) / 100).toFixed(2)}
 					status={transactions[i].status}
 					category={transactions[i].category}
 					host={props.host}
