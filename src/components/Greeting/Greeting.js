@@ -42,6 +42,8 @@ const Greeting = (props) => {
 			}
 		}
 
+	//Testing
+
 
 	},[props.account_id, props.submit, pendingSum, sum, props.host])	
 
