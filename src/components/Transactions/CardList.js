@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import Card from './Card.js'
 
 const CardList = (props) => {
-	// const [accountid, setAccountid] = useState(1);
 	const [transactions, setTransactions] = useState([]);
 	// const d = new Date();
 	// d.setDate(d.getDate() - 60);
@@ -12,7 +11,7 @@ const CardList = (props) => {
 	const updateTransactions = (value) => {
 		props.onChange()
 	}
-
+	let counter = 0
 	useEffect(() => {
 		fetch(`${props.host}transactions`, {
 			method: 'post',
@@ -25,7 +24,9 @@ const CardList = (props) => {
 		})
 		.then(response => response.json())
       	.then(data => {setTransactions(data)});
-	},[props.submit, props.account_id, props.host, props.from_date, props.to_date])
+      	console.log(counter)
+      	counter++
+	},[]) //[props.submit, props.account_id, props.host, props.from_date, props.to_date]
 
 	return (
 		<div>

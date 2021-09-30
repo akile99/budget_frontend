@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import './Greeting.css'
+import './AccountHeading.css'
 
-const Greeting = (props) => {
+const AccountHeading = (props) => {
 	const [pendingSum, setPendingSum] = useState(0)
 	const [sum, setSum] = useState(0)
 	const [sumColor, setSumColor] = useState('black')
@@ -45,19 +45,19 @@ const Greeting = (props) => {
 	//Testing
 
 
-	},[props.account_id, props.submit, pendingSum, sum, props.host])	
+	},[props.account_id, pendingSum, sum, props.host])	
 
 	return (
-		<div>
-		  <h1 className='f3'>
-		    {`${props.name}, your account ballance is ...`}
-		  </h1>
+		<div style={{display: 'flex', justifyContent: 'flex-end'}}>
 		  { !props.account_id
-		  	? <h4>Chose an action</h4>
+		  	? <div style={{display: 'flex', justifyContent: 'flex-end'}}>
+		  		<p className='f3 black pa3'>Actual $ 1111.11 </p>		
+			  	<p className='f3 black pa3'>$ 1234.56 </p>
+			  </div>
 		  	: 
-		  	<div>
-			  	<p className={pendingColor}>{`Pending $ ${pendingSum}`} </p>
-			  	<p className={sumColor}>{`Actual $ ${sum}`} </p>
+		  	<div style={{display: 'flex', justifyContent: 'flex-end'}}>
+			  	<p className='f3 black pa3 {sumColor}'>{`Actual $ ${sum}`} </p>		
+			  	<p className='f3 black pa3 {pendingColor}'>{`$ ${pendingSum}`} </p>
 			</div>
 		  }
 
@@ -65,7 +65,7 @@ const Greeting = (props) => {
 	);
 }
 
-export default Greeting;
+export default AccountHeading;
 
 
 

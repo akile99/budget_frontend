@@ -1,32 +1,33 @@
 import React, { useState } from 'react';
-import Greeting from '../Greeting/Greeting.js';
-import SideBar from '../SideBar/SideBar.js';
+import AccountHeading from '../AccountHeading/AccountHeading.js';
+// import SideBar from '../SideBar/SideBar.js';
 import UpcomingBills from '../UpcomingBills/UpcomingBills.js';
 import InputTransaction from '../InputTransaction/InputTransaction.js';
 import Scroll from '../Scroll/Scroll.js';
 // import InsertBill from '../UpcomingBills/InsertBill.js';
-import CardList from '../Transactions/CardList.js';
+// import CardList from '../Transactions/CardList.js';
 // import AccountList from '../Accounts/AccountList.js';
 import NewAccount from '../NewAccount/NewAccount.js';
+import Navigation from '../Navigation/Navigation.js';
 
 const LandingPage = (props) => {
-	const [submit, setSubmit] = useState(false);
+	// const [submit, setSubmit] = useState(false);
 	const [insert, setInsert] = useState(false);
 	// const [insertNewBill, setinsertNewBill] = useState(false);
-	const [account_id, setAccountid] = useState();
+	// const [account_id, setAccountid] = useState();
 	const [createAccount, setCreateAccount] = useState(false)
-	const [sideBarOpen, setSideBarOpen] = useState(false)
+	// const [sideBarOpen, setSideBarOpen] = useState(false)
 	const [searchDate, setSearchDate] = useState(false)
 	const [billsPage, setBillsPage] = useState(true)
-	const d = new Date()
-	d.setDate(d.getDate() - 60)
-	const [from_date, setFrom_Date] = useState(d.toISOString().split('T')[0])
-	const [to_date, setTo_Date] = useState(new Date().toISOString().split('T')[0])
+	// const d = new Date()
+	// d.setDate(d.getDate() - 60)
+	// const [from_date, setFrom_Date] = useState(d.toISOString().split('T')[0])
+	// const [to_date, setTo_Date] = useState(new Date().toISOString().split('T')[0])
 
 
-	const handleInputChange = () => {
-		setSubmit(!submit)
-	}
+	// const handleInputChange = () => {
+	// 	setSubmit(!submit)
+	// }
 
 	const handleInsertChange = () => {
 		setInsert(!insert);
@@ -36,10 +37,10 @@ const LandingPage = (props) => {
 		setSearchDate(!searchDate);
 	}
 
-	const handelLoadAccount = (account_id) => {
-		setAccountid(account_id)
-		handelBillChange()
-	}
+	// const handelLoadAccount = (account_id) => {
+	// 	setAccountid(account_id)
+	// 	handelBillChange()
+	// }
 
 	const handelBillChange = (account_id) => {
 		setBillsPage(!billsPage)
@@ -49,9 +50,9 @@ const LandingPage = (props) => {
 		setCreateAccount(!createAccount)
 	}
 
-	const handelSideBarOpenClose = () => {
-		setSideBarOpen(!sideBarOpen)
-	}
+	// const handelSideBarOpenClose = () => {
+	// 	setSideBarOpen(!sideBarOpen)
+	// }
 
 	const onFrom_DateChange = (event) => {
 		setFrom_Date(event.target.value)
@@ -61,9 +62,10 @@ const LandingPage = (props) => {
 		setTo_Date(event.target.value)
 	}
 
+
+
 	return (
 		<div>
-			<Greeting name={props.name} host={props.host} account_id={account_id} submit={submit} />
 			{ createAccount 
 				? <div>
 					<NewAccount host={props.host} user_id={props.user_id}/>
@@ -73,7 +75,6 @@ const LandingPage = (props) => {
 			}
 			<div>
 			{ searchDate 
-
 				? <div>
 					<h3>From: </h3>
 					<input 
@@ -99,39 +100,28 @@ const LandingPage = (props) => {
 			}
 
 			</div>
-			<button onClick={handelSideBarOpenClose}>Side Bar</button>
 			<div className="flex flex-row no-wrap center">
-				{ sideBarOpen
-				? <div className="outline w-25 pa2 mr2 ml2">
-					<Scroll>
-				  		<SideBar key={props.user_id} user_id={props.user_id} host={props.host} onChange={handelLoadAccount} account={handelNewAccount} bills={handelBillChange}/>
-					</Scroll>
-				</div>
-				: <div>
-				</div>
-				}
-
 				<div className="outline w-90 pa1 mr1">
 				  	<div>
 						{ insert === true 
 				  		?	
 					  		<div>
-						      	<InputTransaction account_id={account_id} host={props.host} submit={submit} onChange={handleInputChange} />
+						      	<InputTransaction account_id={props.account_id} host={props.host} submit={submit} onChange={handleInputChange} />
 								<button onClick={handleInsertChange}> Exit </button>
 							</div>
 						:
 							<button onClick={handleInsertChange}> Insert </button>
 						}
 					</div>
-					{ billsPage
+					{ /*billsPage
 						? <Scroll> 
 							<UpcomingBills key={props.user_id} host={props.host} user_id={props.user_id}/>
 							</Scroll>
 						:
 						<Scroll>
-							<CardList key={account_id} account_id={account_id} host={props.host} submit={submit} onChange={handleInputChange} from_date={from_date} to_date={to_date}/>
+							<CardList key={props.account_id} account_id={props.account_id} host={props.host} submit={submit} onChange={handleInputChange} from_date={from_date} to_date={to_date}/>
 						</Scroll>
-					}
+					*/}
 
 				</div>
 

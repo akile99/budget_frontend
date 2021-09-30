@@ -21,7 +21,11 @@ const SideBar = (props) => {
 			<h3>Actions</h3>
 			<button onClick={handelBillsClick}>Bills</button>
 			<button onClick={handelNewAccountClick}>New Account</button>
-			<AccountList key={props.user_id} user_id={props.user_id} host={props.host} onChange={handelLoadAccount}/>
+			<AccountList 
+				key={props.user_id} 
+				user_id={props.user_id} 
+				host={props.host} o
+				onChange={handelLoadAccount}/>
 		</div>
 	);
 };

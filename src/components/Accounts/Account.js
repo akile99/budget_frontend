@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 // import Search from '../Search/Search.js'
 
 // const getStingDate = require('./Functions/getStingDate');
