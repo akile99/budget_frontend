@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './AccountHeading.css'
+// import './AccountHeading.css'
 
 const AccountHeading = (props) => {
 	const [pendingSum, setPendingSum] = useState(0)
@@ -28,6 +28,7 @@ const AccountHeading = (props) => {
 					})
 				})
 					.then(response => response.json())
+			
 			      	.then(data => {setPendingSum((Math.round(data[0].sum * 100) / 100).toFixed(2))});
 
 			} catch (error) {
@@ -41,9 +42,6 @@ const AccountHeading = (props) => {
 				setPendingColor('red') 
 			}
 		}
-
-	//Testing
-
 
 	},[props.account_id, pendingSum, sum, props.host])	
 

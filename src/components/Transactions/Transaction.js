@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
 import Search from '../Search/Search.js'
-import './Card.css';
+import './Transaction.css';
 
 // const getStingDate = require('./Functions/getStingDate');
 
-const Card = (props) => {
+const Transaction = (props) => {
 	const { transaction_id, accountid } = props;
 	const [edit, setEdit] = useState(false);
 	const [date, setDate] = useState(props.date)
 	const [vendor, setVendor] = useState(props.vendor)
 	const [amount, setAmount] =	useState(props.amount)
 	const [category, setCategory] = useState(props.category)
-	const [s, setS] = useState(props.status);
+	const [status, setStatus] = useState(props.status);
 
 	function getFormattedDate(date) {
 		const d = new Date(date);
@@ -36,7 +36,7 @@ const Card = (props) => {
 	  return `${year}-${month}-${day}`;
 	}
 
-	const handelStatus = (transaction_id, s, vendor) => {
+	const handelStatus = (transaction_id, status, vendor) => {
 		fetch(`${props.host}updateStatus`, {
 			method: 'post',
 			headers: {'Content-Type': 'application/json'},
@@ -47,7 +47,7 @@ const Card = (props) => {
 		})
 			.then(response => response.json())
 			.catch(console.log)
-		s === 'Cleared' ? setS('Pending') :	setS('Cleared')
+		status === 'Cleared' ? setStatus('Pending') :	setStatus('Cleared')
 		props.onChange()
 		console.log(transaction_id, vendor)
 
@@ -101,22 +101,22 @@ const Card = (props) => {
 	const stringDate = getStingDate(date)
 	// const removeTransactions = handelRemove(id)
 	return (
-		<div>
+		<div className='outline'>
 		{ !edit
-		? <div className="flex justify-center">
-			<p className="fl w-10 tc">{formatedDate}</p> 
-			<p className="fl w-30 tc">{vendor}</p> 
-			<p className="fl w-20 tc">${amount}</p> 
-			<button 
-				className="fl w-10 tc bg-white "
-				onClick={() => handelStatus(transaction_id, s, vendor)}
-			>{s}
-			</button> 
-			<p className="fl w-30 tc">{category}</p>
-			<button 
-				className="fl w-10 tc bg-white" 
+		? <div className="flex justify-left">
+			<p className="date transaction">{formatedDate}</p> 
+			<p className="vendor transaction">{vendor}</p> 
+			<p className='dollar transaction'>$</p>
+			<p className="amount transaction">{amount}</p> 
+			<p className="status transaction"
+				onClick={() => handelStatus(transaction_id, status, vendor)}
+			>{status}
+			</p> 
+			<p className="category transaction">{category}</p>
+			<p 
+				className="edit transaction" 
 				onClick={() => handelEdit(transaction_id)}>edit
-			</button>
+			</p>
 		</div>
 		: 	<div className="flex justify-center">
 				<p className="fl w-10 tc">{transaction_id}</p> 
@@ -160,4 +160,4 @@ const Card = (props) => {
 
 }
 
-export default Card;
+export default Transaction;

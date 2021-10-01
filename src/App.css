@@ -1,12 +1,35 @@
 .App {
   text-align: center;
+  background: pink;
 }
 
-.center {
+#LandingPage {
+  background: green;
+}
+
+#Register{
+  background: blue;
+}
+
+#Navigation {
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
+  text-align: right;
+  background: yellow;
 }
 
-.no-wrap {
-	white-space: nowrap;
+#MainPage {
+  display: flex;
+  background: turquoise;
+}
+
+#Sidebar {
+  display: flex;
+  background: orange;
+}
+
+#Transaction {
+  flex-grow: 1;
+  border-style: solid;
+  background: beige;
 }

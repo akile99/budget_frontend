@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import SignIn from './components/SignIn/SignIn.js';
 // import LandingPage from './components/LandingPage/LandingPage.js';
@@ -8,7 +8,7 @@ import Navigation from './components/Navigation/Navigation.js'
 import AccountHeading from './components/AccountHeading/AccountHeading.js';
 import Scroll from './components/Scroll/Scroll.js';
 import SideBar from './components/SideBar/SideBar.js';
-import CardList from './components/Transactions/CardList.js';
+import TransactionList from './components/Transactions/TransactionList.js';
 import NewAccount from './components/NewAccount/NewAccount.js';
 import UpcomingBills from './components/UpcomingBills/UpcomingBills.js';
 // import InputTransaction from './components/InputTransaction/InputTransaction.js';
@@ -32,6 +32,7 @@ function App() {
 	const [createAccount, setCreateAccount] = useState(false)
 	const [searchDate, setSearchDate] = useState(false)
 	const [billsPage, setBillsPage] = useState(false)
+	const [counter, setCounter] = useState(0)
 
 	const onFrom_DateChange = (event) => {
 		setFrom_Date(event.target.value)
@@ -61,7 +62,7 @@ function App() {
 		setIsRegistered(!isRegistered)
 	}
 
-	const handelLoadAccount = (account_id) => {
+	const handleLoadAccount = (account_id) => {
 		setAccountid(account_id)
 		// handelBillChange()
 	}
@@ -86,64 +87,63 @@ function App() {
 		setBillsPage(!billsPage)
 	}
 
-  return (
-  	<div className="App">
 
-  		{ !isSignedIn
-  			?	<div>
-  				{ !isRegistered
-  					? <Register host={host} onChange={handleSignIn} onRegisterChange={handleRegistered}/>
-  					: <div>
+
+	return (
+		<div className="App">
+			{ !isSignedIn
+				?	<div id = 'Register'>
+					{ !isRegistered
+						? <Register host={host} onChange={handleSignIn} onRegisterChange={handleRegistered}/>
+						: <div>
 	  					{ user_id === -1
 	  						? <InvalidUser onRouteChange={handleSignOut}/>
 	  						: <SignIn host={host} onChange={handleSignIn} onRegisterChange={handleRegistered} /> 
 	 					}
- 					</div>
- 				}
- 				</div>
-  			:
-  				<div>
-  					<div style={{display: 'flex', justifyContent: 'flex-end'}}>
+						</div>
+					}
+					</div>
+				: 	<div id = 'LandingPage'>
+						<div id = 'Navigation'>
 						{ account_id
 							? <AccountHeading host={host} account_id={account_id} /> : <p></p>
 					 	}	
 						<Navigation isSignedIn={isSignedIn} name={name} onRouteChange={handleSignOut} />
 					</div>
-					<div style={{display: 'flex'}}>
-					{ sideBarOpen
-					? <div className="outline w-25 pa2 mr2 ml2">
-						{ createAccount 
-							? <div>
-								<NewAccount host={host} user_id={user_id}/>
-								<button onClick={handelNewAccount}>exit</button>
-								</div>
+					<div id = "MainPage">
+						<div id = 'Sidebar' className="outline ">
+							{ sideBarOpen
+							? <div >
+								{ createAccount 
+									? <div>
+										<NewAccount host={host} user_id={user_id}/>
+										<button onClick={handelNewAccount}>exit</button>
+										</div>
+									: <div></div>
+								}
+								<Scroll>
+							  		<SideBar key={user_id} user_id={user_id} host={host} onChange={handleLoadAccount} account={handelNewAccount} bills={handelBillChange} />
+								</Scroll>
+							</div>
 							: <div></div>
-						}
-						<Scroll>
-					  		<SideBar key={user_id} user_id={user_id} host={host} onChange={handelLoadAccount} 
-					  		// account={handelNewAccount} 
-					  		// bills={handelBillChange}
-					  		/>
-						</Scroll>
-					</div>
-					: <div></div>
-					}
-
-					{ !account_id
-						? <Scroll> 
-							<UpcomingBills key={user_id} host={host} user_id={user_id}/>
-							</Scroll>
-						:
-						<Scroll>
-							<CardList key={account_id} account_id={account_id} host={host} submit={submit} onChange={handleInputChange} from_date={from_date} to_date={to_date}/>
-						</Scroll>
-					}	
+							}
+						</div>
+						<div id = 'Transaction'>
+							{ !account_id
+								? <Scroll> 
+									<UpcomingBills key={user_id} host={host} user_id={user_id}/>
+									</Scroll>
+								:
+								<Scroll>
+									<TransactionList key={account_id} account_id={account_id} host={host} submit={submit} onChange={handleInputChange} from_date={from_date} to_date={to_date}/>
+								</Scroll>
+							}	
+						</div>
 					</div>
 				</div>
-  		}
-
-    </div>
-  );
+			}
+	</div>
+	);
 }
 
 export default App;

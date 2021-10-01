@@ -1,4 +1,5 @@
 import React from 'react';
+import './Account.css';
 // import Search from '../Search/Search.js'
 
 // const getStingDate = require('./Functions/getStingDate');
@@ -11,13 +12,10 @@ const Card = (props) => {
 	}
 
 	return (
-		<div className="flex">
-			<p 
-				className="fl w-30 tc tc bg-white "
-				onClick={() => handelLoadAccount()}
-			>{account_name + " " + account_type}		
-			{/*>{account_name + " " + account_type + " $ " + sum}*/}
-			</p>
+		<div id = "Accounts" onClick={() => handelLoadAccount()}>
+			<p className="Account">
+			   {account_name + " " + account_type}</p>
+			<p className="Account">$ 199999.00</p>
 		</div>
 
 		);

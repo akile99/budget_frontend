@@ -17,12 +17,12 @@ const SideBar = (props) => {
 	}
 
 	return (
-		<div >
-			<h3>Actions</h3>
+		<div className= 'w-25 pa2 mr2 ml2'>
+{/*			<h3>Actions</h3>
 			<button onClick={handelBillsClick}>Bills</button>
-			<button onClick={handelNewAccountClick}>New Account</button>
+			<button onClick={handelNewAccountClick}>New Account</button>*/}
 			<AccountList 
-				key={props.user_id} 
+				key={props.userid} 
 				user_id={props.user_id} 
 				host={props.host} o
 				onChange={handelLoadAccount}/>
