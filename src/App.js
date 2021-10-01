@@ -9,15 +9,18 @@ import AccountHeading from './components/AccountHeading/AccountHeading.js';
 import Scroll from './components/Scroll/Scroll.js';
 import SideBar from './components/SideBar/SideBar.js';
 import CardList from './components/Transactions/CardList.js';
+import NewAccount from './components/NewAccount/NewAccount.js';
+import UpcomingBills from './components/UpcomingBills/UpcomingBills.js';
+// import InputTransaction from './components/InputTransaction/InputTransaction.js';
+
 
 function App() {
 	const host = 'https://star-ship-enterprise.herokuapp.com/';
 	// const host = 'http://localhost:4567/'
 	const [name, setName] = useState('')
-	const [userid, setUserId] = useState('') 
+	const [user_id, setuser_id] = useState('') 
 	const [isRegistered, setIsRegistered] = useState(true)
 	const [isSignedIn, setIsSignedIn] = useState(false)
-	// const [account_id, setAccountId] = useState(false)
 	const [account_id, setAccountid] = useState();
 	const [sideBarOpen, setSideBarOpen] = useState(true)
 	const [submit, setSubmit] = useState(false);
@@ -25,21 +28,33 @@ function App() {
 	d.setDate(d.getDate() - 60)
 	const [from_date, setFrom_Date] = useState(d.toISOString().split('T')[0])
 	const [to_date, setTo_Date] = useState(new Date().toISOString().split('T')[0])
+	// const [insert, setInsert] = useState(false);
+	const [createAccount, setCreateAccount] = useState(false)
+	const [searchDate, setSearchDate] = useState(false)
+	const [billsPage, setBillsPage] = useState(false)
+
+	const onFrom_DateChange = (event) => {
+		setFrom_Date(event.target.value)
+	}
+
+	const handleSearchDate = () => {
+		setSearchDate(!searchDate);
+	}
 
 	const handleSignIn = (user_id, firstname) => {
 		if (user_id !== -1) {
 			setName(firstname)
-			setUserId(user_id)
+			setuser_id(user_id)
 			setIsSignedIn(true)
 		}
 		else {
-			setUserId(-1)
+			setuser_id(-1)
 		}
 	}
 
 	const handleSignOut = () => {
 		setIsSignedIn(false)
-		setUserId(0)
+		setuser_id(0)
 	}
 
 	const handleRegistered = () => {
@@ -55,6 +70,22 @@ function App() {
 		setSubmit(!submit)
 	}
 
+	const handelNewAccount = () => {
+		setCreateAccount(!createAccount)
+	}
+
+	const handelSideBarOpenClose = () => {
+		setSideBarOpen(!sideBarOpen)
+	}
+
+	const onTo_DateChange = (event) => {
+		setTo_Date(event.target.value)
+	}
+
+	const handelBillChange = (account_id) => {
+		setBillsPage(!billsPage)
+	}
+
   return (
   	<div className="App">
 
@@ -63,7 +94,7 @@ function App() {
   				{ !isRegistered
   					? <Register host={host} onChange={handleSignIn} onRegisterChange={handleRegistered}/>
   					: <div>
-	  					{ userid === -1
+	  					{ user_id === -1
 	  						? <InvalidUser onRouteChange={handleSignOut}/>
 	  						: <SignIn host={host} onChange={handleSignIn} onRegisterChange={handleRegistered} /> 
 	 					}
@@ -73,53 +104,41 @@ function App() {
   			:
   				<div>
   					<div style={{display: 'flex', justifyContent: 'flex-end'}}>
-						{ !account_id
-							? <AccountHeading 
-					    	host={host}
-					    	account_id={account_id} />
-					    	: <p></p>
+						{ account_id
+							? <AccountHeading host={host} account_id={account_id} /> : <p></p>
 					 	}	
-						<Navigation
-							isSignedIn={isSignedIn} 
-							name={name}
-							onRouteChange={handleSignOut} 
-						/>
+						<Navigation isSignedIn={isSignedIn} name={name} onRouteChange={handleSignOut} />
 					</div>
 					<div style={{display: 'flex'}}>
 					{ sideBarOpen
 					? <div className="outline w-25 pa2 mr2 ml2">
+						{ createAccount 
+							? <div>
+								<NewAccount host={host} user_id={user_id}/>
+								<button onClick={handelNewAccount}>exit</button>
+								</div>
+							: <div></div>
+						}
 						<Scroll>
-					  		<SideBar key={userid} 
-					  		user_id={userid} host={host} 
-					  		onChange={handelLoadAccount} 
+					  		<SideBar key={user_id} user_id={user_id} host={host} onChange={handelLoadAccount} 
 					  		// account={handelNewAccount} 
 					  		// bills={handelBillChange}
 					  		/>
 						</Scroll>
 					</div>
-					: <div>
-					</div>
+					: <div></div>
 					}
-					<Scroll>
-						<CardList key={account_id} 
-						account_id={account_id} 
-						host={host} 
-						submit={submit} 
-						onChange={handleInputChange} 
-						from_date={from_date} 
-						to_date={to_date}/>
-					</Scroll>
-					</div>
-					{/*
-					<LandingPage
-						host={host} 
-						user_id={userid}
-						account_id={account_id}
-						isSignedIn={isSignedIn} 
-						name={name}
-						handleSignIn={handleSignOut} />					
-					*/}
 
+					{ !account_id
+						? <Scroll> 
+							<UpcomingBills key={user_id} host={host} user_id={user_id}/>
+							</Scroll>
+						:
+						<Scroll>
+							<CardList key={account_id} account_id={account_id} host={host} submit={submit} onChange={handleInputChange} from_date={from_date} to_date={to_date}/>
+						</Scroll>
+					}	
+					</div>
 				</div>
   		}
 

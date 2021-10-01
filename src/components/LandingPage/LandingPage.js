@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import AccountHeading from '../AccountHeading/AccountHeading.js';
+// import AccountHeading from '../AccountHeading/AccountHeading.js';
+
 // import SideBar from '../SideBar/SideBar.js';
 import UpcomingBills from '../UpcomingBills/UpcomingBills.js';
 import InputTransaction from '../InputTransaction/InputTransaction.js';

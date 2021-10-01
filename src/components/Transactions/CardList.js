@@ -3,20 +3,17 @@ import Card from './Card.js'
 
 const CardList = (props) => {
 	const [transactions, setTransactions] = useState([]);
-	// const d = new Date();
-	// d.setDate(d.getDate() - 60);
-	//const from_date = d.toLocaleString();
-
 
 	const updateTransactions = (value) => {
 		props.onChange()
 	}
-	let counter = 0
 	useEffect(() => {
+		try{
 		fetch(`${props.host}transactions`, {
 			method: 'post',
 			headers: {'Content-Type': 'application/json'},
 			body: JSON.stringify({
+			  // "account_id": "daee290c-f60b-44c8-a3bb-4005e7854b98",
 			  "account_id": props.account_id,
 			  "from_date": props.from_date,
 			  "to_date": props.to_date
@@ -24,9 +21,13 @@ const CardList = (props) => {
 		})
 		.then(response => response.json())
       	.then(data => {setTransactions(data)});
-      	console.log(counter)
-      	counter++
-	},[]) //[props.submit, props.account_id, props.host, props.from_date, props.to_date]
+      }
+      catch (e) {
+      	console.log(e)
+      }
+      console.log(props.account_id)
+
+	},[props.submit, props.account_id, props.host, props.from_date, props.to_date])
 
 	return (
 		<div>

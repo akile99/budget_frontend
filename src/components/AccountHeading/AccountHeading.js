@@ -49,18 +49,8 @@ const AccountHeading = (props) => {
 
 	return (
 		<div style={{display: 'flex', justifyContent: 'flex-end'}}>
-		  { !props.account_id
-		  	? <div style={{display: 'flex', justifyContent: 'flex-end'}}>
-		  		<p className='f3 black pa3'>Actual $ 1111.11 </p>		
-			  	<p className='f3 black pa3'>$ 1234.56 </p>
-			  </div>
-		  	: 
-		  	<div style={{display: 'flex', justifyContent: 'flex-end'}}>
-			  	<p className='f3 black pa3 {sumColor}'>{`Actual $ ${sum}`} </p>		
-			  	<p className='f3 black pa3 {pendingColor}'>{`$ ${pendingSum}`} </p>
-			</div>
-		  }
-
+		  	<p className='f3 black pa3 {sumColor}'>{`Actual $ ${sum}`} </p>		
+		  	<p className='f3 black pa3 {pendingColor}'>{`$ ${pendingSum}`} </p>
 		</div>
 	);
 }
