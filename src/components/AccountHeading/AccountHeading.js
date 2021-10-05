@@ -43,7 +43,7 @@ const AccountHeading = (props) => {
 			}
 		}
 
-	},[props.account_id, pendingSum, sum, props.host])	
+	},[props.account_id, pendingSum, sum, props.host, props.submit])	
 
 	return (
 		<div className='heading'>

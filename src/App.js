@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import SignIn from './components/SignIn/SignIn.js';
-// import LandingPage from './components/LandingPage/LandingPage.js';
 import Register from './components/Register/Register.js';
 import InvalidUser from './components/InvalidUser/InvalidUser.js';
 import Navigation from './components/Navigation/Navigation.js'
@@ -16,7 +15,6 @@ import InputTransaction from './components/InputTransaction/InputTransaction.js'
 
 function App() {
 	const host = 'https://star-ship-enterprise.herokuapp.com/';
-	// const host = 'http://localhost:4567/'
 	const [name, setName] = useState('')
 	const [user_id, setuser_id] = useState('') 
 	const [isRegistered, setIsRegistered] = useState(true)
@@ -28,12 +26,12 @@ function App() {
 	d.setDate(d.getDate() - 60)
 	const [from_date, setFrom_Date] = useState(d.toISOString().split('T')[0])
 	const [to_date, setTo_Date] = useState(new Date().toISOString().split('T')[0])
-	// const [insert, setInsert] = useState(false);
 	const [createAccount, setCreateAccount] = useState(false)
 	const [searchDate, setSearchDate] = useState(false)
 	const [billsPage, setBillsPage] = useState(false)
 	const [counter, setCounter] = useState(0)
 	const [insert, setInsert] = useState(false)
+	const [update, setUpdate] = useState(false)
 
 	const onFrom_DateChange = (event) => {
 		setFrom_Date(event.target.value)
@@ -92,6 +90,11 @@ function App() {
 		setInsert(!insert);
 	}
 
+	const handleUpdate = () => {
+		setUpdate(!update)
+		console.log(update)
+	}
+
 
 	return (
 		<div className="App">
@@ -109,11 +112,16 @@ function App() {
 					</div>
 				: 	<div id = 'LandingPage'>
 					<nav>
-					{account_id ? <p className ='links' onClick={handleInsertChange}>Add Transaction</p> :<p></p>}
+					{account_id 
+						? <div>
+							<p className ='links' onClick={handleInsertChange}>Add Transaction</p> 
+						  </div>
+						:<p></p>
+					}
 						
 						<div className='Navigation'>
 							{ account_id
-								? <AccountHeading host={host} account_id={account_id} /> : <p></p>
+								? <AccountHeading host={host} account_id={account_id} submit={submit}/> : <p></p>
 						 	}	
 							<Navigation isSignedIn={isSignedIn} name={name} onRouteChange={handleSignOut} />
 						</div>

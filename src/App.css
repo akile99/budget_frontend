@@ -1,49 +1,49 @@
 .App {
   text-align: center;
-  background: pink;
+  /*background: pink;*/
   margin: 0 1rem;
 }
 
 #LandingPage {
-  background: green;
+  /*background: green;*/
 }
 
 #Register{
-  background: blue;
+  /*background: blue;*/
 }
 
 .Navigation {
   display: flex;
   justify-content:flex-end;
-  background: yellow;
+  /*background: yellow;*/
 }
 
 #MainPage {
   display: flex;
-  background: turquoise;
+  /*background: turquoise;*/
 }
 
 #Sidebar {
   display: flex;
-  background: orange;
+  /*background: orange;*/
 }
 
 #Transaction {
   flex-grow: 1;
   border-style: solid;
-  background: beige;
+  /*background: beige;*/
 }
 
 #insertTransaction {
   display: flex;
-  background-color: gray;
+  /*background-color: gray;*/
 }
 
 nav {
   display: flex;
   justify-content: space-between;
   text-align: right;
-  background-color: ruby;
+  /*background-color: ruby;*/
 }
 
 .links {

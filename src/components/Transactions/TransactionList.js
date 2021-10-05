@@ -27,7 +27,7 @@ const TransactionList = (props) => {
       }
       console.log(props.account_id)
 
-	},[props.submit, props.account_id, props.host, props.from_date, props.to_date])
+	},[props.submit, props.account_id, props.host, props.from_date, props.to_date, props.update])
 
 	return (
 		<div>
