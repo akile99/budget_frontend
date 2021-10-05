@@ -11,7 +11,7 @@ import TransactionList from './components/Transactions/TransactionList.js';
 import NewAccount from './components/NewAccount/NewAccount.js';
 import UpcomingBills from './components/UpcomingBills/UpcomingBills.js';
 import InputTransaction from './components/InputTransaction/InputTransaction.js';
-
+import getOpenningBalances from './Functions/getOpenningBalances.js';
 
 function App() {
 	const host = 'https://star-ship-enterprise.herokuapp.com/';
@@ -54,7 +54,8 @@ function App() {
 
 	const handleSignOut = () => {
 		setIsSignedIn(false)
-		setuser_id(0)
+		setuser_id()
+		setAccountid(false)
 	}
 
 	const handleRegistered = () => {
@@ -63,6 +64,7 @@ function App() {
 
 	const handleLoadAccount = (account_id) => {
 		setAccountid(account_id)
+		console.log(getOpenningBalances({host, account_id}))
 		// handelBillChange()
 	}
 
@@ -89,12 +91,6 @@ function App() {
 	const handleInsertChange = () => {
 		setInsert(!insert);
 	}
-
-	const handleUpdate = () => {
-		setUpdate(!update)
-		console.log(update)
-	}
-
 
 	return (
 		<div className="App">

@@ -25,7 +25,6 @@ const TransactionList = (props) => {
       catch (e) {
       	console.log(e)
       }
-      console.log(props.account_id)
 
 	},[props.submit, props.account_id, props.host, props.from_date, props.to_date, props.update])
 

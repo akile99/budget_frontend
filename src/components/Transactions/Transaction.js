@@ -49,7 +49,7 @@ const Transaction = (props) => {
 			.catch(console.log)
 		status === 'Cleared' ? setStatus('Pending') :	setStatus('Cleared')
 		props.onChange()
-		console.log(transaction_id, vendor)
+		// console.log(transaction_id, vendor)
 
 	}
 
