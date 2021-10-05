@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-// import './AccountHeading.css'
+import './AccountHeading.css'
 
 const AccountHeading = (props) => {
 	const [pendingSum, setPendingSum] = useState(0)
@@ -46,9 +46,9 @@ const AccountHeading = (props) => {
 	},[props.account_id, pendingSum, sum, props.host])	
 
 	return (
-		<div style={{display: 'flex', justifyContent: 'flex-end'}}>
-		  	<p className='f3 black pa3 {sumColor}'>{`Actual $ ${sum}`} </p>		
-		  	<p className='f3 black pa3 {pendingColor}'>{`$ ${pendingSum}`} </p>
+		<div className='heading'>
+			  	<p className='f3 {sumColor}'>{`Actual $ ${sum}`} </p>		
+			  	<p className='f3 {pendingColor}'>{`$ ${pendingSum}`} </p>
 		</div>
 	);
 }

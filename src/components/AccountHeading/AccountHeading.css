@@ -1,6 +1,18 @@
+.heading {
+	/*style={{display: 'flex', justifyContent: 'space-between'}}*/
+	display: flex;
+	align-items: center;
+}
+
 .red {
 	color:red;
 }
 .black {
 	color:black;
 }
+
+.f3 {
+	font-size:1.5rem;
+	padding: 1rem;
+}
+

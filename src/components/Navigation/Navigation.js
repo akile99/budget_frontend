@@ -1,11 +1,12 @@
 import React from 'react';
+import './navigation.css';
 // import Greeting from '../Greeting/Greeting.js';
 
 const Navigation = ({ onRouteChange, isSignedIn, name}) => {
 	if(isSignedIn) {
 		return (
-			<nav style={{display: 'flex', justifyContent: 'flex-end'}}>
-				<p className='f3 black pa3'>{name}</p>
+			<nav className='navigation'>
+				<p className='f3'>{name}</p>
 				<p onClick={() => onRouteChange('signout')} 
 				className='f3 link dim black underline pa3 pointer'>Sign Out</p>
 			</nav>

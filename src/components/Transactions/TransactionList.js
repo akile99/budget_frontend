@@ -30,14 +30,15 @@ const TransactionList = (props) => {
 	},[props.submit, props.account_id, props.host, props.from_date, props.to_date])
 
 	return (
-		<div className='grid'>
-			<div className="outline flex justify-left">
-				<h3 className="date transaction">Date</h3> 
-				<h3 className="vendor transaction">Vender</h3> 
-				<h3 className="amount transaction">Amount</h3> 
-				<h3 className="status transaction">Status</h3> 
-				<h3 className="category transaction">Category</h3>
-				<h3 className="edit transaction">Edit</h3>
+		<div>
+			<div className="outline flex justify-center">
+				<p className="date transaction">Date</p> 
+				<p className="vendor transaction">Vender</p> 
+				<p className='dollar transaction'>&nbsp;&nbsp;</p>	
+				<p className="amount transaction">Amount</p> 
+				<p className="status transaction">Status</p> 
+				<p className="category transaction">Category</p>
+				<p className="edit transaction">Edit</p>
 			</div>
 			{
 			transactions.map((data, i) => {

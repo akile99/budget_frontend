@@ -11,7 +11,7 @@ import SideBar from './components/SideBar/SideBar.js';
 import TransactionList from './components/Transactions/TransactionList.js';
 import NewAccount from './components/NewAccount/NewAccount.js';
 import UpcomingBills from './components/UpcomingBills/UpcomingBills.js';
-// import InputTransaction from './components/InputTransaction/InputTransaction.js';
+import InputTransaction from './components/InputTransaction/InputTransaction.js';
 
 
 function App() {
@@ -33,6 +33,7 @@ function App() {
 	const [searchDate, setSearchDate] = useState(false)
 	const [billsPage, setBillsPage] = useState(false)
 	const [counter, setCounter] = useState(0)
+	const [insert, setInsert] = useState(false)
 
 	const onFrom_DateChange = (event) => {
 		setFrom_Date(event.target.value)
@@ -87,6 +88,9 @@ function App() {
 		setBillsPage(!billsPage)
 	}
 
+	const handleInsertChange = () => {
+		setInsert(!insert);
+	}
 
 
 	return (
@@ -104,12 +108,22 @@ function App() {
 					}
 					</div>
 				: 	<div id = 'LandingPage'>
-						<div id = 'Navigation'>
-						{ account_id
-							? <AccountHeading host={host} account_id={account_id} /> : <p></p>
-					 	}	
-						<Navigation isSignedIn={isSignedIn} name={name} onRouteChange={handleSignOut} />
-					</div>
+					<nav>
+					{account_id ? <p className ='links' onClick={handleInsertChange}>Add Transaction</p> :<p></p>}
+						
+						<div className='Navigation'>
+							{ account_id
+								? <AccountHeading host={host} account_id={account_id} /> : <p></p>
+						 	}	
+							<Navigation isSignedIn={isSignedIn} name={name} onRouteChange={handleSignOut} />
+						</div>
+					</nav>
+					{ insert
+					? <div id='insertTransaction'>
+				      	<InputTransaction account_id={account_id} host={host} submit={submit} onChange={handleInputChange} />
+					  </div>
+					: <div></div>
+					}
 					<div id = "MainPage">
 						<div id = 'Sidebar' className="outline ">
 							{ sideBarOpen
