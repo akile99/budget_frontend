@@ -20,7 +20,7 @@ const AccountList = (props) => {
 		.then(response => response.json())
       	.then(data => {setAccounts(data)});
 
-	},[props.host, props.user_id])
+	},[props.host, props.user_id, props.submit])
 
 	return (
 		<div>
@@ -40,6 +40,7 @@ const AccountList = (props) => {
 						account_type={accounts[i].account_type}
 						onChange={handelLoadAccount}
 						host={props.host}
+						submit={props.submit}
 						/>
 					</div>
 				);

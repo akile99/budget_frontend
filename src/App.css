@@ -15,7 +15,16 @@
 .Navigation {
   display: flex;
   justify-content:flex-end;
+  font-size:1.5rem;
+  align-items: center;
+  /*padding: 1.5rem;*/
   /*background: yellow;*/
+}
+
+.heading {
+  /*style={{display: 'flex', justifyContent: 'space-between'}}*/
+  display: flex;
+  align-items: center;
 }
 
 #MainPage {
@@ -58,6 +67,11 @@ nav {
 
 .links:hover {
   cursor: pointer;
+}
+
+.f3 {
+  font-size:1.5rem;
+  padding: 1.5rem;
 }
 
 .button {

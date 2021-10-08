@@ -4,23 +4,26 @@ import SignIn from './components/SignIn/SignIn.js';
 import Register from './components/Register/Register.js';
 import InvalidUser from './components/InvalidUser/InvalidUser.js';
 import Navigation from './components/Navigation/Navigation.js'
-import AccountHeading from './components/AccountHeading/AccountHeading.js';
+import AccountBalance from './components/AccountBalance/AccountBalance.js';
+import AccountPending from './components/AccountBalance/AccountPending.js';
 import Scroll from './components/Scroll/Scroll.js';
 import SideBar from './components/SideBar/SideBar.js';
 import TransactionList from './components/Transactions/TransactionList.js';
 import NewAccount from './components/NewAccount/NewAccount.js';
 import UpcomingBills from './components/UpcomingBills/UpcomingBills.js';
 import InputTransaction from './components/InputTransaction/InputTransaction.js';
-import getOpenningBalances from './Functions/getOpenningBalances.js';
+import useOpenningBalances from './Hooks/useOpenningBalances.js';
+import useLocalStorage from './Hooks/useLocalStorage.js';
+import useSessionStorage from './Hooks/useSessionStorage.js';
 
 function App() {
 	const host = 'https://star-ship-enterprise.herokuapp.com/';
-	const [name, setName] = useState('')
-	const [user_id, setuser_id] = useState('') 
+	const [name, setName] = useSessionStorage('name', '') 
+	const [user_id, setuser_id] = useSessionStorage('user_id', '') 
+	const [isSignedIn, setIsSignedIn] = useSessionStorage('isSignedIn', false)
 	const [isRegistered, setIsRegistered] = useState(true)
-	const [isSignedIn, setIsSignedIn] = useState(false)
-	const [account_id, setAccountid] = useState();
-	const [sideBarOpen, setSideBarOpen] = useState(true)
+	const [account_id, setAccountid] = useSessionStorage('account_id', '') 
+	const [sideBarOpen, setSideBarOpen] = useState(true);
 	const [submit, setSubmit] = useState(false);
 	const d = new Date()
 	d.setDate(d.getDate() - 60)
@@ -29,9 +32,7 @@ function App() {
 	const [createAccount, setCreateAccount] = useState(false)
 	const [searchDate, setSearchDate] = useState(false)
 	const [billsPage, setBillsPage] = useState(false)
-	const [counter, setCounter] = useState(0)
 	const [insert, setInsert] = useState(false)
-	const [update, setUpdate] = useState(false)
 
 	const onFrom_DateChange = (event) => {
 		setFrom_Date(event.target.value)
@@ -55,7 +56,9 @@ function App() {
 	const handleSignOut = () => {
 		setIsSignedIn(false)
 		setuser_id()
-		setAccountid(false)
+		setAccountid()
+		setName()		
+		localStorage.clear()
 	}
 
 	const handleRegistered = () => {
@@ -64,8 +67,6 @@ function App() {
 
 	const handleLoadAccount = (account_id) => {
 		setAccountid(account_id)
-		console.log(getOpenningBalances({host, account_id}))
-		// handelBillChange()
 	}
 
 	const handleInputChange = () => {
@@ -117,7 +118,12 @@ function App() {
 						
 						<div className='Navigation'>
 							{ account_id
-								? <AccountHeading host={host} account_id={account_id} submit={submit}/> : <p></p>
+								? <div className='Navigation'>
+									<p>Actual</p>
+									<AccountBalance className='f3' host={host} account_id={account_id} submit={submit}/> 
+									<AccountPending className='f3' host={host} account_id={account_id} submit={submit}/> 
+						 		  </div>
+						 		: <p></p>
 						 	}	
 							<Navigation isSignedIn={isSignedIn} name={name} onRouteChange={handleSignOut} />
 						</div>
@@ -140,7 +146,7 @@ function App() {
 									: <div></div>
 								}
 								<Scroll>
-							  		<SideBar key={user_id} user_id={user_id} host={host} onChange={handleLoadAccount} account={handelNewAccount} bills={handelBillChange} />
+							  		<SideBar key={user_id} user_id={user_id} host={host} onChange={handleLoadAccount} account={handelNewAccount} bills={handelBillChange} submit={submit} />
 								</Scroll>
 							</div>
 							: <div></div>

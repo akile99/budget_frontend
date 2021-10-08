@@ -1,4 +1,5 @@
 import React from 'react';
+import AccountBalance from '../AccountBalance/AccountBalance.js';
 import './Account.css';
 // import Search from '../Search/Search.js'
 
@@ -15,7 +16,7 @@ const Card = (props) => {
 		<div id = "Accounts" onClick={() => handelLoadAccount()}>
 			<p className="Account">
 			   {account_name + " " + account_type}</p>
-			<p className="Account">$ 199999.00</p>
+			<AccountBalance className='Account' host={props.host} account_id={account_id} submit={props.submit}/>
 		</div>
 
 		);

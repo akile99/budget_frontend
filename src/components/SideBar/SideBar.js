@@ -25,7 +25,8 @@ const SideBar = (props) => {
 				key={props.userid} 
 				user_id={props.user_id} 
 				host={props.host} o
-				onChange={handelLoadAccount}/>
+				onChange={handelLoadAccount}
+				submit={props.submit}/>
 		</div>
 	);
 };
