@@ -1,12 +1,79 @@
 .App {
   text-align: center;
+  /*background: pink;*/
+  margin: 0 1rem;
 }
 
-.center {
+#LandingPage {
+  /*background: green;*/
+}
+
+#Register{
+  /*background: blue;*/
+}
+
+.Navigation {
   display: flex;
-  justify-content: center;
+  justify-content:flex-end;
+  font-size:1.5rem;
+  align-items: center;
+  /*padding: 1.5rem;*/
+  /*background: yellow;*/
 }
 
-.no-wrap {
-	white-space: nowrap;
+.heading {
+  /*style={{display: 'flex', justifyContent: 'space-between'}}*/
+  display: flex;
+  align-items: center;
+}
+
+#MainPage {
+  display: flex;
+  /*background: turquoise;*/
+}
+
+#Sidebar {
+  display: flex;
+  /*background: orange;*/
+}
+
+#Transaction {
+  flex-grow: 1;
+  border-style: solid;
+  /*background: beige;*/
+}
+
+#insertTransaction {
+  display: flex;
+  /*background-color: gray;*/
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  text-align: right;
+  /*background-color: ruby;*/
+}
+
+.links {
+  align-self: center;
+  padding: .5rem;
+  font-size: 1.5rem;
+  color: black;
+  background: white;
+  border-radius: 1rem;
+  outline: solid;
+}
+
+.links:hover {
+  cursor: pointer;
+}
+
+.f3 {
+  font-size:1.5rem;
+  padding: 1.5rem;
+}
+
+.button {
+
 }

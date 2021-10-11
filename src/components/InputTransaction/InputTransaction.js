@@ -11,20 +11,6 @@ const InputTransaction = (props) => {
 	const [status, setStatus] = useState('Pending')
 	const [category, setCategory] = useState()
 
-	// const getStingDate = (date) => {
-	// 	const d = new Date();
-
-	// 	const year = d.getFullYear();
-	// 	let month = (d.getMonth() + 1)
-	// 	let day = d.getDate();
-
-	// 	month < 10 ? month = `0${month}` : month = `${month}`
-	// 	day < 10 ? day = `0${day}` : day = `${day}`;
-	  
-	//   	return `${year}-${month}-${day}`;
-	// 	//return `1981-03-02`;
-	// }
-
 	const onDateChange = (event) => {
 		setDate(event.target.value)
 	}
@@ -69,16 +55,12 @@ const InputTransaction = (props) => {
 			})
 		})
 			.then(response => response.json())
+			.then(props.onChange())
 			.catch(console.log)
-		// setDate(today)
 		setVendor('')
 		setAmount('')
 		setStatus('Pending')
-		// setCategory(35)
-		props.onChange()
 	}
-
-	// const stringDate = getStingDate();
 
 	return (
 		<div className='center'>
