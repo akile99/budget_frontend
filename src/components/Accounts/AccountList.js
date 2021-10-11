@@ -25,7 +25,7 @@ const AccountList = (props) => {
 	return (
 		<div>
 			<div className="flex justify-center">
-				<h2 className="fl w-25 tc">Accounts </h2> 
+				<h2 className="Account">Accounts </h2> 
 			</div>
 			{
 			accounts.map((data, i) => {

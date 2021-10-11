@@ -34,6 +34,12 @@
 
 #Sidebar {
   display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: flex-end;
+  align-content: stretch;
+  /*max-width: 200px;*/
+  /*'w-25 pa2 mr2 ml2'*/
   /*background: orange;*/
 }
 
@@ -74,6 +80,23 @@ nav {
   padding: 1.5rem;
 }
 
-.button {
-
+.openSideBar {
+  transform: rotate(90deg);
+  width: 3rem;
+  padding: .75rem;
 }
+
+.openSideBar:hover {
+  cursor: pointer;
+}
+
+.closeSideBar {
+  transform: rotate(-90deg);
+  width: 3rem;
+  padding: .75rem;
+}
+
+.closeSideBar:hover {
+  cursor: pointer;
+}
+

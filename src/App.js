@@ -11,10 +11,12 @@ import SideBar from './components/SideBar/SideBar.js';
 import TransactionList from './components/Transactions/TransactionList.js';
 import NewAccount from './components/NewAccount/NewAccount.js';
 import UpcomingBills from './components/UpcomingBills/UpcomingBills.js';
-import InputTransaction from './components/InputTransaction/InputTransaction.js';
+import InputTransaction from './components/InputTransaction/InputTransaction.js'
+import AccountList from './components/Accounts/AccountList.js';
 import useOpenningBalances from './Hooks/useOpenningBalances.js';
 import useLocalStorage from './Hooks/useLocalStorage.js';
 import useSessionStorage from './Hooks/useSessionStorage.js';
+import up_collapse from './components/SideBar/up_collapse.png'
 
 function App() {
 	const host = 'https://star-ship-enterprise.herokuapp.com/';
@@ -23,7 +25,7 @@ function App() {
 	const [isSignedIn, setIsSignedIn] = useSessionStorage('isSignedIn', false)
 	const [isRegistered, setIsRegistered] = useState(true)
 	const [account_id, setAccountid] = useSessionStorage('account_id', '') 
-	const [sideBarOpen, setSideBarOpen] = useState(true);
+	const [sideBarOpen, setSideBarOpen] = useSessionStorage('sideBar', true) ;
 	const [submit, setSubmit] = useState(false);
 	const d = new Date()
 	d.setDate(d.getDate() - 60)
@@ -32,7 +34,7 @@ function App() {
 	const [createAccount, setCreateAccount] = useState(false)
 	const [searchDate, setSearchDate] = useState(false)
 	const [billsPage, setBillsPage] = useState(false)
-	const [insert, setInsert] = useState(false)
+	const [insert, setInsert] = useSessionStorage('insert', false) 
 
 	const onFrom_DateChange = (event) => {
 		setFrom_Date(event.target.value)
@@ -146,10 +148,22 @@ function App() {
 									: <div></div>
 								}
 								<Scroll>
-							  		<SideBar key={user_id} user_id={user_id} host={host} onChange={handleLoadAccount} account={handelNewAccount} bills={handelBillChange} submit={submit} />
+									<div id='Sidebar'>
+										<img 
+											className='closeSideBar'
+											src={up_collapse} 
+											alt='Collapse' 
+											onClick={handelSideBarOpenClose}/>
+										<AccountList 
+											key={user_id} 
+											user_id={user_id} 
+											host={host} o
+											onChange={handleLoadAccount}
+											submit={submit}/>
+									</div>								
 								</Scroll>
 							</div>
-							: <div></div>
+							: <img className='openSideBar' src={up_collapse} alt='Collapse' onClick={handelSideBarOpenClose}/>
 							}
 						</div>
 						<div id = 'Transaction'>

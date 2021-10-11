@@ -9,7 +9,7 @@ const AccountBalance = (props) => {
 	// const [balanceColor, setBalanceColor] = useState('black')
 
 	return (
-	  	<p className={balanceColor}>{`$ ${((Math.round(balance) * 100) / 100).toFixed(2)}`} </p>	
+	  	<p className={balanceColor}>{`$ ${balance}`} </p>	
 	);
 }
 

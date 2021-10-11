@@ -8,7 +8,7 @@ const AccountPending = (props) => {
 		props.account_id, props.host, address, props.submit);
 
 	return (
-	  	<p className={pendingColor}>{`$ ${((Math.round(pendingBalance) * 100) / 100).toFixed(2)}`} </p>
+	  	<p className={pendingColor}>{`$ ${pendingBalance}`} </p>
 	);
 }
 
