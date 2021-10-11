@@ -24,7 +24,7 @@ export default function useBalance(account_id, host, address, submit) {
 			getTotalBalance();
 		}
 
-	},[account_id, total, host, submit])	
+	},[account_id, total, host, submit, address])	
 
 	return [total, color];
 }

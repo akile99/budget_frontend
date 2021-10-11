@@ -9,7 +9,7 @@ const AccountBalance = (props) => {
 	// const [balanceColor, setBalanceColor] = useState('black')
 
 	return (
-	  	<p className={props.balanceColor}>{`$ ${props.balance}`} </p>	
+	  	<p className={balanceColor}>{`$ ${balance}`} </p>	
 	);
 }
 

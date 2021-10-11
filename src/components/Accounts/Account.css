@@ -11,12 +11,15 @@
 	cursor: pointer;
 }
 
+	
+/*fl w-25 tc*/
+
 .Account {
 	margin:.25em;
 	min-width: 8em;
 	display: flex;
 	flex-wrap: nowrap;
-	text-align: left;
+    justify-content: center;
 }
 
 
