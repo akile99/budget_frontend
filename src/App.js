@@ -15,6 +15,8 @@ import InputTransaction from './components/InputTransaction/InputTransaction.js'
 import useOpenningBalances from './Hooks/useOpenningBalances.js';
 import useLocalStorage from './Hooks/useLocalStorage.js';
 import useSessionStorage from './Hooks/useSessionStorage.js';
+import useBalance from './Hooks/useBalance.js';
+
 
 function App() {
 	const host = 'https://star-ship-enterprise.herokuapp.com/';
@@ -33,7 +35,8 @@ function App() {
 	const [searchDate, setSearchDate] = useState(false)
 	const [billsPage, setBillsPage] = useState(false)
 	const [insert, setInsert] = useState(false)
-
+	const [balance, balanceColor] = useBalance(account_id, host, 'sumCleared', submit);
+	
 	const onFrom_DateChange = (event) => {
 		setFrom_Date(event.target.value)
 	}
@@ -120,7 +123,7 @@ function App() {
 							{ account_id
 								? <div className='Navigation'>
 									<p>Actual</p>
-									<AccountBalance className='f3' host={host} account_id={account_id} submit={submit}/> 
+									<AccountBalance className='f3' balance={balance} balanceColor={balanceColor}/> 
 									<AccountPending className='f3' host={host} account_id={account_id} submit={submit}/> 
 						 		  </div>
 						 		: <p></p>
