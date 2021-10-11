@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import SignIn from './components/SignIn/SignIn.js';
 import Register from './components/Register/Register.js';
@@ -12,8 +12,8 @@ import TransactionList from './components/Transactions/TransactionList.js';
 import NewAccount from './components/NewAccount/NewAccount.js';
 import UpcomingBills from './components/UpcomingBills/UpcomingBills.js';
 import InputTransaction from './components/InputTransaction/InputTransaction.js';
-import useOpenningBalances from './Hooks/useOpenningBalances.js';
-import useLocalStorage from './Hooks/useLocalStorage.js';
+// import useOpenningBalances from './Hooks/useOpenningBalances.js';
+// import useLocalStorage from './Hooks/useLocalStorage.js';
 import useSessionStorage from './Hooks/useSessionStorage.js';
 import useBalance from './Hooks/useBalance.js';
 
