@@ -5,8 +5,8 @@ export default function useBalance(account_id, host, address, submit) {
 	const [color, setColor] = useState('black');
 	useEffect(() => {
 		if (account_id) {
-			try {
-				fetch(`${host}${address}`, {
+			async function getTotalBalance() {
+				await fetch(`${host}${address}`, {
 					method: 'post',
 					headers: {'Content-Type': 'application/json'},
 					body: JSON.stringify({
@@ -14,14 +14,14 @@ export default function useBalance(account_id, host, address, submit) {
 					})
 				})
 					.then(response => response.json())
-			      	.then(data => setTotal(data[0].sum));
+				  	.then(data => setTotal(data[0].sum));
+			}
 
-			} catch (error) {
-				console.error(error)
-			} 		
 			if (total < 0) {
 				setColor('red')
 			}else {setColor('black')}
+
+			getTotalBalance();
 		}
 
 	},[account_id, total, host, submit, address])	
