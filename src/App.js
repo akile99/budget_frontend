@@ -12,10 +12,12 @@ import TransactionList from './components/Transactions/TransactionList.js';
 import NewAccount from './components/NewAccount/NewAccount.js';
 import UpcomingBills from './components/UpcomingBills/UpcomingBills.js';
 import InputTransaction from './components/InputTransaction/InputTransaction.js';
+import AccountList from './components/Accounts/AccountList.js';
 // import useOpenningBalances from './Hooks/useOpenningBalances.js';
 // import useLocalStorage from './Hooks/useLocalStorage.js';
 import useSessionStorage from './Hooks/useSessionStorage.js';
 import useBalance from './Hooks/useBalance.js';
+import up_collapse from './Images/up_collapse.png'
 
 function App() {
 	const host = 'https://star-ship-enterprise.herokuapp.com/';
@@ -41,9 +43,9 @@ function App() {
 
 	const [balance, balanceColor] = useBalance(account_id, host, 'sumCleared', submit);
 
-	const onFrom_DateChange = (event) => {
-		setFrom_Date(event.target.value)
-	}
+	// const onFrom_DateChange = (event) => {
+	// 	setFrom_Date(event.target.value)
+	// }
 
 	// const handleSearchDate = () => {
 	// 	setSearchDate(!searchDate);
@@ -64,8 +66,9 @@ function App() {
 		setIsSignedIn(false)
 		setuser_id()
 		setAccountid()
-		setName()		
-		localStorage.clear()
+		setName()	
+		setInsert(false)	
+		sessionStorage.clear()
 	}
 
 	const handleRegistered = () => {
@@ -84,9 +87,9 @@ function App() {
 		setCreateAccount(!createAccount)
 	}
 
-	// const handelSideBarOpenClose = () => {
-	// 	setSideBarOpen(!sideBarOpen)
-	// }
+	const handelSideBarOpenClose = () => {
+		setSideBarOpen(!sideBarOpen)
+	}
 
 	// const onTo_DateChange = (event) => {
 	// 	setTo_Date(event.target.value)
