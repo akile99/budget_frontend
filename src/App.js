@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import SignIn from './components/SignIn/SignIn.js';
 import Register from './components/Register/Register.js';
@@ -12,8 +12,8 @@ import TransactionList from './components/Transactions/TransactionList.js';
 import NewAccount from './components/NewAccount/NewAccount.js';
 import UpcomingBills from './components/UpcomingBills/UpcomingBills.js';
 import InputTransaction from './components/InputTransaction/InputTransaction.js';
-import useOpenningBalances from './Hooks/useOpenningBalances.js';
-import useLocalStorage from './Hooks/useLocalStorage.js';
+// import useOpenningBalances from './Hooks/useOpenningBalances.js';
+// import useLocalStorage from './Hooks/useLocalStorage.js';
 import useSessionStorage from './Hooks/useSessionStorage.js';
 
 function App() {
@@ -27,20 +27,24 @@ function App() {
 	const [submit, setSubmit] = useState(false);
 	const d = new Date()
 	d.setDate(d.getDate() - 60)
-	const [from_date, setFrom_Date] = useState(d.toISOString().split('T')[0])
-	const [to_date, setTo_Date] = useState(new Date().toISOString().split('T')[0])
+	// const [from_date, setFrom_Date] = useState(d.toISOString().split('T')[0])
+	// const [to_date, setTo_Date] = useState(new Date().toISOString().split('T')[0])
+	const to_date = new Date().toISOString().split('T')[0]
+	const from_date = d.toISOString().split('T')[0]
+
 	const [createAccount, setCreateAccount] = useState(false)
-	const [searchDate, setSearchDate] = useState(false)
+
+	// const [searchDate, setSearchDate] = useState(false)
 	const [billsPage, setBillsPage] = useState(false)
 	const [insert, setInsert] = useState(false)
 
-	const onFrom_DateChange = (event) => {
-		setFrom_Date(event.target.value)
-	}
+	// const onFrom_DateChange = (event) => {
+	// 	setFrom_Date(event.target.value)
+	// }
 
-	const handleSearchDate = () => {
-		setSearchDate(!searchDate);
-	}
+	// const handleSearchDate = () => {
+	// 	setSearchDate(!searchDate);
+	// }
 
 	const handleSignIn = (user_id, firstname) => {
 		if (user_id !== -1) {
@@ -77,13 +81,13 @@ function App() {
 		setCreateAccount(!createAccount)
 	}
 
-	const handelSideBarOpenClose = () => {
-		setSideBarOpen(!sideBarOpen)
-	}
+	// const handelSideBarOpenClose = () => {
+	// 	setSideBarOpen(!sideBarOpen)
+	// }
 
-	const onTo_DateChange = (event) => {
-		setTo_Date(event.target.value)
-	}
+	// const onTo_DateChange = (event) => {
+	// 	setTo_Date(event.target.value)
+	// }
 
 	const handelBillChange = (account_id) => {
 		setBillsPage(!billsPage)
