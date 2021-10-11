@@ -18,6 +18,8 @@ import AccountList from './components/Accounts/AccountList.js';
 import useSessionStorage from './Hooks/useSessionStorage.js';
 import useBalance from './Hooks/useBalance.js';
 import up_collapse from './Images/up_collapse.png'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faChevronRight, faChevronLeft } from '@fortawesome/free-solid-svg-icons'
 
 function App() {
 	const host = 'https://star-ship-enterprise.herokuapp.com/';
@@ -157,11 +159,7 @@ function App() {
 								}
 								<Scroll>
 									<div id='Sidebar'>
-										<img 
-											className='closeSideBar'
-											src={up_collapse} 
-											alt='Collapse' 
-											onClick={handelSideBarOpenClose}/>
+										<FontAwesomeIcon icon={faChevronLeft} onClick={handelSideBarOpenClose}/>
 										<AccountList 
 											key={user_id} 
 											user_id={user_id} 
@@ -171,7 +169,7 @@ function App() {
 									</div>								
 								</Scroll>
 							</div>
-							: <img className='openSideBar' src={up_collapse} alt='Collapse' onClick={handelSideBarOpenClose}/>
+							: <FontAwesomeIcon icon={faChevronRight} onClick={handelSideBarOpenClose}/>
 							}
 						</div>
 						<div id = 'Transaction'>
