@@ -28,21 +28,26 @@ function App() {
 	const [submit, setSubmit] = useState(false);
 	const d = new Date()
 	d.setDate(d.getDate() - 60)
-	const [from_date, setFrom_Date] = useState(d.toISOString().split('T')[0])
-	const [to_date, setTo_Date] = useState(new Date().toISOString().split('T')[0])
+	// const [from_date, setFrom_Date] = useState(d.toISOString().split('T')[0])
+	// const [to_date, setTo_Date] = useState(new Date().toISOString().split('T')[0])
+	const to_date = new Date().toISOString().split('T')[0]
+	const from_date = d.toISOString().split('T')[0]
+
 	const [createAccount, setCreateAccount] = useState(false)
-	const [searchDate, setSearchDate] = useState(false)
+
+	// const [searchDate, setSearchDate] = useState(false)
 	const [billsPage, setBillsPage] = useState(false)
 	const [insert, setInsert] = useSessionStorage('insert', false) 
+
 	const [balance, balanceColor] = useBalance(account_id, host, 'sumCleared', submit);
 
 	const onFrom_DateChange = (event) => {
 		setFrom_Date(event.target.value)
 	}
 
-	const handleSearchDate = () => {
-		setSearchDate(!searchDate);
-	}
+	// const handleSearchDate = () => {
+	// 	setSearchDate(!searchDate);
+	// }
 
 	const handleSignIn = (user_id, firstname) => {
 		if (user_id !== -1) {
@@ -79,13 +84,13 @@ function App() {
 		setCreateAccount(!createAccount)
 	}
 
-	const handelSideBarOpenClose = () => {
-		setSideBarOpen(!sideBarOpen)
-	}
+	// const handelSideBarOpenClose = () => {
+	// 	setSideBarOpen(!sideBarOpen)
+	// }
 
-	const onTo_DateChange = (event) => {
-		setTo_Date(event.target.value)
-	}
+	// const onTo_DateChange = (event) => {
+	// 	setTo_Date(event.target.value)
+	// }
 
 	const handelBillChange = (account_id) => {
 		setBillsPage(!billsPage)
