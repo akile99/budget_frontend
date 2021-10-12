@@ -19,7 +19,7 @@ import useSessionStorage from './Hooks/useSessionStorage.js';
 import useBalance from './Hooks/useBalance.js';
 import up_collapse from './Images/up_collapse.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faChevronRight, faChevronLeft } from '@fortawesome/free-solid-svg-icons'
+import { faChevronRight, faChevronLeft, faBars } from '@fortawesome/free-solid-svg-icons'
 
 function App() {
 	const host = 'https://star-ship-enterprise.herokuapp.com/';
@@ -123,6 +123,7 @@ function App() {
 					<nav>
 					{account_id 
 						? <div>
+							<FontAwesomeIcon icon={faBars} />
 							<p className ='links' onClick={handleInsertChange}>Add Transaction</p> 
 						  </div>
 						:<p></p>
