@@ -20,11 +20,11 @@ const UpcomingBills = (props) => {
 
 	return (
 		<div>
-		  	<div className="flex justify-center">
-				<h3 className="fl w-25 pa1 tc ml1">Vender</h3> 
-				<h3 className="fl w-25 pa1 tc">Amount</h3> 
-				<h3 className="fl w-25 pa1 tc">Due Day</h3> 
-				<h3 className="fl w-10 pa1 tc">Web Site</h3>
+		  	<div className="heading">
+				<h5 className="fl w-25 pa1 tc ml1">Vender</h5> 
+				<h5 className="fl w-25 pa1 tc">Amount</h5> 
+				<h5 className="fl w-25 pa1 tc">Due Day</h5> 
+				<h5 className="fl w-25 pa1 tc">Pay</h5>
 			</div>
 		  	{
 				bills.map((data, i) => {

@@ -66,9 +66,9 @@ function App() {
 
 	const handleSignOut = () => {
 		setIsSignedIn(false)
-		setuser_id()
-		setAccountid()
-		setName()	
+		setuser_id('')
+		setAccountid('')
+		setName('')	
 		setInsert(false)	
 		sessionStorage.clear()
 	}
@@ -99,8 +99,13 @@ function App() {
 
 	const handelShowBills = () => {
 		setBillsPage(true)
-		setAccountid()
+		
 		setInsert(false)
+		async function removeItem(key) {
+			setAccountid('')
+			await sessionStorage.removeItem(key)
+		}
+		removeItem('account_id')
 	}
 
 	const handelShowAccounts = () => {
