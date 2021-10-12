@@ -60,11 +60,11 @@ function Bill(props) {
 		<div>
 		{ !edit
 			? <div>
-					<p className="fl w-25 pa1 tc ml1">{name}</p> 
-					<p className="fl w-25 pa1 tc">{amount}</p> 
-					<p className="fl w-25 pa1 tc">{formatedDay}</p>
-					<button className="fl pa1" onClick={goToWebPage}>Pay</button>
-					<button className="fl pa1" onClick={handelEdit}>Edit</button>
+					<p className="outline fl w-25 pa1 tc ml1">{name}</p> 
+					<p className="outline fl w-25 pa1 tc">{amount}</p> 
+					<p className="outline fl w-25 pa1 tc">{formatedDay}</p>
+					<p className="outline fl w-10 pa1" onClick={goToWebPage}>Pay</p>
+					<p className="outline fl w-15 pa1" onClick={handelEdit}>Edit</p>
 				</div>
 			:
 				<div>
