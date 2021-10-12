@@ -50,7 +50,6 @@
   "devDependencies": {
     "@babel/core": "^7.15.8",
     "glob-parent": "^6.0.2",
-    "immer": "^9.0.6",
     "install-peers": "^1.0.3",
     "react-dom": "^17.0.2"
   }

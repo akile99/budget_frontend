@@ -16,6 +16,10 @@
   margin-left: 2em;
 }
 
+.menu:hover {
+  cursor: pointer;
+}
+
 .Navigation {
   display: flex;
   justify-content:flex-end;

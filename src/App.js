@@ -7,7 +7,6 @@ import Navigation from './components/Navigation/Navigation.js'
 import AccountBalance from './components/AccountBalance/AccountBalance.js';
 import AccountPending from './components/AccountBalance/AccountPending.js';
 import Scroll from './components/Scroll/Scroll.js';
-// import SideBar from './components/SideBar/SideBar.js';
 import TransactionList from './components/Transactions/TransactionList.js';
 import NewAccount from './components/NewAccount/NewAccount.js';
 import UpcomingBills from './components/UpcomingBills/UpcomingBills.js';
@@ -17,9 +16,10 @@ import AccountList from './components/Accounts/AccountList.js';
 // import useLocalStorage from './Hooks/useLocalStorage.js';
 import useSessionStorage from './Hooks/useSessionStorage.js';
 import useBalance from './Hooks/useBalance.js';
-import up_collapse from './Images/up_collapse.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronRight, faChevronLeft, faBars } from '@fortawesome/free-solid-svg-icons'
+import Dropdown from 'react-bootstrap/Dropdown';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
 	const host = 'https://star-ship-enterprise.herokuapp.com/';
@@ -40,8 +40,8 @@ function App() {
 	const [createAccount, setCreateAccount] = useState(false)
 
 	// const [searchDate, setSearchDate] = useState(false)
-	const [billsPage, setBillsPage] = useState(false)
-	const [insert, setInsert] = useSessionStorage('insert', false) 
+	const [billsPage, setBillsPage] = useState(true)
+	const [insert, setInsert] = useState(false) 
 
 	const [balance, balanceColor] = useBalance(account_id, host, 'sumCleared', submit);
 
@@ -97,8 +97,14 @@ function App() {
 	// 	setTo_Date(event.target.value)
 	// }
 
-	const handelBillChange = (account_id) => {
-		setBillsPage(!billsPage)
+	const handelShowBills = () => {
+		setBillsPage(true)
+		setAccountid()
+		setInsert(false)
+	}
+
+	const handelShowAccounts = () => {
+		setBillsPage(false)
 	}
 
 	const handleInsertChange = () => {
@@ -120,26 +126,45 @@ function App() {
 					}
 					</div>
 				: 	<div id = 'LandingPage'>
-					<nav>
-					{account_id 
-						? <div className='menu'>
-							<FontAwesomeIcon icon={faBars} size='2x' />
-						  </div>
-						:<p></p>
-					}
-						
-						<div className='Navigation'>
-							{ account_id
-								? <div className='Navigation'>
-									<p>Actual</p>
-									<AccountBalance className='f3' balance={balance} balanceColor={balanceColor}/> 
-									<AccountPending className='f3' host={host} account_id={account_id} submit={submit}/> 
-						 		  </div>
-						 		: <p></p>
-						 	}	
-							<Navigation isSignedIn={isSignedIn} name={name} onRouteChange={handleSignOut} />
-						</div>
-					</nav>
+						<nav>
+							<div className='menu'>
+								<Dropdown>
+								  <Dropdown.Toggle variant="light" id="dropdown-basic">
+								    <FontAwesomeIcon icon={faBars} size='2x' />
+								  </Dropdown.Toggle>
+
+								  <Dropdown.Menu>
+								    { !billsPage || account_id
+								    	? <div>
+								    	{ account_id ? 
+								    		<div>
+								    			<Dropdown.Item onClick={handleInsertChange}>Add Transaction</Dropdown.Item>
+								    			<Dropdown.Item onClick={handelShowBills}>Bills</Dropdown.Item>
+								    		</div>
+								    		:
+							    			<Dropdown.Item onClick={handelShowBills}>Bills</Dropdown.Item>
+								    	}
+								    	</div>
+								    	: 	
+								    	<div>
+								    		<Dropdown.Item onClick={handelShowAccounts}>Accounts</Dropdown.Item>
+								    	</div>
+								    }
+								  </Dropdown.Menu>
+								</Dropdown>
+							</div>						
+							<div className='Navigation'>
+								{ account_id
+									? <div className='Navigation'>
+										<p>Actual</p>
+										<AccountBalance className='f3' balance={balance} balanceColor={balanceColor}/> 
+										<AccountPending className='f3' host={host} account_id={account_id} submit={submit}/> 
+							 		  </div>
+							 		: <p></p>
+							 	}	
+								<Navigation isSignedIn={isSignedIn} name={name} onRouteChange={handleSignOut} />
+							</div>
+						</nav>
 					{ insert
 					? <div id='insertTransaction'>
 				      	<InputTransaction account_id={account_id} host={host} submit={submit} onChange={handleInputChange} />
@@ -173,14 +198,20 @@ function App() {
 							}
 						</div>
 						<div id = 'Transaction'>
-							{ !account_id
-								? <Scroll> 
-									<UpcomingBills key={user_id} host={host} user_id={user_id}/>
+							{ billsPage && !account_id
+								? 	<Scroll> 
+										<UpcomingBills key={user_id} host={host} user_id={user_id}/>
 									</Scroll>
-								:
-								<Scroll>
-									<TransactionList key={account_id} account_id={account_id} host={host} submit={submit} onChange={handleInputChange} from_date={from_date} to_date={to_date}/>
-								</Scroll>
+								: <div>
+								{ !account_id
+									?
+									<p></p>
+									:								
+									<Scroll>
+										<TransactionList key={account_id} account_id={account_id} host={host} submit={submit} onChange={handleInputChange} from_date={from_date} to_date={to_date}/>
+									</Scroll>
+								}
+								</div>
 							}	
 						</div>
 					</div>
