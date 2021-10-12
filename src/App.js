@@ -122,9 +122,8 @@ function App() {
 				: 	<div id = 'LandingPage'>
 					<nav>
 					{account_id 
-						? <div>
-							<FontAwesomeIcon icon={faBars} />
-							<p className ='links' onClick={handleInsertChange}>Add Transaction</p> 
+						? <div className='menu'>
+							<FontAwesomeIcon icon={faBars} size='2x' />
 						  </div>
 						:<p></p>
 					}
