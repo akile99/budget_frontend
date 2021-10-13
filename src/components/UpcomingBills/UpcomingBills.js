@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Bill from './Bill.js'
+import './bills.css';
 // import InsertBill from './InsertBill.js'
 
 const UpcomingBills = (props) => {
