@@ -21,12 +21,13 @@ const UpcomingBills = (props) => {
 
 	return (
 		<div>
-		  	<div className="heading">
-				<h5 className="fl w-25 pa1 tc ml1">Vender</h5> 
-				<h5 className="fl w-25 pa1 tc">Amount</h5> 
-				<h5 className="fl w-25 pa1 tc">Due Day</h5> 
-				<h5 className="fl w-25 pa1 tc">Pay</h5>
-			</div>
+			<div className="heading">
+			<p className="bill Title">Due Day</p> 
+			<p className="vendor Title">Vender</p> 
+			<p className="bill Title">Amount</p> 
+			<p className="bill Title">Pay</p>
+			<p className="bill Title editbill">Edit</p>
+		</div>
 		  	{
 				bills.map((data, i) => {
 				return (
