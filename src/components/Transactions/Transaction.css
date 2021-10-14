@@ -38,11 +38,12 @@
 	width: 8em;
 }
 
-.vendor {
+.vendor1 {
 	flex-grow: 2;
 	text-align: left;
 	/*width: 15em;*/
 	min-width: 8em;
+	border-bottom: none;
 }
 
 .dollar {

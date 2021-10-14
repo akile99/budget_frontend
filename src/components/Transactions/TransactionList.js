@@ -32,7 +32,7 @@ const TransactionList = (props) => {
 		<div>
 			<div className="outline flex justify-center">
 				<p className="date transaction">Date</p> 
-				<p className="vendor transaction">Vender</p> 
+				<p className="vendor1 transaction">Vender</p> 
 				<p className='dollar transaction'>&nbsp;&nbsp;</p>	
 				<p className="amount transaction">Amount</p> 
 				<p className="status transaction">Status</p> 

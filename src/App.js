@@ -189,7 +189,7 @@ function App() {
 								}
 								<Scroll>
 									<div id='Sidebar'>
-										<FontAwesomeIcon icon={faChevronLeft} onClick={handelSideBarOpenClose}/>
+										<FontAwesomeIcon size='2x' icon={faChevronLeft} onClick={handelSideBarOpenClose}/>
 										<AccountList 
 											key={user_id} 
 											user_id={user_id} 
@@ -199,7 +199,7 @@ function App() {
 									</div>								
 								</Scroll>
 							</div>
-							: <FontAwesomeIcon icon={faChevronRight} onClick={handelSideBarOpenClose}/>
+							: <FontAwesomeIcon size='2x' icon={faChevronRight} onClick={handelSideBarOpenClose}/>
 							}
 						</div>
 						<div id = 'Transaction'>

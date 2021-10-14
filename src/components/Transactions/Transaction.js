@@ -105,7 +105,7 @@ const Transaction = (props) => {
 		{ !edit
 		? <div className="flex justify-left">
 			<p className="date transaction">{formatedDate}</p> 
-			<p className="vendor transaction">{vendor}</p> 
+			<p className="vendor1 transaction">{vendor}</p> 
 			<p className='dollar transaction'>$</p>
 			<p className="amount transaction">{amount}</p> 
 			<p className="status transaction"
