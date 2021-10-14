@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/budget_frontend/static/css/main.38d822fd.chunk.css",
-    "main.js": "/budget_frontend/static/js/main.2a9619e9.chunk.js",
-    "main.js.map": "/budget_frontend/static/js/main.2a9619e9.chunk.js.map",
+    "main.css": "/budget_frontend/static/css/main.044b5b6e.chunk.css",
+    "main.js": "/budget_frontend/static/js/main.b751751d.chunk.js",
+    "main.js.map": "/budget_frontend/static/js/main.b751751d.chunk.js.map",
     "runtime-main.js": "/budget_frontend/static/js/runtime-main.0a8da14b.js",
     "runtime-main.js.map": "/budget_frontend/static/js/runtime-main.0a8da14b.js.map",
     "static/css/2.bf081b43.chunk.css": "/budget_frontend/static/css/2.bf081b43.chunk.css",
@@ -12,14 +12,14 @@
     "static/js/3.0172bf39.chunk.js.map": "/budget_frontend/static/js/3.0172bf39.chunk.js.map",
     "index.html": "/budget_frontend/index.html",
     "static/css/2.bf081b43.chunk.css.map": "/budget_frontend/static/css/2.bf081b43.chunk.css.map",
-    "static/css/main.38d822fd.chunk.css.map": "/budget_frontend/static/css/main.38d822fd.chunk.css.map",
+    "static/css/main.044b5b6e.chunk.css.map": "/budget_frontend/static/css/main.044b5b6e.chunk.css.map",
     "static/js/2.5455cece.chunk.js.LICENSE.txt": "/budget_frontend/static/js/2.5455cece.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.0a8da14b.js",
     "static/css/2.bf081b43.chunk.css",
     "static/js/2.5455cece.chunk.js",
-    "static/css/main.38d822fd.chunk.css",
-    "static/js/main.2a9619e9.chunk.js"
+    "static/css/main.044b5b6e.chunk.css",
+    "static/js/main.b751751d.chunk.js"
   ]
 }
