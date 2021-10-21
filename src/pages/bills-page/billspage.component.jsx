@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+
+import { globalVars } from "../../hooks/global";
 import Bill from "../../components/bill/bill.component";
 
 import "./billspage.styles.scss";
@@ -9,7 +11,7 @@ const UpcomingBills = (props) => {
   const [day] = useState(1);
 
   useEffect(() => {
-    fetch(`${props.host}upcomingBills`, {
+    fetch(`${globalVars.HOST}upcomingBills`, {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -40,7 +42,6 @@ const UpcomingBills = (props) => {
             bill_name={bills[i].bill_name}
             due_date={bills[i].due_day}
             bill_website={bills[i].bill_website}
-            host={props.host}
           />
         );
       })}

@@ -263,7 +263,7 @@ function App() {
             <div id="Transaction">
               {billsPage && !account_id ? (
                 <Scroll>
-                  <UpcomingBills key={user_id} host={host} user_id={user_id} />
+                  <UpcomingBills key={user_id} user_id={user_id} />
                 </Scroll>
               ) : (
                 <div>
@@ -274,7 +274,6 @@ function App() {
                       <TransactionList
                         key={account_id}
                         account_id={account_id}
-                        host={host}
                         submit={submit}
                         onChange={handleInputChange}
                         from_date={from_date}
