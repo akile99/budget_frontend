@@ -1,32 +1,17 @@
-import React, { useState } from 'react';
-import useBalance from '../../Hooks/useBalance.js';
-import './AccountBalance.css';
+import React from "react";
+
+import useBalance from "../../hooks/useBalance.js";
+
+import "./AccountBalance.css";
 
 const AccountBalance = (props) => {
-	const address = 'sumCleared';
-	// const [balance, balanceColor] = useBalance(
-	// 	props.account_id, props.host, address, props.submit);
-	// const [balanceColor, setBalanceColor] = useState('black')
-
-	return (
-	  	<p className={props.balanceColor}>{`$ ${props.balance}`} </p>	
-	);
-}
+  const address = "sumCleared";
+  const [balance, balanceColor] = useBalance(
+    props.account_id,
+    address,
+    props.submit
+  );
+  return <p className={balanceColor}>{`$ ${balance}`} </p>;
+};
 
 export default AccountBalance;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
