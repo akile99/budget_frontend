@@ -40,7 +40,7 @@ class SignIn extends React.Component {
           }
         });
     }
-    await this.props.history.push("/");
+    await this.props.history.push("/budget_frontend");
   };
 
   handleSubmit = (event) => {

@@ -1,25 +1,30 @@
 import React, { useState, useEffect } from "react";
 
 import { globalVars } from "../../hooks/global.js";
-import Transaction from "../Transactions/Transaction.js";
+import Transaction from "../transaction/transaction.component";
 
 import "./transaction-list.styles.scss";
 
-const TransactionList = (props) => {
+const TransactionList = () => {
   const [transactions, setTransactions] = useState([]);
+  const account_id = "daee290c-f60b-44c8-a3bb-4005e7854b98";
+  const d = new Date();
+  d.setDate(d.getDate() - 60);
+  const from_date = d.toISOString().split("T")[0];
+  const to_date = new Date().toISOString().split("T")[0];
 
-  const updateTransactions = (value) => {
-    props.onChange();
-  };
+  // const updateTransactions = (value) => {
+  //   props.onChange();
+  // };
   useEffect(() => {
     try {
       fetch(`${globalVars.HOST}transactions`, {
         method: "post",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          account_id: props.account_id,
-          from_date: props.from_date,
-          to_date: props.to_date,
+          account_id: account_id,
+          from_date: from_date,
+          to_date: to_date,
         }),
       })
         .then((response) => response.json())
@@ -29,13 +34,7 @@ const TransactionList = (props) => {
     } catch (e) {
       console.log(e);
     }
-  }, [
-    props.submit,
-    props.account_id,
-    props.from_date,
-    props.to_date,
-    props.update,
-  ]);
+  }, [from_date, to_date]);
 
   return (
     <div>
@@ -48,20 +47,18 @@ const TransactionList = (props) => {
         <p className="category transaction">Category</p>
         <p className="edit transaction">Edit</p>
       </div>
-      {transactions.map((data, i) => {
+      {transactions.map((transaction) => {
         return (
           <Transaction
             className="transactions"
-            key={transactions[i].transaction_id}
-            transaction_id={transactions[i].transaction_id}
-            accountid={transactions[i].accountid}
-            date={transactions[i].date}
-            vendor={transactions[i].vendor}
-            amount={(Math.round(transactions[i].amount * 100) / 100).toFixed(2)}
-            status={transactions[i].status}
-            category={transactions[i].category}
-            onChange={updateTransactions}
-            submit={props.submit}
+            key={transaction.transaction_id}
+            transaction_id={transaction.transaction_id}
+            accountid={transaction.accountid}
+            date={transaction.date}
+            vendor={transaction.vendor}
+            amount={(Math.round(transaction.amount * 100) / 100).toFixed(2)}
+            status={transaction.status}
+            category={transaction.category}
           />
         );
       })}

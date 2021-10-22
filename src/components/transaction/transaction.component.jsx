@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { globalVars } from "../../hooks/global.js";
 import Search from "../Search/Search.js";
 
-import "./Transaction.css";
+import "./transaction.styles.scss";
 
 // const getStingDate = require('./Functions/getStingDate');
 

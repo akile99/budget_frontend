@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 
 import { globalVars } from "./global";
 
-export default function useBalance(account_id, address, submit) {
+export default function useBalance(account_id, address) {
   const [total, setTotal] = useState();
   const [color, setColor] = useState("black");
   useEffect(() => {
@@ -26,7 +26,7 @@ export default function useBalance(account_id, address, submit) {
         setColor("black");
       }
     }
-  }, [account_id, total, address, submit]);
+  }, [account_id, total, address]);
 
   return [total, color];
 }

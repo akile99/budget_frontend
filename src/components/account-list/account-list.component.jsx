@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { createStructuredSelector } from "reselect";
 import { connect } from "react-redux";
 
@@ -12,14 +12,8 @@ import Account from "../account/account.component";
 import "./account-list.styles.scss";
 
 const AccountList = ({ accountList, setAccounts, currentUser }) => {
-  // const [accounts, setAccounts] = useState([]);
-
-  // const handelLoadAccount = (account_id) => {
-  //   props.onChange(account_id);
-  // };
-
-  useEffect(async () => {
-    await fetch(`${globalVars.HOST}accounts`, {
+  useEffect(() => {
+    fetch(`${globalVars.HOST}accounts`, {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -31,7 +25,7 @@ const AccountList = ({ accountList, setAccounts, currentUser }) => {
         setAccounts(data);
       });
     // await console.log(accountList);
-  }, []);
+  }, [currentUser.user_id, setAccounts]);
 
   return (
     <div>
@@ -40,7 +34,7 @@ const AccountList = ({ accountList, setAccounts, currentUser }) => {
       </div>
       {accountList.map((account) => {
         return (
-          <div>
+          <div className="accounts">
             <Account key={account.account_id} account={account} />
           </div>
         );
