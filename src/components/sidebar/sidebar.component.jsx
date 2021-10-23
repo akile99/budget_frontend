@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-// import UpcomingBills from '../UpcomingBills/UpcomingBills.js';
+import React from "react";
+
 import AccountList from "../account-list/account-list.component";
 
 import "./sidebar.styles.scss";

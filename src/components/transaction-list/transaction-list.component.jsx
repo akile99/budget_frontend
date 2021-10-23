@@ -3,8 +3,6 @@ import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 
 import { selectTransactionList } from "../../redux/transaction/transaction.selector";
-// import { setTransactions } from "../../redux/transaction/transaction.action";
-// import { selectAccountList } from "../../redux/account/account.selector.js";
 
 import Transaction from "../transaction/transaction.component";
 
