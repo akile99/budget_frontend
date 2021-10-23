@@ -32,13 +32,11 @@ const AccountList = ({ accountList, setAccounts, currentUser }) => {
       <div className="flex justify-center">
         <h2 className="Account">Accounts </h2>
       </div>
-      {accountList.map((account) => {
-        return (
-          <div className="accounts">
-            <Account key={account.account_id} account={account} />
-          </div>
-        );
-      })}
+      {accountList.map((account) => (
+        <div>
+          <Account key={account.account_id} account={account} />
+        </div>
+      ))}
     </div>
   );
 };

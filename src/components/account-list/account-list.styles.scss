@@ -1,13 +1,6 @@
 .accounts {
   display: flex;
-  margin: 2px;
-  border-style: solid;
-  border-radius: 8px;
-  min-width: 8em;
-  background: antiquewhite;
-  &:hover {
-    cursor: pointer;
-  }
+
   .Account {
     margin: 0.25em;
     min-width: 8em;

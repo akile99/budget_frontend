@@ -1,14 +1,16 @@
 import React from "react";
+import { connect } from "react-redux";
 
 import "./account.styles.scss";
 
+import { setTransactions } from "../../redux/transaction/transaction.action";
 import useBalance from "../../hooks/useBalance.js";
 
-const Account = ({ account }) => {
+const Account = ({ account, setTransactions }) => {
   const { account_id, account_name, account_type } = account;
   const [balance, balanceColor] = useBalance(account_id, "sumCleared");
   return (
-    <div className="account-block">
+    <div className="account-block" onClick={() => setTransactions(account)}>
       <div className="account-name">
         <p className="account">{account_name}</p>
         <p className="account">{account_type}</p>
@@ -18,4 +20,8 @@ const Account = ({ account }) => {
   );
 };
 
-export default Account;
+const mapDispatchToProps = (dispatch) => ({
+  setTransactions: (account_id) => dispatch(setTransactions(account_id)),
+});
+
+export default connect(null, mapDispatchToProps)(Account);
