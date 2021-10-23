@@ -12,9 +12,9 @@ const HomePage = () => (
     <Navigation />
     <div className="account-transactions">
       <SideBar />
-      {/*<Scroll>
+      <Scroll>
         <TransactionList />
-      </Scroll> */}
+      </Scroll>
     </div>
   </div>
 );

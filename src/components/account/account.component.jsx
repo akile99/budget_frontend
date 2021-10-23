@@ -21,7 +21,7 @@ const Account = ({ account, setTransactions }) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  setTransactions: (account_id) => dispatch(setTransactions(account_id)),
+  setTransactions: (account) => dispatch(setTransactions(account)),
 });
 
 export default connect(null, mapDispatchToProps)(Account);
