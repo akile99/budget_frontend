@@ -1,6 +1,6 @@
 import TransactionActionTypes from "./transaction.types";
 
-export const setTransactions = (account) => ({
+export const setTransactions = (transactions) => ({
   type: TransactionActionTypes.SET_TRANSACTIONS,
-  payload: account,
+  payload: transactions,
 });
