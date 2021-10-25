@@ -5,8 +5,10 @@ import { createStructuredSelector } from "reselect";
 import { globalVars } from "../../hooks/global";
 import { setTransactions } from "../../redux/transaction/transaction.action";
 import { selectTransactionList } from "../../redux/transaction/transaction.selector";
-import { selectCurrentAccount } from "../../redux/account/account.selector";
-import { selectAccountList } from "../../redux/account-list/account-list.selector";
+import {
+  selectAccountList,
+  selectCurrentAccount,
+} from "../../redux/account-list/account-list.selector";
 
 import Transaction from "../transaction/transaction.component";
 
