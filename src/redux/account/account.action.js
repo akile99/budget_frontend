@@ -1,10 +1,11 @@
 import AccountActionTypes from "./account.types";
 
-export const setAccount = (account) => ({
-  type: AccountActionTypes.SET_CURRENT_ACCOUNT,
-  payload: account,
+export const setAccounts = (accounts) => ({
+  type: AccountActionTypes.SET_ACCOUNTS,
+  payload: accounts,
 });
 
-export const clearAccount = () => ({
-  type: AccountActionTypes.CLEAR_CURRENT_ACCOUNT,
+export const setCurrentAccount = (account) => ({
+  type: AccountActionTypes.SET_CURRENT_ACCOUNT,
+  payload: account,
 });
