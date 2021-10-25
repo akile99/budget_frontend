@@ -1,3 +1,3 @@
-export const getAccountBalance = (account, accountBalance) => {
-  return { ...account, balance: accountBalance };
+export const getAccountBalance = (currentAccount, accountBalance) => {
+  return { ...currentAccount, balance: accountBalance };
 };

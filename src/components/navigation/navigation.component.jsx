@@ -9,14 +9,10 @@ import { selectCurrentAccount } from "../../redux/account/account.selector";
 import "./navigation.styles.scss";
 
 const Navigation = ({ currentUser, logOutUser, currentAccount }) => {
-  // const handleSignOut = () => ({
-  //   logOutUser,
-  //   clearAccount,
-  // });
-
   return (
     <nav className="navigation">
-      <p className="f3">{currentAccount.balance}</p>
+      {currentAccount ? <p className="f3">{currentAccount.balance}</p> : null}
+
       <p className="f3">{currentUser.firstname}</p>
       <p
         onClick={() => {

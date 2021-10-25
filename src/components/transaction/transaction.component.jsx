@@ -2,8 +2,6 @@ import React from "react";
 
 import "./transaction.styles.scss";
 
-// const getStingDate = require('./Functions/getStingDate');
-
 const Transaction = ({ transaction }) => {
   const { date, vendor, amount, status, category } = transaction;
 
