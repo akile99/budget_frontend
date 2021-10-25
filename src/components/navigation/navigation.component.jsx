@@ -3,16 +3,16 @@ import { createStructuredSelector } from "reselect";
 import { connect } from "react-redux";
 
 import { selectCurrentUser } from "../../redux/user/user.selector";
-import { logOutUser } from "../../redux/user/user.action";
-import { clearAccount } from "../../redux/account/account.action";
+import { logOutUser } from "../../redux/root.action";
+// import { clearAccount } from "../../redux/account/account.action";
 
 import "./navigation.styles.scss";
 
 const Navigation = ({ currentUser, logOutUser, clearAccount }) => {
-  const handleSignOut = () => ({
-    logOutUser,
-    clearAccount,
-  });
+  // const handleSignOut = () => ({
+  //   logOutUser,
+  //   clearAccount,
+  // });
 
   return (
     <nav className="navigation">
@@ -20,7 +20,6 @@ const Navigation = ({ currentUser, logOutUser, clearAccount }) => {
       <p
         onClick={() => {
           logOutUser();
-          clearAccount();
         }}
         className="f3 link dim black underline pa3 pointer"
       >
@@ -36,7 +35,7 @@ const mapStateToProps = createStructuredSelector({
 
 const mapDispatchToProps = (dispatch) => ({
   logOutUser: () => dispatch(logOutUser()),
-  clearAccount: () => dispatch(clearAccount()),
+  // clearAccount: () => dispatch(clearAccount()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Navigation);
