@@ -6,12 +6,13 @@ import { globalVars } from "../../hooks/global.js";
 import { selectCurrentUser } from "../../redux/user/user.selector.js";
 import { setAccounts } from "../../redux/account-list/account-list.action";
 import { selectAccountList } from "../../redux/account-list/account-list.selector";
+import { setAccount } from "../../redux/account/account.action";
 
 import Account from "../account/account.component";
 
 import "./account-list.styles.scss";
 
-const AccountList = ({ accountList, setAccounts, currentUser }) => {
+const AccountList = ({ accountList, setAccounts, currentUser, setAccount }) => {
   useEffect(() => {
     fetch(`${globalVars.HOST}accounts`, {
       method: "post",
@@ -24,6 +25,7 @@ const AccountList = ({ accountList, setAccounts, currentUser }) => {
       .then((data) => {
         setAccounts(data);
       });
+    // setAccount(accountList[0]);
   }, [currentUser.user_id, setAccounts]);
 
   return (
@@ -42,6 +44,7 @@ const AccountList = ({ accountList, setAccounts, currentUser }) => {
 
 const mapDispatchToProps = (dispatch) => ({
   setAccounts: (accounts) => dispatch(setAccounts(accounts)),
+  setAccount: (account) => dispatch(setAccount(account)),
 });
 
 const mapStateToProps = createStructuredSelector({
