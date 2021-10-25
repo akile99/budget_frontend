@@ -4,8 +4,8 @@ import { connect } from "react-redux";
 
 import { globalVars } from "../../hooks/global.js";
 import { selectCurrentUser } from "../../redux/user/user.selector.js";
-import { setAccounts } from "../../redux/account/account.action";
-import { selectAccountList } from "../../redux/account/account.selector";
+import { setAccounts } from "../../redux/account-list/account-list.action";
+import { selectAccountList } from "../../redux/account-list/account-list.selector";
 
 import Account from "../account/account.component";
 
@@ -24,7 +24,6 @@ const AccountList = ({ accountList, setAccounts, currentUser }) => {
       .then((data) => {
         setAccounts(data);
       });
-    // await console.log(accountList);
   }, [currentUser.user_id, setAccounts]);
 
   return (

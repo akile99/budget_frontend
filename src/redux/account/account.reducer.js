@@ -1,15 +1,15 @@
 import AccountActionTypes from "./account.types";
 
 const INITIAL_STATE = {
-  accountList: [],
+  account: [],
 };
 
 const accountReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case AccountActionTypes.SET_ACCOUNTS:
+    case AccountActionTypes.CURRENT_ACCOUNT:
       return {
         ...state,
-        accountList: action.payload,
+        currentAccount: action.payload,
       };
     default:
       return state;
