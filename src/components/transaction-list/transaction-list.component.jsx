@@ -8,7 +8,7 @@ import { selectTransactionList } from "../../redux/transaction/transaction.selec
 import {
   selectAccountList,
   selectCurrentAccount,
-} from "../../redux/account-list/account-list.selector";
+} from "../../redux/account/account.selector";
 
 import Transaction from "../transaction/transaction.component";
 

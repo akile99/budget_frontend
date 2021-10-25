@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import "./account.styles.scss";
 
 import useBalance from "../../hooks/useBalance.js";
-import { setCurrentAccount } from "../../redux/account-list/account-list.action";
+import { setCurrentAccount } from "../../redux/account/account.action";
 
 const Account = ({ account, setCurrentAccount }) => {
   const { account_id, account_name, account_type } = account;
