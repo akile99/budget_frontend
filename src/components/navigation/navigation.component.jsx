@@ -4,11 +4,11 @@ import { connect } from "react-redux";
 
 import { selectCurrentUser } from "../../redux/user/user.selector";
 import { logOutUser } from "../../redux/root.action";
-// import { clearAccount } from "../../redux/account/account.action";
+import { selectCurrentAccount } from "../../redux/account/account.selector";
 
 import "./navigation.styles.scss";
 
-const Navigation = ({ currentUser, logOutUser, clearAccount }) => {
+const Navigation = ({ currentUser, logOutUser, currentAccount }) => {
   // const handleSignOut = () => ({
   //   logOutUser,
   //   clearAccount,
@@ -16,6 +16,7 @@ const Navigation = ({ currentUser, logOutUser, clearAccount }) => {
 
   return (
     <nav className="navigation">
+      <p className="f3">{currentAccount.balance}</p>
       <p className="f3">{currentUser.firstname}</p>
       <p
         onClick={() => {
@@ -31,6 +32,7 @@ const Navigation = ({ currentUser, logOutUser, clearAccount }) => {
 
 const mapStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser,
+  currentAccount: selectCurrentAccount,
 });
 
 const mapDispatchToProps = (dispatch) => ({
