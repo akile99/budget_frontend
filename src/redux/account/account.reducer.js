@@ -1,5 +1,5 @@
 import AccountActionTypes from "./account.types";
-import { getAccountBalance } from "./account.utils";
+import { getAccountBalance, updateAccountBalance } from "./account.utils";
 
 const INITIAL_STATE = {
   accountList: [],
@@ -22,6 +22,14 @@ const accountReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         currentAccount: getAccountBalance(state.currentAccount, action.payload),
+      };
+    case AccountActionTypes.UPDATE_ACCOUNT_BALANCE:
+      return {
+        ...state,
+        currentAccount: updateAccountBalance(
+          state.currentAccount,
+          action.payload
+        ),
       };
     default:
       return state;

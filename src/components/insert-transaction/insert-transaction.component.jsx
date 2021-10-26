@@ -3,13 +3,18 @@ import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { v4 as uuidv4 } from "uuid";
 
-import { selectCurrentAccount } from "../../redux/account/account.selector.js";
+import { selectCurrentAccount } from "../../redux/account/account.selector";
+import { updateBalance } from "../../redux/account/account.action";
 import { addTransaction } from "../../redux/transaction/transaction.action";
 import Search from "../Search/Search.js";
 
 import "./insert-transaction.styles.scss";
 
-const InsertTransaction = ({ addTransaction, currentAccount }) => {
+const InsertTransaction = ({
+  addTransaction,
+  currentAccount,
+  updateBalance,
+}) => {
   const today = new Date().toISOString().slice(0, 10);
   const [date, setDate] = useState(today);
   const [vendor, setVendor] = useState("");
@@ -36,7 +41,6 @@ const InsertTransaction = ({ addTransaction, currentAccount }) => {
   };
 
   const onCategoryChange = (event) => {
-    console.log(event);
     setCategory(event);
   };
 
@@ -52,6 +56,7 @@ const InsertTransaction = ({ addTransaction, currentAccount }) => {
     if (!vendor || !amount || !category_id) {
       alert(`Required Field is missing`);
     } else {
+      updateBalance(amount);
       addTransaction({
         transaction_id: uuidv4(),
         date: date,
@@ -126,6 +131,7 @@ const InsertTransaction = ({ addTransaction, currentAccount }) => {
 
 const mapDispatchToProps = (dispatch) => ({
   addTransaction: (transaction) => dispatch(addTransaction(transaction)),
+  updateBalance: (amount) => dispatch(updateBalance(amount)),
 });
 
 const mapStateToProps = createStructuredSelector({

@@ -14,3 +14,8 @@ export const setAccountBalance = (balance) => ({
   type: AccountActionTypes.SET_ACCOUNT_BALANCE,
   payload: balance,
 });
+
+export const updateBalance = (newBalance) => ({
+  type: AccountActionTypes.UPDATE_ACCOUNT_BALANCE,
+  payload: newBalance,
+});
