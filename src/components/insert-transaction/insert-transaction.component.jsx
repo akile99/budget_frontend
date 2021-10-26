@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
+import { v4 as uuidv4 } from "uuid";
 
-import { globalVars } from "../../hooks/global.js";
+import { selectCurrentAccount } from "../../redux/account/account.selector.js";
 import { addTransaction } from "../../redux/transaction/transaction.action";
 import Search from "../Search/Search.js";
 
 import "./insert-transaction.styles.scss";
 
-const InsertTransaction = ({ addTransaction }) => {
+const InsertTransaction = ({ addTransaction, currentAccount }) => {
   const today = new Date().toISOString().slice(0, 10);
   const [date, setDate] = useState(today);
   const [vendor, setVendor] = useState("");
@@ -46,31 +48,18 @@ const InsertTransaction = ({ addTransaction }) => {
   };
 
   const onCommitTransaction = (amount) => {
-    // fetch(globalVars.HOST + "insert", {
-    //   method: "post",
-    //   headers: { "Content-Type": "application/json" },
-    //   body: JSON.stringify({
-    //     date: date,
-    //     vendor: vendor,
-    //     category: category,
-    //     status: status,
-    //     amount: amount,
-    //     account_id: props.account_id,
-    //   }),
-    // })
-    //   .then((response) => response.json())
-    //   .then(props.onChange())
-    //   .catch(console.log);
-    // setVendor("");
-    // setAmount("");
-    // setStatus("Pending");
     addTransaction({
+      transaction_id: uuidv4(),
       date: date,
       vendor: vendor,
       category: category,
       status: status,
       amount: amount,
+      account_id: currentAccount.account_id,
     });
+    setVendor("");
+    setAmount("");
+    setStatus("Pending");
   };
 
   return (
@@ -92,6 +81,7 @@ const InsertTransaction = ({ addTransaction }) => {
           name="Vendor"
           value={vendor}
           onChange={onVendorChange}
+          required
         />
         <input
           className="f4 pa2 w-25 center"
@@ -133,4 +123,8 @@ const mapDispatchToProps = (dispatch) => ({
   addTransaction: (transaction) => dispatch(addTransaction(transaction)),
 });
 
-export default connect(null, mapDispatchToProps)(InsertTransaction);
+const mapStateToProps = createStructuredSelector({
+  currentAccount: selectCurrentAccount,
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(InsertTransaction);

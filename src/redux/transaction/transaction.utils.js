@@ -1,11 +1,19 @@
+import { globalVars } from "../../hooks/global";
+
 export const addTransactionToList = (transactions, transactionToAdd) => {
-  console.log(transactionToAdd);
+  // fetch(globalVars.HOST + "insert", {
+  //   method: "post",
+  //   headers: { "Content-Type": "application/json" },
+  //   body: JSON.stringify({
+  //     date: transactionToAdd.date,
+  //     vendor: transactionToAdd.vendor,
+  //     category: transactionToAdd.category,
+  //     status: transactionToAdd.status,
+  //     amount: transactionToAdd.amount,
+  //     account_id: transactionToAdd.account_id,
+  //   }),
+  // })
+  //   .then((response) => response.json())
+  //   .catch(console.log);
   return [transactionToAdd, ...transactions];
 };
-
-// amount: "1336.31";
-// category: "PayCheck";
-// date: "2021-10-21T00:00:00.000Z";
-// status: "Cleared";
-// transaction_id: "ff886318-ed6f-4468-aacd-c8cb4fc581ca";
-// vendor: "afda";
