@@ -1,11 +1,13 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
 
 import { globalVars } from "../../hooks/global.js";
+import { addTransaction } from "../../redux/transaction/transaction.action";
 import Search from "../Search/Search.js";
 
-import "./inputTransactions.css";
+import "./insert-transaction.styles.scss";
 
-const InputTransaction = (props) => {
+const InsertTransaction = (props) => {
   const today = new Date().toISOString().slice(0, 10);
   const [date, setDate] = useState(today);
   const [vendor, setVendor] = useState("");
@@ -44,24 +46,31 @@ const InputTransaction = (props) => {
   };
 
   const onCommitTransaction = (amount) => {
-    fetch(globalVars.HOST + "insert", {
-      method: "post",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        date: date,
-        vendor: vendor,
-        category: category,
-        status: status,
-        amount: amount,
-        account_id: props.account_id,
-      }),
-    })
-      .then((response) => response.json())
-      .then(props.onChange())
-      .catch(console.log);
-    setVendor("");
-    setAmount("");
-    setStatus("Pending");
+    // fetch(globalVars.HOST + "insert", {
+    //   method: "post",
+    //   headers: { "Content-Type": "application/json" },
+    //   body: JSON.stringify({
+    //     date: date,
+    //     vendor: vendor,
+    //     category: category,
+    //     status: status,
+    //     amount: amount,
+    //     account_id: props.account_id,
+    //   }),
+    // })
+    //   .then((response) => response.json())
+    //   .then(props.onChange())
+    //   .catch(console.log);
+    // setVendor("");
+    // setAmount("");
+    // setStatus("Pending");
+    addTransaction({
+      date: date,
+      vendor: vendor,
+      category: category,
+      status: status,
+      amount: amount,
+    });
   };
 
   return (
@@ -120,4 +129,8 @@ const InputTransaction = (props) => {
   );
 };
 
-export default InputTransaction;
+const mapDispatch = (dispatch) => ({
+  addTransaction: (transaction) => dispatch(addTransaction(transaction)),
+});
+
+export default connect(null, mapDispatch)(InsertTransaction);
