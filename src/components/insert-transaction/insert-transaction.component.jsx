@@ -15,7 +15,7 @@ const InsertTransaction = ({ addTransaction, currentAccount }) => {
   const [vendor, setVendor] = useState("");
   const [amount, setAmount] = useState("");
   const [status, setStatus] = useState("Pending");
-  const [category, setCategory] = useState();
+  const [category_id, setCategory] = useState();
 
   const onDateChange = (event) => {
     setDate(event.target.value);
@@ -36,6 +36,7 @@ const InsertTransaction = ({ addTransaction, currentAccount }) => {
   };
 
   const onCategoryChange = (event) => {
+    console.log(event);
     setCategory(event);
   };
 
@@ -48,18 +49,22 @@ const InsertTransaction = ({ addTransaction, currentAccount }) => {
   };
 
   const onCommitTransaction = (amount) => {
-    addTransaction({
-      transaction_id: uuidv4(),
-      date: date,
-      vendor: vendor,
-      category: category,
-      status: status,
-      amount: amount,
-      account_id: currentAccount.account_id,
-    });
-    setVendor("");
-    setAmount("");
-    setStatus("Pending");
+    if (!vendor || !amount || !category_id) {
+      alert(`Required Field is missing`);
+    } else {
+      addTransaction({
+        transaction_id: uuidv4(),
+        date: date,
+        vendor: vendor,
+        category_id: category_id,
+        status: status,
+        amount: amount,
+        account_id: currentAccount.account_id,
+      });
+      setVendor("");
+      setAmount("");
+      setStatus("Pending");
+    }
   };
 
   return (

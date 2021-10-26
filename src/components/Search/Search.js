@@ -18,7 +18,7 @@ function Search(props) {
         .then((response) => response.json())
         .then((data) => {
           data.map((i) => {
-            categoryList.push({ label: i.category, value: i.catid });
+            categoryList.push({ label: i.category, value: i.category_id });
           });
         })
         .then(setCategories(categoryList));
