@@ -1,6 +1,6 @@
 export const addTransactionToList = (transactions, transactionToAdd) => {
   console.log(transactionToAdd);
-  return [...transactions, transactionToAdd];
+  return [transactionToAdd, ...transactions];
 };
 
 // amount: "1336.31";

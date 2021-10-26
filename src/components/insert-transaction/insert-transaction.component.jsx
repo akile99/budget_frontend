@@ -7,7 +7,7 @@ import Search from "../Search/Search.js";
 
 import "./insert-transaction.styles.scss";
 
-const InsertTransaction = (props) => {
+const InsertTransaction = ({ addTransaction }) => {
   const today = new Date().toISOString().slice(0, 10);
   const [date, setDate] = useState(today);
   const [vendor, setVendor] = useState("");
@@ -129,8 +129,8 @@ const InsertTransaction = (props) => {
   );
 };
 
-const mapDispatch = (dispatch) => ({
+const mapDispatchToProps = (dispatch) => ({
   addTransaction: (transaction) => dispatch(addTransaction(transaction)),
 });
 
-export default connect(null, mapDispatch)(InsertTransaction);
+export default connect(null, mapDispatchToProps)(InsertTransaction);
