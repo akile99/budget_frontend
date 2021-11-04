@@ -1,0 +1,22 @@
+.account-block {
+  margin: 2px;
+  border-style: solid;
+  border-radius: 8px;
+  min-width: 8em;
+  display: flex;
+  flex-direction: column;
+
+  background: antiquewhite;
+  &:hover {
+    cursor: pointer;
+  }
+
+  .account-name {
+    display: flex;
+    flex-direction: row;
+  }
+}
+
+/*fl w-25 tc*/
+
+/*fl w-30 tc tc bg-white nowrap*/
