@@ -34,17 +34,8 @@ const Bills = () => {
         <p className="bill Title">Pay</p>
         <p className="bill Title editbill">Edit</p>
       </div>
-      {bills.map((data, i) => {
-        return (
-          <Bill
-            key={bills[i].bill_id}
-            bill_id={bills[i].bill_id}
-            amount={bills[i].amount}
-            bill_name={bills[i].bill_name}
-            due_date={bills[i].due_day}
-            bill_website={bills[i].bill_website}
-          />
-        );
+      {bills.map((bill) => {
+        return <Bill key={bill.bill_id} bill={bill} />;
       })}
     </div>
   );
