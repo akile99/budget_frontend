@@ -3,7 +3,7 @@ import { createStructuredSelector } from "reselect";
 import { connect } from "react-redux";
 
 import { selectCurrentUser } from "../../redux/user/user.selector";
-import { logOutUser } from "../../redux/root.action";
+import { logOutUser } from "../../redux/root-action";
 import { selectCurrentAccount } from "../../redux/account/account.selector";
 
 import DropDownMenu from "../dropdown-menu/dropdown-menu.component";

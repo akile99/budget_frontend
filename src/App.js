@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Switch, Redirect } from "react-router";
+import { Route, Switch, Redirect } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 import "./App.css";
@@ -11,28 +11,7 @@ import { selectCurrentUser } from "./redux/user/user.selector";
 
 const App = () => {
   const currentUser = useSelector(selectCurrentUser);
-  return (
-    <div>
-      <Switch>
-        <Route
-          exact
-          path="/budget_frontend/"
-          render={() =>
-            currentUser ? (
-              <HomePage />
-            ) : (
-              <Redirect to="/budget_frontend/signin" />
-            )
-          }
-        />
-        <Route
-          exact
-          path="/budget_frontend/signin"
-          component={SignInOrSignUpPage}
-        />
-      </Switch>
-    </div>
-  );
+  return <div>{currentUser ? <HomePage /> : <SignInOrSignUpPage />}</div>;
 };
 
 export default App;
