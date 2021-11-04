@@ -5,14 +5,13 @@ import { globalVars } from "../../hooks/global";
 
 function Search(props) {
   const [categories, setCategories] = useState([]);
-  const categoryList = [];
 
   function handleChange(data) {
     props.onChange(data.value, data.label);
-    //setClabel(data.label)
   }
 
   useEffect(() => {
+    const categoryList = [];
     try {
       fetch(globalVars.HOST + "category")
         .then((response) => response.json())

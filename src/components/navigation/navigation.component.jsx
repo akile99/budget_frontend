@@ -6,22 +6,29 @@ import { selectCurrentUser } from "../../redux/user/user.selector";
 import { logOutUser } from "../../redux/root.action";
 import { selectCurrentAccount } from "../../redux/account/account.selector";
 
+import DropDownMenu from "../dropdown-menu/dropdown-menu.component";
+
 import "./navigation.styles.scss";
 
 const Navigation = ({ currentUser, logOutUser, currentAccount }) => {
   return (
     <nav className="navigation">
-      {currentAccount ? <p className="f3">{currentAccount.balance}</p> : null}
+      <div>
+        <DropDownMenu />
+      </div>
+      <div className="userInfo">
+        {currentAccount ? <p className="f3">{currentAccount.balance}</p> : null}
 
-      <p className="f3">{currentUser.firstname}</p>
-      <p
-        onClick={() => {
-          logOutUser();
-        }}
-        className="f3 link dim black underline pa3 pointer"
-      >
-        Sign Out
-      </p>
+        <p className="f3">{currentUser.firstname}</p>
+        <p
+          onClick={() => {
+            logOutUser();
+          }}
+          className="f3 link dim black underline pa3 pointer"
+        >
+          Sign Out
+        </p>
+      </div>
     </nav>
   );
 };

@@ -9,11 +9,12 @@ import App from "./App";
 import "tachyons";
 
 import { store, persistor } from "./redux/store";
+import Loading from "./components/loading/loading.component";
 
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
-      <PersistGate persistor={persistor}>
+      <PersistGate loading={<Loading />} persistor={persistor}>
         <App />
       </PersistGate>
     </BrowserRouter>

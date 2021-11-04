@@ -1,24 +1,20 @@
 import React, { useEffect } from "react";
-import { connect } from "react-redux";
-import { createStructuredSelector } from "reselect";
+import { useSelector, useDispatch } from "react-redux";
 
 import { globalVars } from "../../hooks/global";
 import { setTransactions } from "../../redux/transaction/transaction.action";
 import { selectTransactionList } from "../../redux/transaction/transaction.selector";
-import {
-  selectAccountList,
-  selectCurrentAccount,
-} from "../../redux/account/account.selector";
+import { selectCurrentAccount } from "../../redux/account/account.selector";
 
 import Transaction from "../transaction/transaction.component";
 
 import "./transaction-list.styles.scss";
 
-const TransactionList = ({
-  transactionList,
-  setTransactions,
-  currentAccount,
-}) => {
+const TransactionList = () => {
+  const transactionList = useSelector(selectTransactionList);
+  const currentAccount = useSelector(selectCurrentAccount);
+  const dispatch = useDispatch();
+
   useEffect(() => {
     const d = new Date();
     d.setDate(d.getDate() - 60);
@@ -37,12 +33,12 @@ const TransactionList = ({
       })
         .then((response) => response.json())
         .then((data) => {
-          setTransactions(data);
+          dispatch(setTransactions(data));
         });
     } catch (e) {
       console.log(e);
     }
-  }, [currentAccount, setTransactions]);
+  }, [currentAccount, dispatch]);
   return (
     <div>
       <div className="outline flex justify-center">
@@ -64,14 +60,4 @@ const TransactionList = ({
   );
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  setTransactions: (transactions) => dispatch(setTransactions(transactions)),
-});
-
-const mapStateToProps = createStructuredSelector({
-  transactionList: selectTransactionList,
-  accounts: selectAccountList,
-  currentAccount: selectCurrentAccount,
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(TransactionList);
+export default TransactionList;
