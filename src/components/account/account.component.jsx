@@ -33,7 +33,7 @@ const Account = ({ account }) => {
         <p className="account">{account_name}</p>
         <p className="account">{account_type}</p>
       </div>
-      <p className={`${balanceColor} balance `}>{currentAccount.balance}</p>
+      <p className={`${balanceColor} balance `}>{balance}</p>
     </div>
   );
 };
