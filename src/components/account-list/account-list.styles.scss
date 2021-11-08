@@ -1,0 +1,11 @@
+.accounts {
+  display: flex;
+
+  .Account {
+    margin: 0.25em;
+    min-width: 8em;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+  }
+}
