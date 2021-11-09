@@ -6,31 +6,32 @@ import { selectCurrentUser } from "../../redux/user/user.selector";
 import { logOutUser } from "../../redux/root-action";
 import { selectCurrentAccount } from "../../redux/account/account.selector";
 
+import AccountInfo from "../account-info/account-info.component";
 import DropDownMenu from "../dropdown-menu/dropdown-menu.component";
 
-import "./navigation.styles.scss";
+import {
+  NavigationContainer,
+  NavigationInfo,
+  NavigationSignOut,
+} from "./navigation.styles";
 
-const Navigation = ({ currentUser, logOutUser, currentAccount }) => {
-  const { total } = currentAccount;
+const Navigation = ({ logOutUser }) => {
   return (
-    <nav className="navigation">
+    <NavigationContainer>
       <div>
         <DropDownMenu />
       </div>
-      <div className="userInfo">
-        {currentAccount ? <p className="f3">{total}</p> : null}
-
-        <p className="f3">{currentUser.firstname}</p>
-        <p
+      <NavigationInfo>
+        <AccountInfo />
+        <NavigationSignOut
           onClick={() => {
             logOutUser();
           }}
-          className="f3 link dim black underline pa3 pointer"
         >
           Sign Out
-        </p>
-      </div>
-    </nav>
+        </NavigationSignOut>
+      </NavigationInfo>
+    </NavigationContainer>
   );
 };
 
