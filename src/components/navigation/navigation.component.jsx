@@ -11,13 +11,14 @@ import DropDownMenu from "../dropdown-menu/dropdown-menu.component";
 import "./navigation.styles.scss";
 
 const Navigation = ({ currentUser, logOutUser, currentAccount }) => {
+  const { total } = currentAccount;
   return (
     <nav className="navigation">
       <div>
         <DropDownMenu />
       </div>
       <div className="userInfo">
-        {currentAccount ? <p className="f3">{currentAccount.balance}</p> : null}
+        {currentAccount ? <p className="f3">{total}</p> : null}
 
         <p className="f3">{currentUser.firstname}</p>
         <p
@@ -40,7 +41,6 @@ const mapStateToProps = createStructuredSelector({
 
 const mapDispatchToProps = (dispatch) => ({
   logOutUser: () => dispatch(logOutUser()),
-  // clearAccount: () => dispatch(clearAccount()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Navigation);

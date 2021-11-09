@@ -20,7 +20,9 @@ const TransactionList = () => {
     d.setDate(d.getDate() - 60);
     const from_date = d.toISOString().split("T")[0];
     const to_date = new Date().toISOString().split("T")[0];
-
+    if (!currentAccount) {
+      return;
+    }
     try {
       fetch(`${globalVars.HOST}transactions`, {
         method: "post",

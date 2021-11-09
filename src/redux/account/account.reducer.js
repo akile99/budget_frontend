@@ -21,7 +21,7 @@ const accountReducer = (state = INITIAL_STATE, action) => {
     case AccountActionTypes.SET_ACCOUNT_BALANCE:
       return {
         ...state,
-        currentAccount: getAccountBalance(state.currentAccount, action.payload),
+        currentAccount: getAccountBalance(state, action.payload),
       };
     case AccountActionTypes.UPDATE_ACCOUNT_BALANCE:
       return {

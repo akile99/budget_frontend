@@ -6,7 +6,7 @@ import { v4 as uuidv4 } from "uuid";
 import { selectCurrentAccount } from "../../redux/account/account.selector";
 import { updateBalance } from "../../redux/account/account.action";
 import { addTransaction } from "../../redux/transaction/transaction.action";
-import Search from "../Search/Search.js";
+import Search from "../search/Search";
 
 import "./insert-transaction.styles.scss";
 
