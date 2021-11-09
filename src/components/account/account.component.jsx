@@ -14,7 +14,7 @@ const Account = ({ account }) => {
     <div
       className="account-block"
       onClick={() => {
-        dispatch(setCurrentAccount(account));
+        dispatch(setCurrentAccount(account_id));
       }}
     >
       <div className="account-name">

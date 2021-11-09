@@ -5,10 +5,7 @@ import { createStructuredSelector } from "reselect";
 import { v4 as uuidv4 } from "uuid";
 
 import { selectCurrentAccount } from "../../redux/account/account.selector";
-import {
-  updateBalance,
-  updateAccountTotal,
-} from "../../redux/account/account.action";
+import { updateAccountTotal } from "../../redux/account/account.action";
 import { addTransaction } from "../../redux/transaction/transaction.action";
 import Search from "../search/Search";
 
@@ -67,7 +64,7 @@ const InsertTransaction = () => {
           category_id: category_id,
           status: status,
           amount: amount,
-          account_id: currentAccount.account_id,
+          account_id: currentAccount,
         })
       );
       setVendor("");

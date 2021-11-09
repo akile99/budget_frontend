@@ -28,7 +28,7 @@ const TransactionList = () => {
         method: "post",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          account_id: currentAccount.account_id,
+          account_id: currentAccount,
           from_date: from_date,
           to_date: to_date,
         }),
