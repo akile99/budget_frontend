@@ -18,6 +18,7 @@ export const NavigationSignOut = styled.div`
   font-size: 1.5rem;
   opacity: 1;
   transition: opacity 0.15s ease-in;
-  text-decoration: underline;
+  text-decoration: none;
   padding: 1rem;
+  cursor: pointer;
 `;

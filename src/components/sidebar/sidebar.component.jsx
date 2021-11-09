@@ -1,6 +1,5 @@
 import React from "react";
 
-import AccountList from "../account-list/account-list.component";
 import AccountPage from "../../pages/account-page/account-page.component";
 
 import "./sidebar.styles.scss";

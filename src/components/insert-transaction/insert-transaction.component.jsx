@@ -1,20 +1,22 @@
 import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { v4 as uuidv4 } from "uuid";
 
 import { selectCurrentAccount } from "../../redux/account/account.selector";
-import { updateBalance } from "../../redux/account/account.action";
+import {
+  updateBalance,
+  updateAccountTotal,
+} from "../../redux/account/account.action";
 import { addTransaction } from "../../redux/transaction/transaction.action";
 import Search from "../search/Search";
 
 import "./insert-transaction.styles.scss";
 
-const InsertTransaction = ({
-  addTransaction,
-  currentAccount,
-  updateBalance,
-}) => {
+const InsertTransaction = () => {
+  const currentAccount = useSelector(selectCurrentAccount);
+  const dispatch = useDispatch();
   const today = new Date().toISOString().slice(0, 10);
   const [date, setDate] = useState(today);
   const [vendor, setVendor] = useState("");
@@ -56,16 +58,18 @@ const InsertTransaction = ({
     if (!vendor || !amount || !category_id) {
       alert(`Required Field is missing`);
     } else {
-      updateBalance(amount);
-      addTransaction({
-        transaction_id: uuidv4(),
-        date: date,
-        vendor: vendor,
-        category_id: category_id,
-        status: status,
-        amount: amount,
-        account_id: currentAccount.account_id,
-      });
+      dispatch(updateAccountTotal(amount));
+      dispatch(
+        addTransaction({
+          transaction_id: uuidv4(),
+          date: date,
+          vendor: vendor,
+          category_id: category_id,
+          status: status,
+          amount: amount,
+          account_id: currentAccount.account_id,
+        })
+      );
       setVendor("");
       setAmount("");
       setStatus("Pending");
@@ -129,13 +133,13 @@ const InsertTransaction = ({
   );
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  addTransaction: (transaction) => dispatch(addTransaction(transaction)),
-  updateBalance: (amount) => dispatch(updateBalance(amount)),
-});
+// const mapDispatchToProps = (dispatch) => ({
+//   addTransaction: (transaction) => dispatch(addTransaction(transaction)),
+//   updateBalance: (amount) => dispatch(updateBalance(amount)),
+// });
 
 const mapStateToProps = createStructuredSelector({
   currentAccount: selectCurrentAccount,
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(InsertTransaction);
+export default connect(mapStateToProps)(InsertTransaction);
