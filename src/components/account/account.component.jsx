@@ -2,7 +2,7 @@ import React from "react";
 
 import { useDispatch } from "react-redux";
 
-import "./account.styles.scss";
+import { AccountContainer, AccountName, Name, Total } from "./account.styles";
 
 import { setCurrentAccount } from "../../redux/account/account.action";
 
@@ -11,20 +11,17 @@ const Account = ({ account }) => {
   const dispatch = useDispatch();
 
   return (
-    <div
-      className="account-block"
+    <AccountContainer
       onClick={() => {
         dispatch(setCurrentAccount(account_id));
       }}
     >
-      <div className="account-name">
-        <p className="account">{account_name}</p>
-        <p className="account">{account_type}</p>
-      </div>
-      <p className={total < 0 ? "red" : "black"}>
-        {total ? `$ ${total}` : "$ 0.00"}
-      </p>
-    </div>
+      <AccountName>
+        <Name>{account_name}</Name>
+        <Name>{account_type}</Name>
+      </AccountName>
+      <Total>{total ? `$ ${total}` : "$ 0.00"}</Total>
+    </AccountContainer>
   );
 };
 
