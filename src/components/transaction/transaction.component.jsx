@@ -11,7 +11,8 @@ import {
 } from "./transaction.styles";
 
 const Transaction = ({ transaction }) => {
-  const { date, vendor, amount, status, category } = transaction;
+  const { transaction_id, date, vendor, amount, status, category } =
+    transaction;
 
   function formatDate(date) {
     const d = new Date(date);
@@ -27,7 +28,9 @@ const Transaction = ({ transaction }) => {
       <Dollar>$</Dollar>
       <AmountContainer>{amount}</AmountContainer>
       <StatusContainer>{status} </StatusContainer>
-      <CategoryContainer>{category}</CategoryContainer>
+      <CategoryContainer onClick={() => console.log("transaction_id")}>
+        {category}
+      </CategoryContainer>
     </TransactionContainer>
   );
 };

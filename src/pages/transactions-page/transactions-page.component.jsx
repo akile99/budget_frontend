@@ -5,14 +5,16 @@ import TransactionList from "../../components/transaction-list/transaction-list.
 import SideBar from "../../components/sidebar/sidebar.component";
 import InsertTransaction from "../../components/insert-transaction/insert-transaction.component";
 
+import { TransactionPageContainer } from "./transactions-page.styles";
+
 const TransactionPage = () => (
-  <div className="account-transactions">
+  <TransactionPageContainer>
     <SideBar />
     <Scroll>
       <InsertTransaction />
       <TransactionList />
     </Scroll>
-  </div>
+  </TransactionPageContainer>
 );
 
 export default TransactionPage;
