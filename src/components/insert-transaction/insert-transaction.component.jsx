@@ -18,7 +18,7 @@ const InsertTransaction = () => {
   const [date, setDate] = useState(today);
   const [vendor, setVendor] = useState("");
   const [amount, setAmount] = useState("");
-  const [status, setStatus] = useState("Pending");
+  const [status, setStatus] = useState("Cleared");
   const [category, setCategory] = useState();
 
   const onDateChange = (event) => {
