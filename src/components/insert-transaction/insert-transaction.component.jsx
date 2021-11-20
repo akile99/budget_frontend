@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { connect } from "react-redux";
-import { createStructuredSelector } from "reselect";
 import { v4 as uuidv4 } from "uuid";
+import { globalVars } from "../../hooks/global";
 
 import { selectCurrentAccount } from "../../redux/account/account.selector";
 import { updateAccountTotal } from "../../redux/account/account.action";
 import { addTransaction } from "../../redux/transaction/transaction.action";
+import { setCategories } from "../../redux/category/category.action";
 import Search from "../search/Search";
 
 import "./insert-transaction.styles.scss";
@@ -19,7 +19,7 @@ const InsertTransaction = () => {
   const [vendor, setVendor] = useState("");
   const [amount, setAmount] = useState("");
   const [status, setStatus] = useState("Pending");
-  const [category_id, setCategory] = useState();
+  const [category, setCategory] = useState();
 
   const onDateChange = (event) => {
     setDate(event.target.value);
@@ -52,7 +52,7 @@ const InsertTransaction = () => {
   };
 
   const onCommitTransaction = (amount) => {
-    if (!vendor || !amount || !category_id) {
+    if (!vendor || !amount || !category) {
       alert(`Required Field is missing`);
     } else {
       dispatch(updateAccountTotal(amount));
@@ -61,7 +61,7 @@ const InsertTransaction = () => {
           transaction_id: uuidv4(),
           date: date,
           vendor: vendor,
-          category_id: category_id,
+          category: category,
           status: status,
           amount: amount,
           account_id: currentAccount,
@@ -72,6 +72,18 @@ const InsertTransaction = () => {
       setStatus("Pending");
     }
   };
+
+  useEffect(() => {
+    try {
+      fetch(globalVars.HOST + "category")
+        .then((response) => response.json())
+        .then((data) => {
+          dispatch(setCategories(data));
+        });
+    } catch (error) {
+      console.error(error);
+    }
+  }, [dispatch]);
 
   return (
     <div className="center">
@@ -130,13 +142,4 @@ const InsertTransaction = () => {
   );
 };
 
-// const mapDispatchToProps = (dispatch) => ({
-//   addTransaction: (transaction) => dispatch(addTransaction(transaction)),
-//   updateBalance: (amount) => dispatch(updateBalance(amount)),
-// });
-
-const mapStateToProps = createStructuredSelector({
-  currentAccount: selectCurrentAccount,
-});
-
-export default connect(mapStateToProps)(InsertTransaction);
+export default InsertTransaction;

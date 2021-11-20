@@ -1,36 +1,21 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+import { useSelector } from "react-redux";
 
+import { selectCategories } from "../../redux/category/category.selector";
 import Select from "react-select";
-import { globalVars } from "../../hooks/global";
 
-function Search(props) {
-  const [categories, setCategories] = useState([]);
+const Search = (props) => {
+  const categories = useSelector(selectCategories);
 
   function handleChange(data) {
-    props.onChange(data.value, data.label);
+    props.onChange(data);
   }
-
-  useEffect(() => {
-    const categoryList = [];
-    try {
-      fetch(globalVars.HOST + "category")
-        .then((response) => response.json())
-        .then((data) => {
-          data.map((i) => {
-            categoryList.push({ label: i.category, value: i.category_id });
-          });
-        })
-        .then(setCategories(categoryList));
-    } catch (error) {
-      console.error(error);
-    }
-  }, []);
 
   return (
     <div className="w-30">
-      <Select onChange={handleChange} options={categories} />
+      <Select onChange={handleChange} options={categories.categoryList} />
     </div>
   );
-}
+};
 
 export default Search;

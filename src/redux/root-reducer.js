@@ -5,17 +5,19 @@ import storage from "redux-persist/lib/storage";
 import accountReducer from "./account/account.reducer";
 import userReducer from "./user/user.reducer";
 import transactionReducer from "./transaction/transaction.reducer";
+import categoryReducer from "./category/category.reducer";
 
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: ["user", "transactions", "accounts"],
+  whitelist: ["user", "transactions", "accounts", "categories"],
 };
 
 const appReducer = combineReducers({
   user: userReducer,
   transactions: transactionReducer,
   accounts: accountReducer,
+  categories: categoryReducer,
 });
 
 const rootReducer = (state, action) => {
