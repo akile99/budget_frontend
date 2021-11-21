@@ -11,6 +11,15 @@ function getStingDate(date) {
   return `${year}-${month}-${day}`;
 }
 
+function test() {
+	const x = 5;
+	const y = 6;
+	if (x !== y) {
+		return x;
+	}
+	return y
+}
+
 module.exports = {
 	getStingDate: getStingDate 
 };
