@@ -1,39 +1,28 @@
 import React from "react";
 
-import { connect } from "react-redux";
+import { useDispatch } from "react-redux";
 
-import "./account.styles.scss";
+import { AccountContainer, AccountName, Name, Total } from "./account.styles";
 
-import useBalance from "../../hooks/useBalance.js";
-import {
-  setCurrentAccount,
-  setAccountBalance,
-} from "../../redux/account/account.action";
+import { setCurrentAccount } from "../../redux/account/account.action";
 
-const Account = ({ account, setCurrentAccount, setAccountBalance }) => {
-  const { account_id, account_name, account_type } = account;
-  const [balance, balanceColor] = useBalance(account_id, "sumCleared");
+const Account = ({ account }) => {
+  const { account_id, account_name, account_type, total } = account;
+  const dispatch = useDispatch();
 
   return (
-    <div
-      className="account-block"
+    <AccountContainer
       onClick={() => {
-        setCurrentAccount(account);
-        setAccountBalance(balance);
+        dispatch(setCurrentAccount(account_id));
       }}
     >
-      <div className="account-name">
-        <p className="account">{account_name}</p>
-        <p className="account">{account_type}</p>
-      </div>
-      <p className={`${balanceColor} balance `}>{balance}</p>
-    </div>
+      <AccountName>
+        <Name>{account_name}</Name>
+        <Name>{account_type}</Name>
+      </AccountName>
+      <Total>{total ? `$ ${total}` : "$ 0.00"}</Total>
+    </AccountContainer>
   );
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  setCurrentAccount: (account) => dispatch(setCurrentAccount(account)),
-  setAccountBalance: (balance) => dispatch(setAccountBalance(balance)),
-});
-
-export default connect(null, mapDispatchToProps)(Account);
+export default Account;

@@ -1,30 +1,34 @@
 import React from "react";
 
-import "./transaction.styles.scss";
+import {
+  TransactionContainer,
+  DateContainer,
+  VendorContainer,
+  StatusContainer,
+  Dollar,
+  AmountContainer,
+  CategoryContainer,
+} from "./transaction.styles";
 
 const Transaction = ({ transaction }) => {
-  const { date, vendor, amount, status, category } = transaction;
+  const { transaction_id, date, vendor, amount, status, label } = transaction;
 
   function formatDate(date) {
     const d = new Date(date);
-
     const year = d.getFullYear();
     const month = d.getMonth() + 1;
-    const day = d.getDate() + 1;
-
+    const day = d.getDate();
     return month + "-" + day + "-" + year;
   }
   return (
-    <div className="outline">
-      <div className="flex justify-left">
-        <p className="date transaction">{formatDate(date)}</p>
-        <p className="vendor1 transaction">{vendor}</p>
-        <p className="dollar transaction">$</p>
-        <p className="amount transaction">{amount}</p>
-        <p className="status">{status} </p>
-        <p className="category transaction">{category}</p>
-      </div>
-    </div>
+    <TransactionContainer key={transaction_id}>
+      <DateContainer>{formatDate(date)}</DateContainer>
+      <VendorContainer>{vendor}</VendorContainer>
+      <Dollar>$</Dollar>
+      <AmountContainer>{amount}</AmountContainer>
+      <StatusContainer>{status} </StatusContainer>
+      <CategoryContainer>{label}</CategoryContainer>
+    </TransactionContainer>
   );
 };
 

@@ -7,7 +7,7 @@ export const addTransactionToList = (transactions, transactionToAdd) => {
     body: JSON.stringify({
       date: transactionToAdd.date,
       vendor: transactionToAdd.vendor,
-      category_id: transactionToAdd.category_id,
+      category_id: transactionToAdd.category.value,
       status: transactionToAdd.status,
       amount: transactionToAdd.amount,
       account_id: transactionToAdd.account_id,
@@ -15,5 +15,13 @@ export const addTransactionToList = (transactions, transactionToAdd) => {
   })
     .then((response) => response.json())
     .catch(console.log);
+  transactionToAdd = {
+    date: transactionToAdd.date,
+    vendor: transactionToAdd.vendor,
+    label: transactionToAdd.category.label,
+    status: transactionToAdd.status,
+    amount: transactionToAdd.amount,
+    account_id: transactionToAdd.account_id,
+  };
   return [transactionToAdd, ...transactions];
 };

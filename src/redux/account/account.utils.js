@@ -1,13 +1,15 @@
-export const getAccountBalance = (currentAccount, accountBalance) => {
-  return { ...currentAccount, balance: accountBalance };
-};
-
-export const updateAccountBalance = (currentAccount, newBalance) => {
-  console.log(`new balance ${currentAccount.balance}`);
-  return {
-    ...currentAccount,
-    balance: (
-      parseFloat(currentAccount.balance) + parseFloat(newBalance)
-    ).toFixed(2),
-  };
+export const updateAccountTotal = (accounts, currentAccount, balance) => {
+  const accountToChange = accounts.find(
+    (account) => account.account_id === currentAccount
+  );
+  return accounts.map((account) =>
+    account.account_id === currentAccount
+      ? {
+          ...account,
+          total: (
+            parseFloat(accountToChange.total) + parseFloat(balance)
+          ).toFixed(2),
+        }
+      : account
+  );
 };

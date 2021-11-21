@@ -19,3 +19,8 @@ export const updateBalance = (newBalance) => ({
   type: AccountActionTypes.UPDATE_ACCOUNT_BALANCE,
   payload: newBalance,
 });
+
+export const updateAccountTotal = (newBalance) => ({
+  type: AccountActionTypes.UPDATE_ACCOUNT_TOTAL,
+  payload: newBalance,
+});
