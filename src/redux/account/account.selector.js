@@ -12,7 +12,7 @@ export const selectCurrentAccount = createSelector(
   (accounts) => accounts.currentAccount
 );
 
-export const selectAccount = createSelector([selectAccounts], (accounts) =>
+export const selectAccountTotal = createSelector([selectAccounts], (accounts) =>
   accounts.accountList.map((account) =>
     account.account_id === accounts.currentAccount ? account.total : null
   )

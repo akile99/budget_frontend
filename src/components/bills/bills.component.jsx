@@ -1,15 +1,18 @@
-import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 
 import Bill from "../bill/bill.component";
 
+import { selectBillList } from "../../redux/bills/bills.selector";
 import { selectCurrentUser } from "../../redux/user/user.selector";
+import { setBills } from "../../redux/bills/bills.actions";
 
 import "./bills.styles.scss";
 
 const Bills = () => {
-  const [bills, setBills] = useState([]);
+  const dispatch = useDispatch();
   const currentUser = useSelector(selectCurrentUser);
+  const bills = useSelector(selectBillList);
 
   useEffect(() => {
     fetch(`https://star-ship-enterprise.herokuapp.com/upcomingBills`, {
@@ -21,9 +24,9 @@ const Bills = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        setBills(data);
+        dispatch(setBills(data));
       });
-  }, [currentUser]);
+  }, [dispatch, currentUser]);
 
   return (
     <div>

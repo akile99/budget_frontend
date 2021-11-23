@@ -1,10 +1,10 @@
 import React from "react";
 import { useSelector } from "react-redux";
 
-import { selectAccount } from "../../redux/account/account.selector";
+import { selectAccountTotal } from "../../redux/account/account.selector";
 
 const CurrentTotal = () => {
-  const total = useSelector(selectAccount);
+  const total = useSelector(selectAccountTotal);
   return total ? <div>{total}</div> : null;
 };
 

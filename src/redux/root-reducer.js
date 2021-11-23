@@ -6,6 +6,7 @@ import accountReducer from "./account/account.reducer";
 import userReducer from "./user/user.reducer";
 import transactionReducer from "./transaction/transaction.reducer";
 import categoryReducer from "./category/category.reducer";
+import billReducer from "./bills/bills.reducer";
 
 const persistConfig = {
   key: "root",
@@ -18,6 +19,7 @@ const appReducer = combineReducers({
   transactions: transactionReducer,
   accounts: accountReducer,
   categories: categoryReducer,
+  bills: billReducer,
 });
 
 const rootReducer = (state, action) => {
