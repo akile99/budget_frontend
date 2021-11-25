@@ -2,45 +2,43 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
 import { globalVars } from "../../hooks/global";
+import Select from "react-select";
 
 import { selectCurrentAccount } from "../../redux/account/account.selector";
 import { updateAccountTotal } from "../../redux/account/account.action";
 import { addTransaction } from "../../redux/transaction/transaction.action";
 import { setCategories } from "../../redux/category/category.action";
-import Search from "../search/Search";
+import { selectCategories } from "../../redux/category/category.selector";
 
 import "./insert-transaction.styles.scss";
 
 const InsertTransaction = () => {
   const currentAccount = useSelector(selectCurrentAccount);
+  const { categoryList } = useSelector(selectCategories);
   const dispatch = useDispatch();
-  const today = new Date().toISOString().slice(0, 10);
-  const [date, setDate] = useState(today);
-  const [vendor, setVendor] = useState("");
-  const [amount, setAmount] = useState("");
-  const [status, setStatus] = useState("Cleared");
-  const [category, setCategory] = useState();
+  const [transaction, setTransaction] = useState({
+    date: new Date().toISOString().slice(0, 10),
+    transaction_id: uuidv4(),
+    vendor: "",
+    amount: "",
+    status: true,
+    category: {},
+    account_id: currentAccount,
+  });
+  const { date, vendor, amount, status, category } = transaction;
 
-  const onDateChange = (event) => {
-    setDate(event.target.value);
+  const handleChange = (event) => {
+    const { value, name } = event.target;
+
+    setTransaction({ ...transaction, [name]: value });
   };
 
-  const onVendorChange = (event) => {
-    setVendor(event.target.value);
-  };
-
-  const onAmountChange = (event) => {
-    const str = event.target.value;
-    const res = str.replace(/,/g, "");
-    setAmount(res);
-  };
-
-  const onStatusChange = (event) => {
-    status === "Pending" ? setStatus("Cleared") : setStatus("Pending");
+  const onStatusChange = () => {
+    setTransaction({ ...transaction, status: !status });
   };
 
   const onCategoryChange = (event) => {
-    setCategory(event);
+    setTransaction({ ...transaction, category: event });
   };
 
   const onCommitIncome = () => {
@@ -56,20 +54,8 @@ const InsertTransaction = () => {
       alert(`Required Field is missing`);
     } else {
       dispatch(updateAccountTotal(amount));
-      dispatch(
-        addTransaction({
-          transaction_id: uuidv4(),
-          date: date,
-          vendor: vendor,
-          category: category,
-          status: status,
-          amount: amount,
-          account_id: currentAccount,
-        })
-      );
-      setVendor("");
-      setAmount("");
-      setStatus("Pending");
+      dispatch(addTransaction(transaction));
+      setTransaction({ ...transaction, vendor: "", amount: "" });
     }
   };
 
@@ -94,35 +80,40 @@ const InsertTransaction = () => {
           id="date"
           name="date"
           value={date}
-          onChange={onDateChange}
+          onChange={handleChange}
         />
         <input
           className="f4 pa2 w-25 center"
           type="text"
           placeholder="Vendor"
-          id="Vendor"
-          name="Vendor"
+          id="vendor"
+          name="vendor"
           value={vendor}
-          onChange={onVendorChange}
+          onChange={handleChange}
           required
         />
         <input
           className="f4 pa2 w-25 center"
           type="double"
           placeholder="Amount"
-          id="Amount"
-          name="Amount"
+          id="amount"
+          name="amount"
           value={amount}
-          onChange={onAmountChange}
+          onChange={handleChange}
         />
         <button
           className="w-30 link ph3 pv2 dib btn-white"
-          id="CommitTransactionBTN"
+          id="status"
           onClick={onStatusChange}
         >
-          {status}
+          {status ? "Cleared" : "Pending"}
         </button>
-        <Search className="f4 pa2 w-30 center" onChange={onCategoryChange} />
+        <Select
+          className="f4 pa2 w-30 center"
+          defaultValue={categoryList[0]}
+          onChange={onCategoryChange}
+          options={categoryList}
+        />
         <button
           className="w-10 grow f4 link ph3 pv2 dib white bg-light-blue"
           id="CommitTransactionBTN"

@@ -1,7 +1,9 @@
 import React from "react";
 import { useDispatch } from "react-redux";
+
 import {
   toggleBillDropdownHidden,
+  toggleEditBillDropdownHidden,
   setCurrentBill,
 } from "../../redux/bills/bills.actions";
 
@@ -22,7 +24,14 @@ const Bill = ({ bill }) => {
   const handlePayBill = () => {
     dispatch(toggleBillDropdownHidden());
     dispatch(setCurrentBill(bill));
-    goToWebSite();
+    if (bill_website) {
+      goToWebSite();
+    }
+  };
+
+  const handleEditBill = () => {
+    dispatch(setCurrentBill(bill));
+    dispatch(toggleEditBillDropdownHidden());
   };
 
   const goToWebSite = () => {
@@ -37,7 +46,7 @@ const Bill = ({ bill }) => {
       <p className="bill paybill" onClick={handlePayBill}>
         Pay
       </p>
-      <p className="bill editbill paybill" onClick={() => console.log(due_day)}>
+      <p className="bill editbill paybill" onClick={handleEditBill}>
         Edit
       </p>
     </div>

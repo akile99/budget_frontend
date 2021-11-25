@@ -16,3 +16,8 @@ export const selectBillHidden = createSelector(
   [selectBills],
   (bills) => bills.hideBillDropdown
 );
+
+export const selectEditBillHidden = createSelector(
+  [selectBills],
+  (bills) => bills.hideEditBillDropdown
+);

@@ -1,20 +1,16 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Select from "react-select";
 
-import {
-  toggleBillDropdownHidden,
-  setCurrentBill,
-  paySelectedBill,
-} from "../../redux/bills/bills.actions";
 import { selectCurrentBill } from "../../redux/bills/bills.selector";
-import { selectAccountList } from "../../redux/account/account.selector";
+import {
+  updateSelectedBill,
+  toggleEditBillDropdownHidden,
+} from "../../redux/bills/bills.actions";
 
-import { BillDropDownContainer } from "./bill-dropdown.styles";
+import { BillDropDownContainer } from "./edit-bill-dropdown.styles";
 
-const BillDropDown = () => {
+const BillEditDropDown = () => {
   const currentBill = useSelector(selectCurrentBill);
-  const accounts = useSelector(selectAccountList);
   const dispatch = useDispatch();
   const [bill, setBill] = useState({
     bill_id: currentBill.bill_id,
@@ -23,19 +19,10 @@ const BillDropDown = () => {
     category_id: currentBill.category_id,
     status: "Pending",
     amount: Number(currentBill.amount.replace(/[^0-9.-]+/g, "")) * -1,
-    account_id: "",
     next_due_date: new Date().toISOString().slice(0, 10),
     bill_website: currentBill.bill_website,
   });
   const { vendor, amount, date, next_due_date } = bill;
-
-  accounts.forEach(
-    (e) => (
-      // eslint-disable-next-line no-sequences
-      (e.value = e.account_id),
-      (e.label = e.account_name + " " + e.account_type)
-    )
-  );
 
   const handleChange = (event) => {
     const { value, name } = event.target;
@@ -43,19 +30,9 @@ const BillDropDown = () => {
     setBill({ ...bill, [name]: value });
   };
 
-  const handleAccountChange = (event) => {
-    setBill({ ...bill, account_id: event.account_id });
-  };
-
-  const handlePayment = () => {
-    handleClose();
-
-    dispatch(paySelectedBill(bill));
-  };
-
-  const handleClose = () => {
-    dispatch(toggleBillDropdownHidden());
-    dispatch(setCurrentBill(null));
+  const handleEdit = () => {
+    dispatch(updateSelectedBill(bill));
+    dispatch(toggleEditBillDropdownHidden());
   };
 
   return (
@@ -81,14 +58,6 @@ const BillDropDown = () => {
         />
       </div>
       <div>
-        <p>Account</p>
-        <Select
-          defaultValue={accounts[0]}
-          options={accounts}
-          onChange={handleAccountChange}
-        />
-      </div>
-      <div>
         <p>Payment</p>
         <input
           type="text"
@@ -108,10 +77,9 @@ const BillDropDown = () => {
           onChange={handleChange}
         />
       </div>
-      <button onClick={handlePayment}>Commit</button>
-      <button onClick={handleClose}>Cancel</button>
+      <button onClick={handleEdit}>Update</button>
     </BillDropDownContainer>
   );
 };
 
-export default BillDropDown;
+export default BillEditDropDown;
