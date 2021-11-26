@@ -15,13 +15,14 @@ export const AccountName = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: left;
-  padding-left: 1rem;
+  padding-left: 0.25rem;
   padding-top: 0.5rem;
 `;
 
 export const Name = styled.p`
   font-weight: bold;
   padding: 0.2rem;
+  margin: unset;
 `;
 
 export const Total = styled.div`
@@ -29,6 +30,6 @@ export const Total = styled.div`
   flex-direction: row;
   justify-content: left;
   font-weight: bold;
-  padding-left: 1rem;
+  padding-left: 0.25rem;
   padding-bottom: 1rem;
 `;

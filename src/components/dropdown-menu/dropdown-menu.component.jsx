@@ -1,5 +1,5 @@
 import React from "react";
-import { useHistory } from "react-router";
+import { useHistory } from "react-router-dom";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Dropdown from "react-bootstrap/Dropdown";
@@ -9,6 +9,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 const DropDownMenu = () => {
   const history = useHistory();
+  const main_page = "/budget_frontend";
+
   return (
     <div className="menu">
       <Dropdown>
@@ -17,10 +19,12 @@ const DropDownMenu = () => {
         </Dropdown.Toggle>
         <Dropdown.Menu>
           <div>
-            <Dropdown.Item onClick={() => history.push("/transactions")}>
+            <Dropdown.Item
+              onClick={() => history.push(`${main_page}/transactions`)}
+            >
               Transactions
             </Dropdown.Item>
-            <Dropdown.Item onClick={() => history.push("/bills")}>
+            <Dropdown.Item onClick={() => history.push(`${main_page}/bills`)}>
               Bills
             </Dropdown.Item>
           </div>

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
 import { globalVars } from "../../hooks/global";
-import Select from "react-select";
 
 import { selectCurrentAccount } from "../../redux/account/account.selector";
 import { updateAccountTotal } from "../../redux/account/account.action";
@@ -10,7 +9,14 @@ import { addTransaction } from "../../redux/transaction/transaction.action";
 import { setCategories } from "../../redux/category/category.action";
 import { selectCategories } from "../../redux/category/category.selector";
 
-import "./insert-transaction.styles.scss";
+import {
+  InsertTransactionContainer,
+  InsertFormContainer,
+  InputContainer,
+  VendorInput,
+  Selector,
+  CustomButton,
+} from "./insert-transaction.styles";
 
 const InsertTransaction = () => {
   const currentAccount = useSelector(selectCurrentAccount);
@@ -72,18 +78,16 @@ const InsertTransaction = () => {
   }, [dispatch]);
 
   return (
-    <div className="center">
-      <div className="form center pa4 br3 shadow-5">
-        <input
-          className="f4 pa2 w-25 center"
+    <InsertTransactionContainer>
+      <InsertFormContainer onSubmit={(e) => e.preventDefault()}>
+        <InputContainer
           type="date"
           id="date"
           name="date"
           value={date}
           onChange={handleChange}
         />
-        <input
-          className="f4 pa2 w-25 center"
+        <VendorInput
           type="text"
           placeholder="Vendor"
           id="vendor"
@@ -92,8 +96,7 @@ const InsertTransaction = () => {
           onChange={handleChange}
           required
         />
-        <input
-          className="f4 pa2 w-25 center"
+        <InputContainer
           type="double"
           placeholder="Amount"
           id="amount"
@@ -101,35 +104,22 @@ const InsertTransaction = () => {
           value={amount}
           onChange={handleChange}
         />
-        <button
-          className="w-30 link ph3 pv2 dib btn-white"
-          id="status"
-          onClick={onStatusChange}
-        >
+        <CustomButton id="status" onClick={onStatusChange}>
           {status ? "Cleared" : "Pending"}
-        </button>
-        <Select
-          className="f4 pa2 w-30 center"
+        </CustomButton>
+        <Selector
           defaultValue={categoryList[0]}
           onChange={onCategoryChange}
           options={categoryList}
         />
-        <button
-          className="w-10 grow f4 link ph3 pv2 dib white bg-light-blue"
-          id="CommitTransactionBTN"
-          onClick={onCommitExpense}
-        >
+        <CustomButton id="CommitTransactionBTN" onClick={onCommitExpense}>
           Expense
-        </button>
-        <button
-          className="w-10 grow f4 link ph3 pv2 dib white bg-light-blue"
-          id="CommitTransactionBTN"
-          onClick={onCommitIncome}
-        >
+        </CustomButton>
+        <CustomButton id="CommitTransactionBTN" onClick={onCommitIncome}>
           Income
-        </button>
-      </div>
-    </div>
+        </CustomButton>
+      </InsertFormContainer>
+    </InsertTransactionContainer>
   );
 };
 

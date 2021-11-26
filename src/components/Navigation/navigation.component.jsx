@@ -1,6 +1,7 @@
 import React from "react";
 import { createStructuredSelector } from "reselect";
 import { connect } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 import { selectCurrentUser } from "../../redux/user/user.selector";
 import { logOutUser } from "../../redux/root-action";
@@ -16,6 +17,8 @@ import {
 } from "./navigation.styles";
 
 const Navigation = ({ logOutUser }) => {
+  const history = useHistory();
+
   return (
     <NavigationContainer>
       <div>
@@ -25,6 +28,7 @@ const Navigation = ({ logOutUser }) => {
         <AccountInfo />
         <NavigationSignOut
           onClick={() => {
+            history.replace(`/budget_frontend`);
             logOutUser();
           }}
         >

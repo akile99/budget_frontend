@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 
 import { setCurrentUser } from "../../redux/user/user.action";
 
@@ -15,7 +15,7 @@ const SignIn = () => {
   });
   const { email, password } = userCredentials;
   const dispatch = useDispatch();
-  const history = useHistory();
+  // const history = useHistory();
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -32,7 +32,7 @@ const SignIn = () => {
         .then((user) => {
           if (user !== "wrong credentials") {
             dispatch(setCurrentUser(user[0]));
-            history.replace("./");
+            // history.replace("./");
           } else {
             alert("Username and Password combination does not exist");
           }
