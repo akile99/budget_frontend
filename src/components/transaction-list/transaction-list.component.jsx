@@ -17,7 +17,7 @@ const TransactionList = () => {
 
   useEffect(() => {
     const d = new Date();
-    d.setDate(d.getDate() - 60);
+    d.setDate(d.getDate() - 180);
     const from_date = d.toISOString().split("T")[0];
     const to_date = new Date().toISOString().split("T")[0];
     if (!currentAccount) {

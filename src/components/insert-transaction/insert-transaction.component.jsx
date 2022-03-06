@@ -114,19 +114,19 @@ const InsertTransaction = () => {
           onChange={onCategoryChange}
           options={categoryList}
         />
-        <button
+        {/* <button
           className="w-10 grow f4 link ph3 pv2 dib white bg-light-blue"
           id="CommitTransactionBTN"
           onClick={onCommitExpense}
         >
           Expense
-        </button>
+        </button> */}
         <button
-          className="w-10 grow f4 link ph3 pv2 dib white bg-light-blue"
+          className="w-12 grow f4 link ph3 pv2 dib white bg-light-blue"
           id="CommitTransactionBTN"
           onClick={onCommitIncome}
         >
-          Income
+          Commit
         </button>
       </div>
     </div>
