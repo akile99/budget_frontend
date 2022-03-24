@@ -9,3 +9,13 @@ export const addTransaction = (transaction) => ({
   type: TransactionActionTypes.ADD_TRANSACTION,
   payload: transaction,
 });
+
+export const addExpense = (transaction) => ({
+  type: TransactionActionTypes.ADD_EXPENSE,
+  payload: transaction,
+});
+
+export const addIncome = (transaction) => ({
+  type: TransactionActionTypes.ADD_EXPENSE,
+  payload: transaction,
+});

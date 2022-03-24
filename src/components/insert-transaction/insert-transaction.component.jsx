@@ -5,7 +5,10 @@ import { globalVars } from "../../hooks/global";
 
 import { selectCurrentAccount } from "../../redux/account/account.selector";
 import { updateAccountTotal } from "../../redux/account/account.action";
-import { addTransaction } from "../../redux/transaction/transaction.action";
+import {
+  addIncome,
+  addExpense,
+} from "../../redux/transaction/transaction.action";
 import { setCategories } from "../../redux/category/category.action";
 import { selectCategories } from "../../redux/category/category.selector";
 
@@ -47,20 +50,23 @@ const InsertTransaction = () => {
     setTransaction({ ...transaction, category: event });
   };
 
-  const onCommitIncome = () => {
-    onCommitTransaction(amount);
-  };
-
   const onCommitExpense = () => {
-    onCommitTransaction(-amount);
+    // console.log(amount);
+    // setTransaction({ ...transaction, amount: -amount });
+    console.log(transaction);
+    // dispatch(updateAccountTotal(amount));
+    // dispatch(addTransaction(transaction));
+    // setTransaction({ ...transaction, vendor: "", amount: "" });
+    // onCommitTransaction();
   };
 
-  const onCommitTransaction = (amount) => {
+  const onCommitTransaction = () => {
     if (!vendor || !amount || !category) {
       alert(`Required Field is missing`);
     } else {
+      console.log(transaction);
       dispatch(updateAccountTotal(amount));
-      dispatch(addTransaction(transaction));
+      dispatch(addIncome(transaction));
       setTransaction({ ...transaction, vendor: "", amount: "" });
     }
   };
@@ -112,10 +118,16 @@ const InsertTransaction = () => {
           onChange={onCategoryChange}
           options={categoryList}
         />
-        <CustomButton id="CommitTransactionBTN" onClick={onCommitExpense}>
+        <CustomButton
+          id="CommitTransactionBTN"
+          onClick={() => {
+            setTransaction({ ...transaction, amount: -amount });
+            onCommitExpense();
+          }}
+        >
           Expense
         </CustomButton>
-        <CustomButton id="CommitTransactionBTN" onClick={onCommitIncome}>
+        <CustomButton id="CommitTransactionBTN" onClick={onCommitTransaction}>
           Income
         </CustomButton>
       </InsertFormContainer>
