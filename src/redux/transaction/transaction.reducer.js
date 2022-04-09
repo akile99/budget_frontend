@@ -20,6 +20,14 @@ const transactionReducer = (state = INITIAL_STATE, action) => {
           action.payload
         ),
       };
+    case TransactionActionTypes.ADD_EXPENSE:
+      return {
+        ...state,
+        transactionList: addTransactionToList(
+          state.transactionList,
+          action.payload
+        ),
+      };
     default:
       return state;
   }

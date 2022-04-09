@@ -7,16 +7,28 @@ import BillsPage from "../bills-page/billspage.component";
 
 import "./homepage.styles.scss";
 
-const HomePage = () => (
-  <div className="homepage">
-    <Navigation />
-    <div>
-      <Switch>
-        <Route exact path="/transactions" component={TransactionPage}></Route>
-        <Route exact path="/bills" component={BillsPage}></Route>
-      </Switch>
+const HomePage = () => {
+  const main_page = "/budget_frontend";
+
+  return (
+    <div className="homepage">
+      <Navigation />
+      <div>
+        <Switch>
+          <Route
+            exact
+            path={`${main_page}/transactions`}
+            component={TransactionPage}
+          ></Route>
+          <Route
+            exact
+            path={`${main_page}/bills`}
+            component={BillsPage}
+          ></Route>
+        </Switch>
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 export default HomePage;

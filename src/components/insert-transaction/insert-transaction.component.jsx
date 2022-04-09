@@ -2,20 +2,29 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
 import { globalVars } from "../../hooks/global";
-import Select from "react-select";
 
 import { selectCurrentAccount } from "../../redux/account/account.selector";
 import { updateAccountTotal } from "../../redux/account/account.action";
-import { addTransaction } from "../../redux/transaction/transaction.action";
+import {
+  addIncome,
+} from "../../redux/transaction/transaction.action";
 import { setCategories } from "../../redux/category/category.action";
 import { selectCategories } from "../../redux/category/category.selector";
 
-import "./insert-transaction.styles.scss";
+import {
+  InsertTransactionContainer,
+  InsertFormContainer,
+  InputContainer,
+  VendorInput,
+  Selector,
+  CustomButton,
+} from "./insert-transaction.styles";
 
 const InsertTransaction = () => {
   const currentAccount = useSelector(selectCurrentAccount);
   const { categoryList } = useSelector(selectCategories);
   const dispatch = useDispatch();
+  const [expenseButton, setExpenseButton] = useState(false); 
   const [transaction, setTransaction] = useState({
     date: new Date().toISOString().slice(0, 10),
     transaction_id: uuidv4(),
@@ -41,20 +50,18 @@ const InsertTransaction = () => {
     setTransaction({ ...transaction, category: event });
   };
 
-  const onCommitIncome = () => {
-    onCommitTransaction(amount);
-  };
-
   const onCommitExpense = () => {
-    onCommitTransaction(-amount);
+    setTransaction({ ...transaction, amount: -amount });
+    setExpenseButton(true)
   };
 
-  const onCommitTransaction = (amount) => {
+  const onCommitTransaction = () => {
     if (!vendor || !amount || !category) {
       alert(`Required Field is missing`);
     } else {
+      console.log(transaction);
       dispatch(updateAccountTotal(amount));
-      dispatch(addTransaction(transaction));
+      dispatch(addIncome(transaction));
       setTransaction({ ...transaction, vendor: "", amount: "" });
     }
   };
@@ -69,21 +76,24 @@ const InsertTransaction = () => {
     } catch (error) {
       console.error(error);
     }
-  }, [dispatch]);
+    if (expenseButton) {
+      console.log(transaction.amount);
+      onCommitTransaction();
+      setExpenseButton(false);
+    }
+  }, [dispatch, expenseButton, transaction.amount]);
 
   return (
-    <div className="center">
-      <div className="form center pa4 br3 shadow-5">
-        <input
-          className="f4 pa2 w-25 center"
+    <InsertTransactionContainer>
+      <InsertFormContainer onSubmit={(e) => e.preventDefault()}>
+        <InputContainer
           type="date"
           id="date"
           name="date"
           value={date}
           onChange={handleChange}
         />
-        <input
-          className="f4 pa2 w-25 center"
+        <VendorInput
           type="text"
           placeholder="Vendor"
           id="vendor"
@@ -92,8 +102,7 @@ const InsertTransaction = () => {
           onChange={handleChange}
           required
         />
-        <input
-          className="f4 pa2 w-25 center"
+        <InputContainer
           type="double"
           placeholder="Amount"
           id="amount"
@@ -101,35 +110,28 @@ const InsertTransaction = () => {
           value={amount}
           onChange={handleChange}
         />
-        <button
-          className="w-30 link ph3 pv2 dib btn-white"
-          id="status"
-          onClick={onStatusChange}
-        >
+        <CustomButton id="status" onClick={onStatusChange}>
           {status ? "Cleared" : "Pending"}
-        </button>
-        <Select
-          className="f4 pa2 w-30 center"
+        </CustomButton>
+        <Selector
           defaultValue={categoryList[0]}
           onChange={onCategoryChange}
           options={categoryList}
         />
-        {/* <button
-          className="w-10 grow f4 link ph3 pv2 dib white bg-light-blue"
+        <CustomButton
           id="CommitTransactionBTN"
-          onClick={onCommitExpense}
+          onClick={() => {
+            setTransaction({ ...transaction, amount: -amount });
+            onCommitExpense();
+          }}
         >
           Expense
-        </button> */}
-        <button
-          className="w-12 grow f4 link ph3 pv2 dib white bg-light-blue"
-          id="CommitTransactionBTN"
-          onClick={onCommitIncome}
-        >
-          Commit
-        </button>
-      </div>
-    </div>
+        </CustomButton>
+        <CustomButton id="CommitTransactionBTN" onClick={onCommitTransaction}>
+          Income
+        </CustomButton>
+      </InsertFormContainer>
+    </InsertTransactionContainer>
   );
 };
 
