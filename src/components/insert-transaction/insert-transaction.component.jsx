@@ -29,7 +29,7 @@ const InsertTransaction = () => {
     date: new Date().toISOString().slice(0, 10),
     transaction_id: uuidv4(),
     vendor: "",
-    amount: 0.00,
+    amount: "",
     status: true,
     category: {},
     account_id: currentAccount,
@@ -51,18 +51,21 @@ const InsertTransaction = () => {
   };
 
   const onCommitExpense = () => {
-    setTransaction({ ...transaction, amount: -amount });
-    setExpenseButton(true)
+    if (!vendor || !amount || !category) {
+      alert(`Required Field is missing`);
+    } else {
+      setTransaction({ ...transaction, amount: -amount });
+      setExpenseButton(true)
+    }
   };
 
   const onCommitTransaction = () => {
     if (!vendor || !amount || !category) {
       alert(`Required Field is missing`);
     } else {
-      console.log(transaction);
       dispatch(updateAccountTotal(amount));
       dispatch(addIncome(transaction));
-      setTransaction({ ...transaction, vendor: "", amount: "" });
+      setTransaction({ ...transaction, vendor: "", amount: 0 });
     }
   };
 
@@ -77,11 +80,11 @@ const InsertTransaction = () => {
       console.error(error);
     }
     if (expenseButton) {
-      console.log(transaction.amount);
-      onCommitTransaction();
+      dispatch(addIncome(transaction));
       setExpenseButton(false);
+      setTransaction({ ...transaction, vendor: "", amount: 0 });
     }
-  }, [dispatch, expenseButton, transaction.amount]);
+  }, [dispatch, transaction, expenseButton]);
 
   return (
     <InsertTransactionContainer>
