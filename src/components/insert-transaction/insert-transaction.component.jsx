@@ -29,7 +29,7 @@ const InsertTransaction = () => {
     date: new Date().toISOString().slice(0, 10),
     transaction_id: uuidv4(),
     vendor: "",
-    amount: "",
+    amount: 0.00,
     status: true,
     category: {},
     account_id: currentAccount,
