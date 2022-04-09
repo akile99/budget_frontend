@@ -7,7 +7,6 @@ import { selectCurrentAccount } from "../../redux/account/account.selector";
 import { updateAccountTotal } from "../../redux/account/account.action";
 import {
   addIncome,
-  addExpense,
 } from "../../redux/transaction/transaction.action";
 import { setCategories } from "../../redux/category/category.action";
 import { selectCategories } from "../../redux/category/category.selector";
@@ -25,6 +24,7 @@ const InsertTransaction = () => {
   const currentAccount = useSelector(selectCurrentAccount);
   const { categoryList } = useSelector(selectCategories);
   const dispatch = useDispatch();
+  const [expenseButton, setExpenseButton] = useState(false); 
   const [transaction, setTransaction] = useState({
     date: new Date().toISOString().slice(0, 10),
     transaction_id: uuidv4(),
@@ -51,13 +51,8 @@ const InsertTransaction = () => {
   };
 
   const onCommitExpense = () => {
-    // console.log(amount);
-    // setTransaction({ ...transaction, amount: -amount });
-    console.log(transaction);
-    // dispatch(updateAccountTotal(amount));
-    // dispatch(addTransaction(transaction));
-    // setTransaction({ ...transaction, vendor: "", amount: "" });
-    // onCommitTransaction();
+    setTransaction({ ...transaction, amount: -amount });
+    setExpenseButton(true)
   };
 
   const onCommitTransaction = () => {
@@ -81,7 +76,12 @@ const InsertTransaction = () => {
     } catch (error) {
       console.error(error);
     }
-  }, [dispatch]);
+    if (expenseButton) {
+      console.log(transaction.amount);
+      onCommitTransaction();
+      setExpenseButton(false);
+    }
+  }, [dispatch, expenseButton, transaction.amount]);
 
   return (
     <InsertTransactionContainer>
