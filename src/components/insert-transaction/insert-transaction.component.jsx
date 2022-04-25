@@ -80,6 +80,7 @@ const InsertTransaction = () => {
       console.error(error);
     }
     if (expenseButton) {
+      dispatch(updateAccountTotal(amount));
       dispatch(addIncome(transaction));
       setExpenseButton(false);
       setTransaction({ ...transaction, vendor: "", amount: 0 });
