@@ -22,9 +22,9 @@ export const insertTransaction = async (transaction) => {
 
 export const formatDate = (date) => {
   const d = new Date(date);
-  const month = d.getMonth() + 1;
-  const day = d.getDate();
-  const year = d.getFullYear();
+  const month = d.getUTCMonth() + 1;
+  const day = d.getUTCDate();
+  const year = d.getUTCFullYear();
   return year + "-" + month + "-" + day;
 };
 

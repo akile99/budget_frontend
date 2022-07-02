@@ -8,7 +8,16 @@ import { selectCurrentAccount } from "../../redux/account/account.selector";
 
 import Transaction from "../transaction/transaction.component";
 
-import "./transaction-list.styles.scss";
+import {
+  TransactionTable,
+  TransactionListContainer,
+  DateContainer,
+  VendorContainer,
+  StatusContainer,
+  Dollar,
+  AmountContainer,
+  CategoryContainer,
+} from "./transaction-list.styles";
 
 const TransactionList = () => {
   const transactionList = useSelector(selectTransactionList);
@@ -17,9 +26,11 @@ const TransactionList = () => {
 
   useEffect(() => {
     const d = new Date();
-    d.setDate(d.getDate() - 180);
+    const t = new Date();
+    d.setDate(d.getDate() - 90);
+    t.setDate(t.getDate() + 60);
     const from_date = d.toISOString().split("T")[0];
-    const to_date = new Date().toISOString().split("T")[0];
+    const to_date = t.toISOString().split("T")[0];
     if (!currentAccount) {
       return;
     }
@@ -42,23 +53,23 @@ const TransactionList = () => {
     }
   }, [currentAccount, dispatch]);
   return (
-    <div>
-      <div className="outline flex justify-center">
-        <p className="date transaction">Date</p>
-        <p className="vendor1 transaction">Vender</p>
-        <p className="dollar transaction">&nbsp;&nbsp;</p>
-        <p className="amount transaction">Amount</p>
-        <p className="status transaction">Status</p>
-        <p className="category transaction">Category</p>
-        <p className="edit transaction">Edit</p>
-      </div>
+    <TransactionTable>
+      <TransactionListContainer >
+        <DateContainer>Date</DateContainer>
+        <VendorContainer>Vender</VendorContainer>
+        <Dollar>&nbsp;&nbsp;</Dollar>
+        <AmountContainer>Amount</AmountContainer>
+        <StatusContainer>Status</StatusContainer>
+        <CategoryContainer>Category</CategoryContainer>
+        {/* <p className="edit transaction">Edit</p> */}
+      </TransactionListContainer>
       {transactionList.map((transaction) => (
         <Transaction
           key={transaction.transaction_id}
           transaction={transaction}
         />
       ))}
-    </div>
+    </TransactionTable>
   );
 };
 

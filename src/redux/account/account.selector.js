@@ -17,3 +17,9 @@ export const selectAccountTotal = createSelector([selectAccounts], (accounts) =>
     account.account_id === accounts.currentAccount ? account.total : null
   )
 );
+
+export const selectAccountPending = createSelector([selectAccounts], (accounts) =>
+  accounts.accountList.map((account) =>
+    account.account_id === accounts.currentAccount ? account.pending : null
+  )
+);

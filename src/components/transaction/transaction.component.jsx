@@ -15,9 +15,9 @@ const Transaction = ({ transaction }) => {
 
   function formatDate(date) {
     const d = new Date(date);
-    const year = d.getFullYear();
-    const month = d.getMonth() + 1;
-    const day = d.getDate();
+    const year = d.getUTCFullYear();
+    const month = d.getUTCMonth() + 1;
+    const day = d.getUTCDate();
     return month + "-" + day + "-" + year;
   }
   return (
@@ -26,7 +26,7 @@ const Transaction = ({ transaction }) => {
       <VendorContainer>{vendor}</VendorContainer>
       <Dollar>$</Dollar>
       <AmountContainer>{amount}</AmountContainer>
-      <StatusContainer>{status} </StatusContainer>
+      <StatusContainer>{ status ? "Cleared" : "Pending" } </StatusContainer>
       <CategoryContainer>{label}</CategoryContainer>
     </TransactionContainer>
   );
