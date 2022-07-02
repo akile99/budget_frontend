@@ -25,7 +25,7 @@ export const formatDate = (date) => {
   const month = d.getUTCMonth() + 1;
   const day = d.getUTCDate();
   const year = d.getUTCFullYear();
-  return year + "-" + month + "-" + day;
+  return month + "-" + day + "-" + year;
 };
 
 export const fetchUpdateBill = async (bill) => {

@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { formatDate } from "../../hooks/global";
 
 import { selectCurrentBill } from "../../redux/bills/bills.selector";
 import {
   updateSelectedBill,
+  setCurrentBill,
   toggleEditBillDropdownHidden,
 } from "../../redux/bills/bills.actions";
 
@@ -14,12 +16,12 @@ const BillEditDropDown = () => {
   const dispatch = useDispatch();
   const [bill, setBill] = useState({
     bill_id: currentBill.bill_id,
-    date: new Date(currentBill.due_day).toISOString().slice(0, 10),
+    date: formatDate(currentBill.due_day),
     vendor: currentBill.bill_name,
     category_id: currentBill.category_id,
-    status: "Pending",
+    status: false,
     amount: Number(currentBill.amount.replace(/[^0-9.-]+/g, "")) * -1,
-    next_due_date: new Date().toISOString().slice(0, 10),
+    next_due_date: new Date(currentBill.due_day).toISOString().slice(0, 10),
     bill_website: currentBill.bill_website,
   });
   const { vendor, amount, date, next_due_date } = bill;
@@ -35,17 +37,16 @@ const BillEditDropDown = () => {
     dispatch(toggleEditBillDropdownHidden());
   };
 
+  const handleClose = () => {
+    dispatch(toggleEditBillDropdownHidden());
+    dispatch(setCurrentBill(null));
+  };
+
   return (
     <BillDropDownContainer id={currentBill.bill_id}>
       <div>
-        <p>Date</p>
-        <input
-          type="date"
-          id="date"
-          name="date"
-          value={date}
-          onChange={handleChange}
-        />
+        <p>Current Due Date</p>
+        <p>{ date }</p>
       </div>
       <div>
         <p>Vendor</p>
@@ -78,6 +79,7 @@ const BillEditDropDown = () => {
         />
       </div>
       <button onClick={handleEdit}>Update</button>
+      <button onClick={handleClose}>Cancel</button>
     </BillDropDownContainer>
   );
 };

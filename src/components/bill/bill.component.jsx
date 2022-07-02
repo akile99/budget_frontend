@@ -1,5 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
+import { formatDate } from "../../hooks/global";
 
 import {
   toggleBillDropdownHidden,
@@ -13,8 +14,8 @@ const Bill = ({ bill }) => {
 
   function getDay(date) {
     const d = new Date(date);
-    const day = d.getDate();
-    const month = d.getMonth() + 1;
+    const day = d.getUTCDate();
+    const month = d.getUTCMonth() + 1;
 
     return month + "/" + day;
   }
