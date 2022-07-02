@@ -16,6 +16,8 @@ const BillDropDown = () => {
   const currentBill = useSelector(selectCurrentBill);
   const accounts = useSelector(selectAccountList);
   const dispatch = useDispatch();
+  const d = new Date(currentBill.due_day);
+  const next_month = d.setMonth(d.getMonth() + 1);
   const [bill, setBill] = useState({
     bill_id: currentBill.bill_id,
     date: new Date(currentBill.due_day).toISOString().slice(0, 10),
@@ -24,7 +26,7 @@ const BillDropDown = () => {
     status: "Pending",
     amount: Number(currentBill.amount.replace(/[^0-9.-]+/g, "")) * -1,
     account_id: "",
-    next_due_date: new Date().toISOString().slice(0, 10),
+    next_due_date: new Date(next_month).toISOString().slice(0, 10),
     bill_website: currentBill.bill_website,
   });
   const { vendor, amount, date, next_due_date } = bill;

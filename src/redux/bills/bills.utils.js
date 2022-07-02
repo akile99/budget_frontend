@@ -9,7 +9,7 @@ export const payBill = (billToPay) => {
     date: billToPay.date,
     vendor: billToPay.vendor,
     category_id: billToPay.category_id,
-    status: billToPay.status,
+    status: false,
     amount: billToPay.amount,
     account_id: billToPay.account_id,
   };
