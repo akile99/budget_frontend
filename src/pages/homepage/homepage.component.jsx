@@ -16,12 +16,12 @@ const HomePage = () => {
       <div>
         <Switch>
           <Route
-            exact
+            // exact
             path={`${main_page}/transactions`}
             component={TransactionPage}
           ></Route>
           <Route
-            exact
+            // exact
             path={`${main_page}/bills`}
             component={BillsPage}
           ></Route>
