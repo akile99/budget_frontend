@@ -47,6 +47,7 @@ const InsertTransaction = () => {
   };
 
   const onCategoryChange = (event) => {
+    console.log(event)
     setTransaction({ ...transaction, category: event });
   };
 
@@ -63,14 +64,24 @@ const InsertTransaction = () => {
     if (!vendor || !amount || !category) {
       alert(`Required Field is missing`);
     } else {
-      if (status) {
-        dispatch(updateAccountTotal(amount));
-      }
+      addToPendingOrTotal()
       dispatch(addIncome(transaction));
       setTransaction({ ...transaction, vendor: "", amount: 0 });
     }
   };
 
+  function addToPendingOrTotal() {
+    if (status) {
+      dispatch(updateAccountTotal(amount));
+    } else {
+      dispatch(updateAccountPending(amount));
+    }
+  }
+
+  const addToTransactions = () => {
+    dispatch(addIncome(transaction));
+    setTransaction({ ...transaction, vendor: "", amount: 0 });
+  }
   useEffect(() => {
     try {
       fetch(globalVars.HOST + "category")
@@ -82,16 +93,12 @@ const InsertTransaction = () => {
       console.error(error);
     }
     if (expenseButton) {
-      if (status) {
-        dispatch(updateAccountTotal(amount));
-      } else {
-        dispatch(updateAccountPending(amount));
-      }
-      dispatch(addIncome(transaction));
+      addToPendingOrTotal();
+      addToTransactions();
       setExpenseButton(false);
-      setTransaction({ ...transaction, vendor: "", amount: 0 });
     }
-  }, [dispatch, transaction, expenseButton, amount, status]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dispatch, expenseButton]);
 
   return (
     <InsertTransactionContainer>
