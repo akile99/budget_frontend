@@ -38,10 +38,8 @@ const Transaction = ({ current_transaction }) => {
     setTransaction({ ...transaction, status: !transaction.status })
     if (transaction.status) {
       dispatch(updateAccountTotal(-amount))
-      console.log(`true: ${-amount}`);
     } else {
       dispatch(updateAccountTotal(amount))
-      console.log(`false: ${amount}`);
     }
     dispatch(updateTransactionStatus(transaction));
   }

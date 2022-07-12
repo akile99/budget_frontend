@@ -85,7 +85,6 @@ const InsertTransaction = () => {
       if (status) {
         dispatch(updateAccountTotal(amount));
       } else {
-        console.log(`pending ${amount}`)
         dispatch(updateAccountPending(amount));
       }
       dispatch(addIncome(transaction));
