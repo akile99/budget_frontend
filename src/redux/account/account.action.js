@@ -24,3 +24,8 @@ export const updateAccountTotal = (newBalance) => ({
   type: AccountActionTypes.UPDATE_ACCOUNT_TOTAL,
   payload: newBalance,
 });
+
+export const updateAccountPending = (newBalance) => ({
+  type: AccountActionTypes.UPDATE_ACCOUNT_PENDING,
+  payload: newBalance,
+});

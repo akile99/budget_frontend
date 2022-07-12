@@ -1,5 +1,5 @@
 import AccountActionTypes from "./account.types";
-import { updateAccountTotal } from "./account.utils";
+import { updateAccountTotal, updateAccountPending } from "./account.utils";
 
 const INITIAL_STATE = {
   accountList: [],
@@ -27,6 +27,15 @@ const accountReducer = (state = INITIAL_STATE, action) => {
           action.payload
         ),
       };
+      case AccountActionTypes.UPDATE_ACCOUNT_PENDING:
+        return {
+          ...state,
+          accountList: updateAccountPending(
+            state.accountList,
+            state.currentAccount,
+            action.payload
+          ),
+        };
     default:
       return state;
   }

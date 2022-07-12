@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 import { globalVars } from "../../hooks/global";
 
 import { selectCurrentAccount } from "../../redux/account/account.selector";
-import { updateAccountTotal } from "../../redux/account/account.action";
+import { updateAccountTotal, updateAccountPending } from "../../redux/account/account.action";
 import {
   addIncome,
 } from "../../redux/transaction/transaction.action";
@@ -63,7 +63,9 @@ const InsertTransaction = () => {
     if (!vendor || !amount || !category) {
       alert(`Required Field is missing`);
     } else {
-      dispatch(updateAccountTotal(amount));
+      if (status) {
+        dispatch(updateAccountTotal(amount));
+      }
       dispatch(addIncome(transaction));
       setTransaction({ ...transaction, vendor: "", amount: 0 });
     }
@@ -80,12 +82,17 @@ const InsertTransaction = () => {
       console.error(error);
     }
     if (expenseButton) {
-      dispatch(updateAccountTotal(amount));
+      if (status) {
+        dispatch(updateAccountTotal(amount));
+      } else {
+        console.log(`pending ${amount}`)
+        dispatch(updateAccountPending(amount));
+      }
       dispatch(addIncome(transaction));
       setExpenseButton(false);
       setTransaction({ ...transaction, vendor: "", amount: 0 });
     }
-  }, [dispatch, transaction, expenseButton]);
+  }, [dispatch, transaction, expenseButton, amount, status]);
 
   return (
     <InsertTransactionContainer>

@@ -1,5 +1,5 @@
 import TransactionActionTypes from "./transaction.types";
-import { addTransactionToList } from "./transaction.utils";
+import { addTransactionToList, updateStatus } from "./transaction.utils";
 
 const INITIAL_STATE = {
   transactionList: [],
@@ -24,6 +24,14 @@ const transactionReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         transactionList: addTransactionToList(
+          state.transactionList,
+          action.payload
+        ),
+      };
+    case TransactionActionTypes.UPDATE_STATUS:
+      return {
+        ...state,
+        transactionList: updateStatus(
           state.transactionList,
           action.payload
         ),

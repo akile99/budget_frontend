@@ -5,7 +5,7 @@ import { globalVars } from "../../hooks/global.js";
 
 import { setAccounts } from "../../redux/account/account.action";
 import { selectCurrentUser } from "../../redux/user/user.selector";
-import { selectCurrentAccount } from "../../redux/account/account.selector";
+// import { selectCurrentAccount } from "../../redux/account/account.selector";
 
 import { UserContainer, UserInfo, UserTable, UserHeading } from "./account-info.styles";
 import CurrentTotal from "../current-total/current-total.component";
@@ -13,7 +13,7 @@ import CurrentPending from "../current-pending/current-pending.component.jsx";
 
 const AccountInfo = () => {
   const currentUser = useSelector(selectCurrentUser);
-  const currentAccount = useSelector(selectCurrentAccount);
+  // const currentAccount = useSelector(selectCurrentAccount);
   const dispatch = useDispatch();
 
   useEffect(() => {

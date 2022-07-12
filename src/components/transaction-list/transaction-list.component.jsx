@@ -66,7 +66,7 @@ const TransactionList = () => {
       {transactionList.map((transaction) => (
         <Transaction
           key={transaction.transaction_id}
-          transaction={transaction}
+          current_transaction={transaction}
         />
       ))}
     </TransactionTable>

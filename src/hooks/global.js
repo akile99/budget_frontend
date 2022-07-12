@@ -20,6 +20,18 @@ export const insertTransaction = async (transaction) => {
     .catch(console.log);
 };
 
+export const updateTransactionStatusAPI = async (transaction) => {
+  await fetch(globalVars.HOST + "updateStatus", {
+    method: "post",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      transaction_id: transaction.transaction_id,
+    }),
+  })
+    .then((response) => response.json())
+    .catch(console.log);
+};
+
 export const formatDate = (date) => {
   const d = new Date(date);
   const month = d.getUTCMonth() + 1;

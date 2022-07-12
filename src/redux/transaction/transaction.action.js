@@ -19,3 +19,8 @@ export const addIncome = (transaction) => ({
   type: TransactionActionTypes.ADD_EXPENSE,
   payload: transaction,
 });
+
+export const updateTransactionStatus = (transaction) => ({
+  type: TransactionActionTypes.UPDATE_STATUS,
+  payload: transaction,
+});
