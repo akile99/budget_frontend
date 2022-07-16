@@ -9,7 +9,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 const DropDownMenu = () => {
   const history = useHistory();
-  const main_page = "";
+  const main_page = "/budget_frontend";
 
   return (
     <div className="menu">
