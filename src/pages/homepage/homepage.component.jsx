@@ -8,7 +8,7 @@ import BillsPage from "../bills-page/billspage.component";
 import "./homepage.styles.scss";
 
 const HomePage = () => {
-  const main_page = "/budget_frontend";
+  const main_page = "";
 
   return (
     <div className="homepage">
