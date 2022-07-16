@@ -13,6 +13,7 @@ import {
   Dollar,
   AmountContainer,
   CategoryContainer,
+  EditContainer
 } from "./transaction.styles";
 
 const Transaction = ({ current_transaction }) => {
@@ -56,6 +57,7 @@ const Transaction = ({ current_transaction }) => {
         }}
       >{ transaction.status ? "Cleared" : "Pending" } </StatusContainer>
       <CategoryContainer>{label}</CategoryContainer>
+      <EditContainer>Edit</EditContainer>
     </TransactionContainer>
   );
 };

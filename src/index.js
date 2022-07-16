@@ -6,7 +6,6 @@ import { PersistGate } from "redux-persist/es/integration/react";
 
 import "./index.css";
 import App from "./App";
-import "tachyons";
 
 import { store, persistor } from "./redux/store";
 import Loading from "./components/loading/loading.component";

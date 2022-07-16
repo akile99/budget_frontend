@@ -52,3 +52,9 @@ export const CategoryContainer = styled.td`
   width: 8em;
   ${TransactionElement}
 `;
+
+export const EditContainer = styled.td`
+  cursor: pointer;
+  min-width: 5em;
+  ${TransactionElement}
+`;
