@@ -13,12 +13,12 @@ const TransactionEditDropDown = () => {
   const dispatch = useDispatch();
   const [transaction, setTransaction] = useState({
     transaction_id: currentTransaction ? currentTransaction.transaction_id : "",
-    date: currentTransaction.date,
-    vendor: currentTransaction.vendor,
-    label: currentTransaction.label,
-    category_id: currentTransaction.category_id,
-    status: currentTransaction.status,
-    amount: Number(currentTransaction.amount.replace(/[^0-9.-]+/g, "")),
+    date: currentTransaction ? currentTransaction.date : "",
+    vendor: currentTransaction ? currentTransaction.vendor : "",
+    label: currentTransaction ? currentTransaction.label : "",
+    category_id: currentTransaction ? currentTransaction.category_id : "",
+    status: currentTransaction ? currentTransaction.status : "",
+    amount: currentTransaction ? Number(currentTransaction.amount.replace(/[^0-9.-]+/g, "")) : "",
   });
   const { transaction_id, vendor, amount, date } = transaction;
 
