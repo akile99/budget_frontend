@@ -23,7 +23,7 @@ export const TransactionItemsDiv = styled.div`
 `;
 
 export const Selector = styled(Select)`
-  font-size: 1.25rem;
+  font-size: 1rem;
   padding: 0.5rem;
   width: 100%;
 `;
