@@ -15,16 +15,8 @@ const HomePage = () => {
       <Navigation />
       <div>
         <Switch>
-          <Route
-            // exact
-            path={`${main_page}/transactions`}
-            component={TransactionPage}
-          ></Route>
-          <Route
-            // exact
-            path={`${main_page}/bills`}
-            component={BillsPage}
-          ></Route>
+          <Route exact path={`${main_page}/transactions`} component={TransactionPage} ></Route>
+          <Route exact path={`${main_page}/bills`} component={BillsPage} ></Route>
         </Switch>
       </div>
     </div>

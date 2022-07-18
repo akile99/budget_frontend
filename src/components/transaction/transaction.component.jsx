@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 
-import { updateTransactionStatus } from "../../redux/transaction/transaction.action";
+import { updateTransactionStatus, toggleEditTransactionDropdownHidden, setCurrentTransaction } from "../../redux/transaction/transaction.action";
 import { updateAccountTotal } from "../../redux/account/account.action";
-
 
 import {
   TransactionContainer,
@@ -18,13 +17,15 @@ import {
 
 const Transaction = ({ current_transaction }) => {
   const dispatch = useDispatch();
-  const { transaction_id, date, vendor, amount, status, label } = current_transaction;
+  const { transaction_id, date, vendor, amount, status, label, category_id } = current_transaction;
   const [transaction, setTransaction] = useState({
-    date: new Date().toISOString().slice(0, 10),
+    date: new Date(date).toISOString().slice(0, 10),
     transaction_id: transaction_id,
     vendor: vendor,
     amount: amount,
     status: status,
+    label: label,
+    category_id: category_id,
   });
 
   function formatDate(date) {
@@ -43,7 +44,12 @@ const Transaction = ({ current_transaction }) => {
       dispatch(updateAccountTotal(amount))
     }
     dispatch(updateTransactionStatus(transaction));
-  }
+  };
+
+  const onEditTransaction = () => {
+    dispatch(setCurrentTransaction(transaction));
+    dispatch(toggleEditTransactionDropdownHidden());
+  };
 
   return (
     <TransactionContainer key={transaction_id}>
@@ -51,13 +57,9 @@ const Transaction = ({ current_transaction }) => {
       <VendorContainer>{vendor}</VendorContainer>
       <Dollar>$</Dollar>
       <AmountContainer>{amount}</AmountContainer>
-      <StatusContainer
-        onClick={() => {
-          onStatusChange();
-        }}
-      >{ transaction.status ? "Cleared" : "Pending" } </StatusContainer>
+      <StatusContainer onClick={() => { onStatusChange() }} >{ transaction.status ? "Cleared" : "Pending" } </StatusContainer>
       <CategoryContainer>{label}</CategoryContainer>
-      <EditContainer>Edit</EditContainer>
+      <EditContainer onClick={() => { onEditTransaction() }}>Edit</EditContainer>
     </TransactionContainer>
   );
 };

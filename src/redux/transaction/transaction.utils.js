@@ -1,4 +1,4 @@
-import { insertTransaction, updateTransactionStatusAPI } from "../../hooks/global";
+import { insertTransaction, updateTransactionStatusAPI, fetchUpdateTransaction } from "../../hooks/global";
 
 export const addTransactionToList = (transactions, transactionToAdd) => {
   const transaction = {
@@ -25,4 +25,8 @@ export const addTransactionToList = (transactions, transactionToAdd) => {
 export const updateStatus = (transactions, transaction) => {
   updateTransactionStatusAPI(transaction);
   return [...transactions];
-}
+};
+
+export const updateTransaction = (transactionToUpdate) => {
+  fetchUpdateTransaction(transactionToUpdate);
+};

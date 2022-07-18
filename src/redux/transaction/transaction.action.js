@@ -24,3 +24,21 @@ export const updateTransactionStatus = (transaction) => ({
   type: TransactionActionTypes.UPDATE_STATUS,
   payload: transaction,
 });
+
+export const setCurrentTransaction = (transaction) => ({
+  type: TransactionActionTypes.SET_CURRENT_TRANSACTION,
+  payload: transaction,
+});
+
+export const updateSelectedTransaction = (transaction) => ({
+  type: TransactionActionTypes.UPDATE_TRANSACTION,
+  payload: transaction,
+});
+
+export const toggleTransactionDropdownHidden = () => ({
+  type: TransactionActionTypes.TOGGLE_TRANSACTION_HIDDEN,
+});
+
+export const toggleEditTransactionDropdownHidden = () => ({
+  type: TransactionActionTypes.TOGGLE_EDIT_TRANSACTION_HIDDEN,
+});

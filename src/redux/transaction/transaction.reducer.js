@@ -1,8 +1,11 @@
 import TransactionActionTypes from "./transaction.types";
-import { addTransactionToList, updateStatus } from "./transaction.utils";
+import { addTransactionToList, updateStatus, updateTransaction } from "./transaction.utils";
 
 const INITIAL_STATE = {
   transactionList: [],
+  hideTransactionDropdown: true,
+  hideEditTransactionDropdown: true,
+  currentTransaction: null,
 };
 
 const transactionReducer = (state = INITIAL_STATE, action) => {
@@ -35,6 +38,26 @@ const transactionReducer = (state = INITIAL_STATE, action) => {
           state.transactionList,
           action.payload
         ),
+      };
+    case TransactionActionTypes.TOGGLE_TRANSACTION_HIDDEN:
+      return {
+        ...state,
+        hideTransactionDropdown: !state.hideTransactionDropdown,
+      };
+    case TransactionActionTypes.TOGGLE_EDIT_TRANSACTION_HIDDEN:
+      return {
+        ...state,
+        hideEditTransactionDropdown: !state.hideEditTransactionDropdown,
+      };
+    case TransactionActionTypes.SET_CURRENT_TRANSACTION:
+      return {
+        ...state,
+        currentTransaction: action.payload,
+      };
+    case TransactionActionTypes.UPDATE_TRANSACTION:
+      return {
+        ...state,
+        transactionToUpdate: updateTransaction(action.payload),
       };
     default:
       return state;

@@ -47,7 +47,6 @@ const InsertTransaction = () => {
   };
 
   const onCategoryChange = (event) => {
-    console.log(event)
     setTransaction({ ...transaction, category: event });
   };
 
@@ -73,6 +72,7 @@ const InsertTransaction = () => {
   function addToPendingOrTotal() {
     if (status) {
       dispatch(updateAccountTotal(amount));
+      dispatch(updateAccountPending(amount));
     } else {
       dispatch(updateAccountPending(amount));
     }

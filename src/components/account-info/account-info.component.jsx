@@ -14,7 +14,7 @@ const AccountInfo = () => {
     <UserTable>
         <UserContainer>
             <UserHeading>Total</UserHeading>
-            <UserHeading>Pending</UserHeading>
+            <UserHeading>Available</UserHeading>
           <UserHeading>Name</UserHeading>
         </UserContainer>
       <UserContainer>
