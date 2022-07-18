@@ -12,13 +12,13 @@ const TransactionEditDropDown = () => {
   const { categoryList } = useSelector(selectCategories);
   const dispatch = useDispatch();
   const [transaction, setTransaction] = useState({
-    transaction_id: currentTransaction.transaction_id,
+    transaction_id: currentTransaction.transaction_id ? currentTransaction.transaction_id : null,
     date: currentTransaction.date,
     vendor: currentTransaction.vendor,
     label: currentTransaction.label,
     category_id: currentTransaction.category_id,
     status: currentTransaction.status,
-    amount: Number(currentTransaction.amount.replace(/[^0-9.-]+/g, "")),
+    amount: Number(currentTransaction.amount.replace(/[^0-9.-]+/g, "")) * -1,
   });
   const { vendor, amount, date } = transaction;
 
@@ -43,7 +43,7 @@ const TransactionEditDropDown = () => {
   };
 
   return (
-    <TransactionDropDownContainer id={ currentTransaction.transaction_id ? currentTransaction.transaction_id : null }>
+    <TransactionDropDownContainer id={ currentTransaction.transaction_id }>
       <div>
         <p>Current Due Date</p>
         <input
