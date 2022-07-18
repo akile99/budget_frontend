@@ -43,7 +43,7 @@ const TransactionEditDropDown = () => {
   };
 
   return (
-    <TransactionDropDownContainer id={ currentTransaction.transaction_id }>
+    <TransactionDropDownContainer id={ currentTransaction.transaction_id ? currentTransaction.transaction_id : null }>
       <div>
         <p>Current Due Date</p>
         <input
