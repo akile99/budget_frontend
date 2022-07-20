@@ -18,7 +18,7 @@ const TransactionEditDropDown = () => {
     label: currentTransaction ? currentTransaction.label : "",
     category_id: currentTransaction ? currentTransaction.category_id : "",
     status: currentTransaction ? currentTransaction.status : "",
-    amount: currentTransaction ? Number(currentTransaction.amount.replace(/[^0-9.-]+/g, "")) : "",
+    amount: currentTransaction ? currentTransaction.amount : "",
   });
   const { transaction_id, vendor, amount, date } = transaction;
 
