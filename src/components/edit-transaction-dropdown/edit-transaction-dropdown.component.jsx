@@ -20,7 +20,7 @@ const TransactionEditDropDown = () => {
     status: currentTransaction ? currentTransaction.status : "",
     amount: currentTransaction ? currentTransaction.amount : "",
   });
-  const { transaction_id, vendor, amount, date } = transaction;
+  const { transaction_id, vendor, amount, date, status } = transaction;
 
   const handleChange = (event) => {
     const { value, name } = event.target;
@@ -30,6 +30,10 @@ const TransactionEditDropDown = () => {
 
   const onCategoryChange = (event) => {
     setTransaction({ ...transaction, category_id: event.value });
+  };
+
+  const onStatusChange = () => {
+    setTransaction({ ...transaction, status: !status });
   };
 
   const handleEdit = () => {
@@ -62,6 +66,16 @@ const TransactionEditDropDown = () => {
           name="vendor"
           value={vendor}
           onChange={handleChange}
+        />
+      </div>
+      <div>
+        <p>Status</p>
+        <input
+          type="button"
+          id="status"
+          name="status"
+          value={ status ? "Cleared" : "Pending" }
+          onClick={onStatusChange}
         />
       </div>
       <div>
