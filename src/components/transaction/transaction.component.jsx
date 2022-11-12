@@ -17,12 +17,13 @@ import {
 
 const Transaction = ({ current_transaction }) => {
   const dispatch = useDispatch();
-  const { transaction_id, date, vendor, amount, status, label, category_id } = current_transaction;
+  const { transaction_id, date, vendor, amount, running_total, status, label, category_id } = current_transaction;
   const [transaction, setTransaction] = useState({
     date: new Date(date).toISOString().slice(0, 10),
     transaction_id: transaction_id,
     vendor: vendor,
     amount: amount,
+    running_total: running_total,
     status: status,
     label: label,
     category_id: category_id,
@@ -57,6 +58,7 @@ const Transaction = ({ current_transaction }) => {
       <VendorContainer>{vendor}</VendorContainer>
       <Dollar>$</Dollar>
       <AmountContainer>{amount}</AmountContainer>
+      <AmountContainer>{running_total}</AmountContainer>
       <StatusContainer onClick={() => { onStatusChange() }} >{ transaction.status ? "Cleared" : "Pending" } </StatusContainer>
       <CategoryContainer>{label}</CategoryContainer>
       <EditContainer onClick={() => { onEditTransaction() }}>Edit</EditContainer>

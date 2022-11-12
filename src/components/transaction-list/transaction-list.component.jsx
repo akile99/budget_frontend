@@ -61,7 +61,6 @@ const TransactionList = () => {
         <AmountContainer>Amount</AmountContainer>
         <StatusContainer>Status</StatusContainer>
         <CategoryContainer>Category</CategoryContainer>
-        {/* <p className="edit transaction">Edit</p> */}
       </TransactionListContainer>
       {transactionList.map((transaction) => (
         <Transaction
